@@ -1,0 +1,82 @@
+{
+  "sourceRoot": "apps/hamann-erp-systems/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/hamann-erp-systems",
+        "index": "apps/hamann-erp-systems/src/index.html",
+        "baseHref": "/",
+        "main": "apps/hamann-erp-systems/src/main.tsx",
+        "polyfills": "apps/hamann-erp-systems/src/polyfills.ts",
+        "tsConfig": "apps/hamann-erp-systems/tsconfig.app.json",
+        "assets": [
+          "apps/hamann-erp-systems/src/favicon.ico",
+          "apps/hamann-erp-systems/src/assets"
+        ],
+        "styles": ["apps/hamann-erp-systems/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/hamann-erp-systems/src/environments/environment.ts",
+              "with": "apps/hamann-erp-systems/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "hamann-erp-systems:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "hamann-erp-systems:build:development"
+        },
+        "production": {
+          "buildTarget": "hamann-erp-systems:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/hamann-erp-systems/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/hamann-erp-systems"],
+      "options": {
+        "jestConfig": "apps/hamann-erp-systems/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+
+@layer base {
+  :root {
+    --color-text-base: hsl(240, 14%, 61%);
+    --color-text-base-dark: hsl(240, 14%, 30%);
+    --color-text-base-light: hsl(240, 14%, 90%);
+    --color-text-primary: #4945fe;
+    --color-text-inverted: #000;
+    --color-text-standard: #fff;
+    --color-background: #fff;
+    --color-border-base: #ccc;
+    --color-border-base-dark: #aaa;
+    --color-background-base: #f6f6f9;
+    --color-background-layer: #ffffff;
+    --color-background-contrast: #36454f;
+    --color-background-primary: hsl(241, 99%, 63%);
+    --color-background-primary-light: hsl(241, 99%, 97%);
+    --color-border-base: #f0f1ff;
+  }
+
+  .theme-dark {
+    --color-text-base: hsl(240, 14%, 90%);
+    --color-text-base-dark: hsl(240, 14%, 30%);
+    --color-text-base-light: hsl(240, 14%, 90%);
+    --color-text-primary: #4945fe;
+    --color-text-inverted: #000;
+    --color-text-standard: #fff;
+    --color-background: #36454f;
+    --color-border-base: #ccc;
+    --color-background-base: #f6f6f9;
+    --color-background-layer: #36454f;
+    --color-background-contrast: #36454f;
+    --color-background-primary: #4945fe;
+    --color-border-base: #f0f1ff;
+    font-size: 16px;
+  }
+}

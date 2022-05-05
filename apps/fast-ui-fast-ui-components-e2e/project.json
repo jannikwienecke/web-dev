@@ -1,0 +1,27 @@
+{
+  "sourceRoot": "apps/fast-ui-fast-ui-components-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/fast-ui-fast-ui-components-e2e/cypress.json",
+        "devServerTarget": "fast-ui-fast-ui-components:storybook"
+      },
+      "configurations": {
+        "ci": {
+          "devServerTarget": "fast-ui-fast-ui-components:storybook:ci"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/fast-ui-fast-ui-components-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["fast-ui-fast-ui-components"]
+}

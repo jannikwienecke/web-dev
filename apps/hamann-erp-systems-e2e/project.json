@@ -1,0 +1,27 @@
+{
+  "sourceRoot": "apps/hamann-erp-systems-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/hamann-erp-systems-e2e/cypress.json",
+        "devServerTarget": "hamann-erp-systems:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "hamann-erp-systems:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/hamann-erp-systems-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["hamann-erp-systems"]
+}
