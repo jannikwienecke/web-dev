@@ -1,5 +1,5 @@
 
-> nx run fast-ui-fast-ui-components:build-storybook --outputDir=/var/folders/cq/tfd10t394w96vzvkzxnlf5xr0000gn/T/chromatic--44586-J13xoYRSMwIm
+> nx run fast-ui-fast-ui-components:build-storybook --outputDir=/var/folders/cq/tfd10t394w96vzvkzxnlf5xr0000gn/T/chromatic--45071-GgjDIC8j277B
 
 
 >  NX  ui framework: @storybook/react
@@ -13,8 +13,8 @@ info => Compiling manager..
 info => Compiling preview..
 info => Loading Nrwl React Storybook preset from "@nrwl/react/plugins/storybook"
 info => Using default Webpack5 setup
-info => Manager built (19 s)
-info => Preview built (23 s)
+info => Manager built (18 s)
+info => Preview built (22 s)
 WARN Module Warning (from ./node_modules/postcss-loader/dist/cjs.js):
 WARN Warning
 WARN 
@@ -44,5 +44,5 @@ info => Output directory: /Users/sirum/Desktop/web-dev/dist/storybook/fast-ui-fa
  >  NX   Successfully ran target build-storybook for project fast-ui-fast-ui-components
 
 
-   See Nx Cloud run details at https://nx.app/runs/7JNLeh8HnhU
+   See Nx Cloud run details at https://nx.app/runs/mfFevl9zN5C
 
