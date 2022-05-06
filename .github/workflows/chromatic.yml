@@ -22,4 +22,4 @@ jobs:
         # Chromatic GitHub Action options
         with:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
-          projectToken: ${{ secrets.1beeba355b7d }}
+          projectToken: 1beeba355b7d
