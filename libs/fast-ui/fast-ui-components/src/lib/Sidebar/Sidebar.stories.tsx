@@ -13,7 +13,8 @@ import { Module, Sidebar, SidebarItem, SidebarProps, User } from './Sidebar';
 
 export default {
   component: Sidebar,
-  title: 'FastUiFastUiComponents',
+  title: 'Sidebar',
+  excludeStories: /.*module_test_1$/,
   decorators: [
     (Story) => (
       <div style={{ height: '900px' }}>
@@ -38,28 +39,30 @@ const app: SidebarItem = {
   description: 'Workspace',
 };
 
+export const module_test_1: Module = {
+  title: 'Fast UI Components',
+  navigationItems: [
+    { icon: FaUser, label: 'User List', path: '#' },
+    {
+      icon: FaHiking,
+      label: 'Hiking',
+      path: '#',
+    },
+    {
+      icon: FaAddressBook,
+      label: 'Address Book',
+      path: '#',
+    },
+    {
+      icon: FaApple,
+      label: 'Apple',
+      path: '#',
+    },
+  ],
+};
+
 const modules: Module[] = [
-  {
-    title: 'Fast UI Components',
-    navigationItems: [
-      { icon: FaUser, label: 'User List', path: '#' },
-      {
-        icon: FaHiking,
-        label: 'Hiking',
-        path: '#',
-      },
-      {
-        icon: FaAddressBook,
-        label: 'Address Book',
-        path: '#',
-      },
-      {
-        icon: FaApple,
-        label: 'Apple',
-        path: '#',
-      },
-    ],
-  },
+  module_test_1,
   {
     title: 'Settings',
     navigationItems: [
