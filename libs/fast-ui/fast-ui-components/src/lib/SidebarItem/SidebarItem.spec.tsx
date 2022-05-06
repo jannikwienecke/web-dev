@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Sidebar from './Sidebar';
+import SidebarItem from './SidebarItem';
 
-describe('FastUiFastUiComponents', () => {
+describe('SidebarItem', () => {
   it('should render successfully', () => {
-    // const { baseElement } = render(<Sidebar />);
+    // const { baseElement } = render(<SidebarItem />);
     // expect(baseElement).toBeTruthy();
   });
 });

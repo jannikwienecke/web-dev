@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
-
 @layer base {
   :root {
     --color-text-base: hsl(240, 14%, 61%);

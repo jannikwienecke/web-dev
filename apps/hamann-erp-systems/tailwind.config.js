@@ -9,9 +9,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],
-      },
+      fontFamily: {},
 
       textColor: {
         skin: {
