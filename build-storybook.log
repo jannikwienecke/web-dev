@@ -1,0 +1,48 @@
+
+> nx run fast-ui-fast-ui-components:build-storybook --outputDir=/var/folders/cq/tfd10t394w96vzvkzxnlf5xr0000gn/T/chromatic--44586-J13xoYRSMwIm
+
+
+>  NX  ui framework: @storybook/react
+
+
+>  NX  Storybook builder starting ...
+
+info => Cleaning outputDir: /Users/sirum/Desktop/web-dev/dist/storybook/fast-ui-fast-ui-components
+info => Loading presets
+info => Compiling manager..
+info => Compiling preview..
+info => Loading Nrwl React Storybook preset from "@nrwl/react/plugins/storybook"
+info => Using default Webpack5 setup
+info => Manager built (19 s)
+info => Preview built (23 s)
+WARN Module Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+WARN Warning
+WARN 
+WARN (5:1) postcss-import: @import must precede all other statements (besides @charset)
+WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+WARN This can impact web performance.
+WARN Assets: 
+WARN   869.eb71e065.iframe.bundle.js (566 KiB)
+WARN   340.b706bfe9.iframe.bundle.js (1.86 MiB)
+WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+WARN Entrypoints:
+WARN   main (1.93 MiB)
+WARN       runtime~main.74f65a73.iframe.bundle.js
+WARN       340.b706bfe9.iframe.bundle.js
+WARN       main.7ca6fae1.iframe.bundle.js
+WARN 
+info => Output directory: /Users/sirum/Desktop/web-dev/dist/storybook/fast-ui-fast-ui-components
+
+>  NX  Storybook builder finished ...
+
+
+>  NX  Storybook files available in dist/storybook/fast-ui-fast-ui-components
+
+
+ 
+
+ >  NX   Successfully ran target build-storybook for project fast-ui-fast-ui-components
+
+
+   See Nx Cloud run details at https://nx.app/runs/7JNLeh8HnhU
+
