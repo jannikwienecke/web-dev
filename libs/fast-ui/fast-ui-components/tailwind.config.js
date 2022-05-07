@@ -18,6 +18,8 @@ module.exports = {
           'base-light': 'var(--color-text-base-light)',
           primary: 'var(--color-text-primary)',
           standard: 'var(--color-text-standard)',
+          accent: 'var(--color-text-accent)',
+          disabled: 'var(--color-text-disabled)',
         },
       },
       backgroundColor: {
