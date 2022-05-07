@@ -17,7 +17,7 @@ export function SidebarAppDrawerItem({
     group bg-skin-base relative
     `;
 
-  const tooltip = `tooltiptext hidden  absolute bg-skin-contrast p-1 px-3 text-skin-standard rounded-md top-3 left-16 text-white text-sm  group-hover:block whitespace-nowrap`;
+  const tooltip = `tooltiptext hidden absolute bg-skin-contrast p-1 px-3 text-skin-standard rounded-md top-3 left-16 text-white text-sm  group-hover:block whitespace-nowrap`;
 
   if (!appdrawerItem) return null;
   return (
@@ -27,7 +27,7 @@ export function SidebarAppDrawerItem({
       }`}
     >
       <div
-        className={`cursor-pointer bg-skin-base  text-skin-accent font-bold rounded-md flex flex-row items-center justify-center ${
+        className={`cursor-pointer bg-skin-base text-skin-accent font-bold rounded-md flex flex-row items-center justify-center ${
           isCollapsed || 'px-3  justify-start'
         } `}
       >

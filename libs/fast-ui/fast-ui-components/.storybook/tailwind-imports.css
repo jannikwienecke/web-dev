@@ -8,36 +8,48 @@
     --color-text-base-dark: hsl(240, 14%, 30%);
     --color-text-base-light: hsl(240, 14%, 80%);
     --color-text-disabled: hsl(240, 14%, 50%);
+
     --color-text-primary: #4945fe;
     --color-text-inverted: #000;
     --color-text-standard: #fff;
     --color-text-accent: #4945fe;
     --color-background: #fff;
+
     --color-border-base: #ccc;
     --color-border-base-dark: #aaa;
-    --color-background-base: #f6f6f9;
+
+    --color-background-base: hsl(240, 20%, 97%);
+    --color-background-base-intense: hsl(
+      240,
+      7%,
+      97%
+    ); /* lighter for light and darker for dark */
     --color-background-layer: #ffffff;
     --color-background-contrast: #36454f;
     --color-background-primary: hsl(241, 99%, 63%);
     --color-background-primary-light: hsl(241, 99%, 97%);
+
     --color-border-base: #f0f1ff;
   }
 }
-
 .theme-dark {
   --color-text-base: hsl(240, 14%, 85%);
   --color-text-base-dark: hsl(240, 14%, 100%);
   --color-text-base-light: hsl(240, 14%, 50%);
   --color-text-disabled: hsl(240, 14%, 60%);
+
   --color-text-primary: #4945fe;
   --color-text-inverted: #000;
   --color-text-standard: #fff;
   --color-text-accent: hsl(240, 14%, 90%);
   --color-background: #36454f;
-  --color-background-base: #212234;
+
+  --color-background-base: hsl(237, 22%, 17%);
+  --color-background-base-intense: hsl(240, 22%, 25%);
   --color-background-layer: #32324d;
   --color-background-contrast: #36454f;
   --color-background-primary: #4945fe;
+
   --color-border-base: #212234;
   font-size: 16px;
 }
