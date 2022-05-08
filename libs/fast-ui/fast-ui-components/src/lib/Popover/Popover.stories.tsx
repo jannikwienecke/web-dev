@@ -5,7 +5,7 @@ import { Popover, PopoverGroup, PopoverProps } from './Popover';
 export default {
   component: Popover,
   title: 'Popover',
-
+  excludeStories: /.*popoverGroups$/,
   parameters: {
     layout: 'centered',
   },
@@ -34,6 +34,5 @@ export const popoverGroups: PopoverGroup[] = [
 
 export const Primary = Template.bind({});
 Primary.args = {
-  // isOpen: true,
   groups: popoverGroups,
 };

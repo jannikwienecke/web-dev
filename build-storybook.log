@@ -1,5 +1,5 @@
 
-> nx run fast-ui-fast-ui-components:build-storybook --outputDir=/var/folders/cq/tfd10t394w96vzvkzxnlf5xr0000gn/T/chromatic--45071-GgjDIC8j277B
+> nx run fast-ui-fast-ui-components:build-storybook --outputDir=/var/folders/cq/tfd10t394w96vzvkzxnlf5xr0000gn/T/chromatic--14722-v1HGzP3dkoUv
 
 
 >  NX  ui framework: @storybook/react
@@ -13,23 +13,19 @@ info => Compiling manager..
 info => Compiling preview..
 info => Loading Nrwl React Storybook preset from "@nrwl/react/plugins/storybook"
 info => Using default Webpack5 setup
-info => Manager built (18 s)
-info => Preview built (22 s)
-WARN Module Warning (from ./node_modules/postcss-loader/dist/cjs.js):
-WARN Warning
-WARN 
-WARN (5:1) postcss-import: @import must precede all other statements (besides @charset)
+info => Manager built (22 s)
+info => Preview built (29 s)
 WARN asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 WARN This can impact web performance.
 WARN Assets: 
-WARN   869.eb71e065.iframe.bundle.js (566 KiB)
-WARN   340.b706bfe9.iframe.bundle.js (1.86 MiB)
+WARN   869.09c443fc.iframe.bundle.js (561 KiB)
+WARN   289.f9e34947.iframe.bundle.js (2.39 MiB)
 WARN entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 WARN Entrypoints:
-WARN   main (1.93 MiB)
-WARN       runtime~main.74f65a73.iframe.bundle.js
-WARN       340.b706bfe9.iframe.bundle.js
-WARN       main.7ca6fae1.iframe.bundle.js
+WARN   main (2.49 MiB)
+WARN       runtime~main.7739dd94.iframe.bundle.js
+WARN       289.f9e34947.iframe.bundle.js
+WARN       main.b19f15bb.iframe.bundle.js
 WARN 
 info => Output directory: /Users/sirum/Desktop/web-dev/dist/storybook/fast-ui-fast-ui-components
 
@@ -44,5 +40,5 @@ info => Output directory: /Users/sirum/Desktop/web-dev/dist/storybook/fast-ui-fa
  >  NX   Successfully ran target build-storybook for project fast-ui-fast-ui-components
 
 
-   See Nx Cloud run details at https://nx.app/runs/mfFevl9zN5C
+   See Nx Cloud run details at https://nx.app/runs/mQR4e7ghDiX
 
