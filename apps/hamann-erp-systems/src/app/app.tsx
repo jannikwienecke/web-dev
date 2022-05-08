@@ -1,7 +1,7 @@
 import {
-  Sidebar,
-  AppSideMenu,
   AppGroup,
+  AppSideMenu,
+  Sidebar,
 } from '@web-dev/fast-ui/fast-ui-components';
 import {
   FaAddressBook,
@@ -13,7 +13,6 @@ import {
   FaUser,
 } from 'react-icons/fa';
 import { FiActivity, FiSettings } from 'react-icons/fi';
-import { Route, Routes } from 'react-router-dom';
 
 export const appTestGroups: AppGroup[] = [
   {
@@ -30,7 +29,7 @@ export const appTestGroups: AppGroup[] = [
     appItems: [
       { label: 'Settings', pathname: '#' },
       { label: 'Views', pathname: '#' },
-      { label: 'Drivers', pathname: '#', isActive: true },
+      { label: 'Driver List', pathname: '#', isActive: true },
       { label: 'TImes', pathname: '#' },
     ],
   },

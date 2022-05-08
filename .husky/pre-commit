@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+nx affected:lint --all --parallel=true   # LINTING
+nx affected:test --all --parallel=true    # UNIT TESTS
+yarn nx run-many --target=type-check --all --parallel=true #TYPE CHECKING

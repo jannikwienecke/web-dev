@@ -8,7 +8,10 @@
     "test": "nx test",
     "build-storybook": "nx run fast-ui-fast-ui-components:build-storybook",
     "chromatic": "npx chromatic --project-token=1beeba355b7d",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "prepare": "husky install",
+    "typecheck": "tsc -b ./apps/hamann-erp-systems",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
   },
   "private": true,
   "dependencies": {
@@ -75,7 +78,7 @@
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.5.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "jest": "27.5.1",
     "nx": "^14.1.4",
     "prettier": "^2.5.1",
@@ -84,6 +87,7 @@
     "storybook-dark-mode": "^1.1.0",
     "ts-jest": "27.1.4",
     "ts-node": "9.1.1",
+    "tsc": "^2.0.4",
     "typescript": "~4.6.2",
     "url-loader": "^3.0.0"
   }

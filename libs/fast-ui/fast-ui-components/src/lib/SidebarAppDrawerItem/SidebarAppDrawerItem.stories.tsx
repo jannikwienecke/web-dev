@@ -25,7 +25,7 @@ const Template: Story<SidebarAppDrawerItemProps> = (args) => (
 const navItem: SidebarItem = {
   label: 'User List',
   icon: FaUser,
-  path: '#',
+  pathname: '#',
 };
 
 export const Collapsed = Template.bind({});

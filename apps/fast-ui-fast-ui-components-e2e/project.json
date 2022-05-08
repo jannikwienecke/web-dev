@@ -20,6 +20,13 @@
       "options": {
         "lintFilePatterns": ["apps/fast-ui-fast-ui-components-e2e/**/*.{js,ts}"]
       }
+    },
+
+    "type-check": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "yarn tsc -b apps/fast-ui-fast-ui-components-e2e --incremental"
+      }
     }
   },
   "tags": [],

@@ -1,4 +1,3 @@
-import { FaHome } from 'react-icons/fa';
 import { apply, tw } from 'twind';
 import { SidebarItem } from '../Sidebar';
 
