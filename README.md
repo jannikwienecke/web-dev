@@ -1,12 +1,10 @@
 
 
-# WebDev
-
-This project was generated using [Nx](https://nx.dev).
+# WebDev 
 
 🔎 **Smart, Fast and Extensible Build System for web development**
 
-## Adding capabilities to your workspace
+## Monorepo for building web application based on remix.run and remix-fast-ui
 
 ## Generate an application
 
