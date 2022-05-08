@@ -16,7 +16,7 @@ export function SidebarGroupItem({
     <>
       {/* Module description for not collapsed screen */}
       <div
-        className={`mt-3 px-3 ${
+        className={`mt-3 px-3 first:mt-0 ${
           isCollapsed && 'border-b-2  mb-2 border-skin-base first:hidden'
         }`}
       >

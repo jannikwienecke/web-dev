@@ -2,40 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-
 @layer base {
   :root {
     --color-text-base: hsl(240, 14%, 61%);
     --color-text-base-dark: hsl(240, 14%, 30%);
-    --color-text-base-light: hsl(240, 14%, 90%);
+    --color-text-base-light: hsl(240, 14%, 55%);
+    --color-text-disabled: hsl(240, 14%, 50%);
+
     --color-text-primary: #4945fe;
+    --color-text-primary-intense: hsl(241, 100%, 43%);
     --color-text-inverted: #000;
     --color-text-standard: #fff;
+    --color-text-accent: #4945fe;
     --color-background: #fff;
+
     --color-border-base: #ccc;
     --color-border-base-dark: #aaa;
-    --color-background-base: #f6f6f9;
+    --color-border-primary: #4945fe;
+
+    --color-background-base: hsl(260, 20%, 97%);
+    --color-background-base-intense: hsl(
+      260,
+      10%,
+      10%
+    ); /* lighter for light and darker for dark */
     --color-background-layer: #ffffff;
     --color-background-contrast: #36454f;
     --color-background-primary: hsl(241, 99%, 63%);
-    --color-background-primary-light: hsl(241, 99%, 97%);
-    --color-border-base: #f0f1ff;
-  }
+    --color-background-primary-light: hsl(241 84% 95%);
 
-  .theme-dark {
-    --color-text-base: hsl(240, 14%, 90%);
-    --color-text-base-dark: hsl(240, 14%, 30%);
-    --color-text-base-light: hsl(240, 14%, 90%);
-    --color-text-primary: #4945fe;
-    --color-text-inverted: #000;
-    --color-text-standard: #fff;
-    --color-background: #36454f;
-    --color-border-base: #ccc;
-    --color-background-base: #f6f6f9;
-    --color-background-layer: #36454f;
-    --color-background-contrast: #36454f;
-    --color-background-primary: #4945fe;
     --color-border-base: #f0f1ff;
   }
+}
+.theme-dark {
+  --color-text-base: hsl(240, 14%, 85%);
+  --color-text-base-dark: hsl(240, 14%, 100%);
+  --color-text-base-light: hsl(240, 14%, 70%);
+  --color-text-disabled: hsl(240, 14%, 60%);
+
+  --color-text-primary: #4945fe;
+  --color-text-inverted: #000;
+  --color-text-standard: #fff;
+  --color-text-accent: hsl(240, 14%, 90%);
+  --color-background: #36454f;
+
+  --color-background-base: hsl(237, 22%, 17%);
+  --color-background-base-intense: hsl(240, 22%, 25%);
+  --color-background-layer: #32324d;
+  --color-background-contrast: #36454f;
+  --color-background-primary: #4945fe;
+
+  --color-border-base: #212234;
+  font-size: 16px;
+}
+
+.ads {
+  color: hsl(260, 20%, 97%);
 }

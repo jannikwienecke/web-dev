@@ -13,32 +13,31 @@ export function SidebarAppDrawerItem({
 }: SidebarAppDrawerItemProps) {
   const mainLogoAndHome = apply`
     grid place-items-center 
-    p-3 rounded-md max-w-[3.5rem]
-    bg-skin-primary 
+    p-3 rounded-md 
+    group bg-skin-base relative
     `;
 
-  const tooltip = `tooltiptext hidden  absolute bg-skin-contrast p-1 px-3 text-skin-standard rounded-md top-3 left-16 text-white text-sm  group-hover:block whitespace-nowrap`;
+  const tooltip = `tooltiptext hidden absolute bg-skin-contrast p-1 px-3 text-skin-standard rounded-md top-3 left-16 text-white text-sm  group-hover:block whitespace-nowrap`;
 
   if (!appdrawerItem) return null;
   return (
     <div
-      className={`px-3 py-4 mb-2 ${
+      className={`px-3 py-3 mb-0 ${
         isCollapsed && 'border-b-2 border-skin-base'
       }`}
     >
       <div
-        className={`  cursor-pointer text-skin-primary font-bold bg-skin-primary-light rounded-md flex flex-row items-center ${
-          isCollapsed || 'px-3 p-2 justify-start'
+        className={`cursor-pointer bg-skin-base text-skin-accent font-bold rounded-md flex flex-row items-center justify-center ${
+          isCollapsed || 'px-3  justify-start'
         } `}
       >
         <div
-          className={tw`${mainLogoAndHome} group bg-skin-base relative ${
-            isCollapsed || 'bg-transparent'
-          }`}
+          className={tw`${mainLogoAndHome}  ${isCollapsed || 'bg-transparent'}`}
         >
-          <appdrawerItem.icon className="text-skin-primary roun opacity-100" />
+          <appdrawerItem.icon className="text-skin-accent roun opacity-100" />
           <div className={`${tooltip} block`}>{'Home'}</div>
         </div>
+
         <div className={`${isCollapsed && 'hidden'}`}>
           {appdrawerItem.label}
         </div>
