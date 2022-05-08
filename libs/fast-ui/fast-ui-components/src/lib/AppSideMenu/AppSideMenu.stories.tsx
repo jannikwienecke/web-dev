@@ -4,6 +4,7 @@ import { AppGroup, AppSideMenu, AppSideMenuProps } from './AppSideMenu';
 export default {
   component: AppSideMenu,
   title: 'AppSideMenu',
+  excludeStories: /.*appTestGroups$/,
   decorators: [
     (Story) => (
       <div style={{ height: '900px' }}>
