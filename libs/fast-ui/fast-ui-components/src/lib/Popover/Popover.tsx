@@ -1,5 +1,4 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-import React from 'react';
 import { css, tw } from 'twind/css';
 
 export interface PopoverItem {

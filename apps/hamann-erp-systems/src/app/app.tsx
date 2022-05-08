@@ -29,7 +29,7 @@ export const appTestGroups: AppGroup[] = [
     appItems: [
       { label: 'Settings', pathname: '#' },
       { label: 'Views', pathname: '#' },
-      { label: 'Driver List', pathname: '#', isActive: true },
+      { label: 'Drivers', pathname: '#', isActive: true },
       { label: 'TImes', pathname: '#' },
     ],
   },
