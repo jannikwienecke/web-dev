@@ -14,9 +14,12 @@ export const useClickOutside = ({
       if (!(e.target instanceof Node)) return;
       if (!containerRef.current) return;
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const clickedElementId = (e.target as any)?.id;
+
       const clickedInside = containerRef.current.contains(e.target);
 
+      // test
       if (!clickedInside) {
         callbackClickOutside(clickedElementId);
       }

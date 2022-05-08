@@ -16,7 +16,7 @@ const Template: Story<SidebarHeaderProps> = (args) => (
 const app: SidebarItem = {
   description: 'Workspace',
   label: 'Hamann Erp System',
-  path: '#',
+  pathname: '#',
   icon: FiActivity,
 };
 

@@ -1,5 +1,4 @@
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-import React from 'react';
 import { css, tw } from 'twind/css';
 
 export interface PopoverItem {
@@ -16,7 +15,6 @@ export interface PopoverGroup {
 }
 
 export interface PopoverProps {
-  // isOpen: boolean;
   button: JSX.Element;
   groups: PopoverGroup[];
 }
@@ -94,7 +92,6 @@ export const Popover = ({ button, groups }: PopoverProps) => {
             );
           })}
         </DropdownMenuPrimitive.Content>
-        {/* // ) : null} */}
       </DropdownMenuPrimitive.Root>
     </div>
   );

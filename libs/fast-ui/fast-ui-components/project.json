@@ -28,7 +28,7 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/fast-ui/fast-ui-components/**/*.{ts,tsx,js,jsx}"
+          "libs/fast-ui/fast-ui-components/**/*.{ts,tsx}"
         ]
       }
     },
@@ -40,6 +40,14 @@
         "passWithNoTests": true
       }
     },
+
+    "type-check": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "yarn tsc -b libs/fast-ui/fast-ui-components --incremental"
+      }
+    },
+
     "storybook": {
       "executor": "@nrwl/storybook:storybook",
       "options": {

@@ -10,8 +10,6 @@ export function SidebarGroupItem({
   isCollapsed,
   module,
 }: SidebarGroupItemProps) {
-  console.log('module: ', module);
-
   return (
     <>
       {/* Module description for not collapsed screen */}
