@@ -5,17 +5,16 @@ import { Popover, PopoverGroup, PopoverProps } from './Popover';
 export default {
   component: Popover,
   title: 'Popover',
-
+  excludeStories: /.*popoverGroups$/,
   parameters: {
     layout: 'centered',
   },
 } as Meta;
 
 const Template: Story<PopoverProps> = (args) => {
-  const [open, setOpen] = React.useState(true);
-  const btn = <button onClick={() => setOpen(!open)}>OPEN</button>;
+  const btn = <button>Toggle Menu</button>;
 
-  return <Popover {...args} button={btn} isOpen={open} />;
+  return <Popover {...args} button={btn} />;
 };
 
 export const popoverGroups: PopoverGroup[] = [
@@ -35,6 +34,5 @@ export const popoverGroups: PopoverGroup[] = [
 
 export const Primary = Template.bind({});
 Primary.args = {
-  isOpen: true,
   groups: popoverGroups,
 };

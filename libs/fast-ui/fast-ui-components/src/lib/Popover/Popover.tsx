@@ -16,12 +16,12 @@ export interface PopoverGroup {
 }
 
 export interface PopoverProps {
-  isOpen: boolean;
+  // isOpen: boolean;
   button: JSX.Element;
   groups: PopoverGroup[];
 }
 
-export const Popover = ({ isOpen, button, groups }: PopoverProps) => {
+export const Popover = ({ button, groups }: PopoverProps) => {
   const dropDownItem = `
     relative text-skin-accent text-[13px]
     rounded-sm  pl-6 flex items-center
@@ -55,49 +55,46 @@ export const Popover = ({ isOpen, button, groups }: PopoverProps) => {
 
   return (
     <div>
-      {/* always open - controlled by parent if items are shown */}
-      <DropdownMenuPrimitive.Root defaultOpen={isOpen}>
+      <DropdownMenuPrimitive.Root>
         <DropdownMenuPrimitive.Trigger asChild>
           {button}
         </DropdownMenuPrimitive.Trigger>
 
-        {isOpen ? (
-          <DropdownMenuPrimitive.Content
-            avoidCollisions={true}
-            side={'right'}
-            sideOffset={20}
-            className={tw`${boxShadowContent} ${dropdownContent}`}
-          >
-            {groups.map((group, index) => {
-              const isLastGroup = index === groups.length - 1;
-              return (
-                <>
-                  {group.items.map((item) => {
-                    return (
-                      <DropdownMenuPrimitive.Item
-                        disabled={item.disabled}
-                        className={`${dropDownItem} ${tw(itemStylesDisabled)}`}
-                      >
-                        {item.label}{' '}
-                        <div
-                          className={`
+        <DropdownMenuPrimitive.Content
+          avoidCollisions={true}
+          sideOffset={10}
+          className={tw`${boxShadowContent} ${dropdownContent}`}
+        >
+          {groups.map((group, index) => {
+            const isLastGroup = index === groups.length - 1;
+            return (
+              <>
+                {group.items.map((item) => {
+                  return (
+                    <DropdownMenuPrimitive.Item
+                      disabled={item.disabled}
+                      className={`${dropDownItem} ${tw(itemStylesDisabled)}`}
+                    >
+                      {item.label}{' '}
+                      <div
+                        className={`
                       
                           ${rightSlot} ${!item.shortCut && 'hidden'}`}
-                        >
-                          {item.shortCut}
-                        </div>
-                      </DropdownMenuPrimitive.Item>
-                    );
-                  })}
+                      >
+                        {item.shortCut}
+                      </div>
+                    </DropdownMenuPrimitive.Item>
+                  );
+                })}
 
-                  <DropdownMenuPrimitive.Separator
-                    className={`${seperator} ${isLastGroup && 'hidden'}`}
-                  />
-                </>
-              );
-            })}
-          </DropdownMenuPrimitive.Content>
-        ) : null}
+                <DropdownMenuPrimitive.Separator
+                  className={`${seperator} ${isLastGroup && 'hidden'}`}
+                />
+              </>
+            );
+          })}
+        </DropdownMenuPrimitive.Content>
+        {/* // ) : null} */}
       </DropdownMenuPrimitive.Root>
     </div>
   );

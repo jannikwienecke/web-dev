@@ -1,2 +1,2 @@
-export * from './lib/SidebarAppDrawerItem/SidebarAppDrawerItem';
 export * from './lib/Sidebar';
+export * from './lib/AppSideMenu/AppSideMenu';

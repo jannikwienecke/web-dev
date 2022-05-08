@@ -17,6 +17,7 @@ module.exports = {
           'base-dark': 'var(--color-text-base-dark)',
           'base-light': 'var(--color-text-base-light)',
           primary: 'var(--color-text-primary)',
+          'primary-intense': 'var(--color-text-primary-intense)',
           standard: 'var(--color-text-standard)',
           accent: 'var(--color-text-accent)',
           disabled: 'var(--color-text-disabled)',
@@ -36,9 +37,10 @@ module.exports = {
         skin: {
           base: 'var(--color-border-base)',
           'base-dark': 'var(--color-border-base-dark)',
+          primary: 'var(--color-border-primary)',
         },
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 };

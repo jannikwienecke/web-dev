@@ -11,12 +11,12 @@ export function SidebarHeader({ isCollapsed, app }: SidebarHeaderProps) {
   const mainLogoAndHome = apply`
     grid place-items-center 
     p-3 rounded-md max-w-[3.5rem]
-    bg-skin-primary 
+    bg-skin-primary
   `;
 
   return (
     <div
-      className={`border-b-2 border-skin-base px-3 py-4 flex flex-row gap-4 justify-start ${
+      className={`h-24 flex-shrink-0 border-b-2 border-skin-base px-3 flex flex-row gap-4 justify-start ${
         isCollapsed && 'justify-center'
       } ${(isCollapsed && !app.description) || 'items-center'}`}
     >

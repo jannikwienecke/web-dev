@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import React, { HTMLAttributes } from 'react';
 import { apply, tw } from 'twind';
-import { useClickOutside } from '../helper/hooks';
 import SidebarAppDrawerItem from '../SidebarAppDrawerItem/SidebarAppDrawerItem';
 import SidebarGroupItem from '../SidebarGroupItem/SidebarGroupItem';
 import SidebarHeader from '../SidebarHeader/SidebarHeader';
@@ -10,7 +9,7 @@ import SidebarUser from '../SidebarUser/SidebarUser';
 export interface SidebarItem {
   icon: (props: HTMLAttributes<unknown>) => JSX.Element;
   label: string;
-  path: string;
+  pathname: string;
   description?: string;
 }
 
@@ -43,7 +42,12 @@ export interface SidebarProps {
   isCollapsed?: boolean;
 }
 
-const navContainerBase = apply`bg-skin-layer h-full border-skin-base border-2 flex flex-col rounded-l-md`;
+export const navContainerBase = apply`
+  h-full border-skin-base border-2
+  flex flex-col
+  border-l-0
+  
+  `;
 const navContainerCollapsed = apply`w-[64px]`;
 const navContainerNotCollapsed = apply`w-[256px]`;
 
@@ -60,16 +64,6 @@ export function Sidebar({
 
   const [isCollapsed, setIsCollapsed] = React.useState<boolean>(isCollapsed_);
 
-  const { containerRef } = useClickOutside({
-    callbackClickOutside: (id) => {
-      if (id === 'open-sidebar-btn') {
-        setIsCollapsed(false);
-      } else {
-        setIsCollapsed(true);
-      }
-    },
-  });
-
   const handleToggle = () => {
     setIsCollapsed((prev) => !prev);
   };
@@ -80,7 +74,6 @@ export function Sidebar({
 
   return (
     <motion.div
-      ref={containerRef}
       initial={{ scale: 0 }}
       animate={{ width: isCollapsed ? '72px' : '256px', scale: 1 }}
       transition={{
@@ -88,7 +81,7 @@ export function Sidebar({
         stiffness: 500,
         damping: 40,
       }}
-      className={tw`relative  ${navContainerBase}, ${
+      className={tw`relative  ${navContainerBase} bg-skin-layer rounded-l-md ${
         isCollapsed ? navContainerCollapsed : navContainerNotCollapsed
       }`}
     >
