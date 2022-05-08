@@ -1,4 +1,8 @@
-import { Sidebar } from '@web-dev/fast-ui/fast-ui-components';
+import {
+  Sidebar,
+  AppSideMenu,
+  AppGroup,
+} from '@web-dev/fast-ui/fast-ui-components';
 import {
   FaAddressBook,
   FaApple,
@@ -11,73 +15,92 @@ import {
 import { FiActivity, FiSettings } from 'react-icons/fi';
 import { Route, Routes } from 'react-router-dom';
 
+export const appTestGroups: AppGroup[] = [
+  {
+    title: 'Employee Views',
+    appItems: [
+      { label: 'All Employee', pathname: '#' },
+      { label: 'Active Employee', pathname: '#' },
+      { label: 'Left Employee', pathname: '#' },
+    ],
+  },
+
+  {
+    title: 'Employee Settings',
+    appItems: [
+      { label: 'Settings', pathname: '#' },
+      { label: 'Views', pathname: '#' },
+      { label: 'Drivers', pathname: '#', isActive: true },
+      { label: 'TImes', pathname: '#' },
+    ],
+  },
+];
 export function App() {
   return (
     <div
-      style={{ backgroundColor: '#F6F7FC' }}
-      className="rounded-lg p-2 h-screen"
+      style={{ backgroundColor: 'hsl(260, 20%, 98%)' }}
+      className="rounded-lg p-2 h-screen flex flex-row"
     >
-      <Routes>
-        <Route path="/" element={<div></div>} />
-        <Route
-          path="/fast-ui-components"
-          element={
-            <Sidebar
-              user={{ username: 'John Doe', imgSrc: '' }}
-              main={{
-                label: 'Select Apps',
-                icon: FaHome,
-                path: '#',
-              }}
-              app={{
-                label: 'Hamann Erp System',
-                icon: FiActivity,
-                path: '#',
-                description: 'Workspace',
-              }}
-              modules={[
-                {
-                  title: 'Fast UI Components',
-                  navigationItems: [
-                    { icon: FaUser, label: 'User List', path: '#' },
-                    {
-                      icon: FaHiking,
-                      label: 'Hiking',
-                      path: '#',
-                    },
-                    {
-                      icon: FaAddressBook,
-                      label: 'Address Book',
-                      path: '#',
-                    },
-                    {
-                      icon: FaApple,
-                      label: 'Apple',
-                      path: '#',
-                    },
-                  ],
-                },
-                {
-                  title: 'Settings',
-                  navigationItems: [
-                    { icon: FaPuzzlePiece, label: 'Plugins', path: '#' },
-                    {
-                      icon: FaShoppingCart,
-                      label: 'Marketplace',
-                      path: '#',
-                    },
-                    {
-                      icon: FiSettings,
-                      label: 'Settings',
-                      path: '#',
-                    },
-                  ],
-                },
-              ]}
-            />
-          }
-        />
-      </Routes>
+      <Sidebar
+        user={{ username: 'John Doe', imgSrc: '' }}
+        main={{
+          label: 'Select Apps',
+          icon: FaHome,
+          pathname: '#',
+        }}
+        app={{
+          label: 'Hamann Erp System',
+          icon: FiActivity,
+          pathname: '#',
+          description: 'Workspace',
+        }}
+        modules={[
+          {
+            title: 'Fast UI Components',
+            navigationItems: [
+              { icon: FaUser, label: 'User List', pathname: '#' },
+              {
+                icon: FaHiking,
+                label: 'Hiking',
+                pathname: '#',
+              },
+              {
+                icon: FaAddressBook,
+                label: 'Address Book',
+                pathname: '#',
+              },
+              {
+                icon: FaApple,
+                label: 'Apple',
+                pathname: '#',
+              },
+            ],
+          },
+          {
+            title: 'Settings',
+            navigationItems: [
+              { icon: FaPuzzlePiece, label: 'Plugins', pathname: '#' },
+              {
+                icon: FaShoppingCart,
+                label: 'Marketplace',
+                pathname: '#',
+              },
+              {
+                icon: FiSettings,
+                label: 'Settings',
+                pathname: '#',
+              },
+            ],
+          },
+        ]}
+      />
+
+      <AppSideMenu
+        appGroups={appTestGroups}
+        isOpen={true}
+        appName="User Management"
+        appDescription="CRUD Users"
+      />
     </div>
   );
 }

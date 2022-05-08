@@ -12,14 +12,6 @@ export interface SidebarUserProps {
 }
 
 export function SidebarUser({ isCollapsed, user, onToggle }: SidebarUserProps) {
-  const [popoverIsOpen, setPopoverIsOpen] = React.useState(false);
-  const tooltip = `
-    tooltiptext hidden absolute bg-skin-contrast
-    p-1 px-3 text-skin-standard rounded-md top-3
-    left-16 text-white text-sm
-    group-hover:block whitespace-nowrap
-  `;
-
   const navItemContainer = apply`
       relative grid place-content-center m-2 
       rounded-lg hover:bg-skin-base
@@ -28,13 +20,16 @@ export function SidebarUser({ isCollapsed, user, onToggle }: SidebarUserProps) {
 
   const userAvatarBtn = (
     <Popover
-      isOpen={popoverIsOpen}
       groups={popoverGroups}
       button={
         <div>
-          <FaUserCircle
-            className={`text-3xl text-skin-accent ${user.imgSrc && 'hidden'} `}
-          />
+          <button aria-label="user settings button">
+            <FaUserCircle
+              className={`text-3xl text-skin-accent ${
+                user.imgSrc && 'hidden'
+              } `}
+            />
+          </button>
 
           <img
             className={`${user.imgSrc || 'hidden'}`}
@@ -47,22 +42,13 @@ export function SidebarUser({ isCollapsed, user, onToggle }: SidebarUserProps) {
     />
   );
 
-  const isMountedRef = React.useRef(false);
-  React.useEffect(() => {
-    if (!isMountedRef.current) {
-      isMountedRef.current = true;
-      return;
-    }
-
-    setPopoverIsOpen(false);
-  }, [isCollapsed]);
-
   if (isCollapsed) {
     return (
       <div className="border-t-[1px] border-skin-base ">
-        <div
+        <button
+          aria-label="open sidebar button"
           onClick={onToggle}
-          className="absolute bottom-[16px] right-[-12px] ml-1 border-skin-dark cursor-pointer "
+          className="absolute z-10 bottom-[16px] right-[-12px] ml-1 border-skin-dark cursor-pointer "
         >
           <div className="bg-skin-layer border-skin-base border-2 py-2 mt-[1px]">
             <FaChevronRight
@@ -70,15 +56,10 @@ export function SidebarUser({ isCollapsed, user, onToggle }: SidebarUserProps) {
               className="text-sm text-skin-base  hover:bg-skin-layer"
             />
           </div>
-        </div>
+        </button>
 
-        <div
-          onClick={() => setPopoverIsOpen((prev) => !prev)}
-          className={tw`${navItemContainer} group text-3xl `}
-        >
+        <div className={tw`${navItemContainer} group text-3xl`}>
           {userAvatarBtn}
-
-          <div className={`${tooltip}`}>{user.username}</div>
         </div>
       </div>
     );
@@ -87,10 +68,7 @@ export function SidebarUser({ isCollapsed, user, onToggle }: SidebarUserProps) {
   return (
     <div className="flex flex-row text-skin-base justify-between px-2 border-t-[1px] border-skin-base">
       <div className="flex items-center  px-2 py-4">
-        <div
-          onClick={() => setPopoverIsOpen((prev) => !prev)}
-          className="flex flex-row items-center gap-2 cursor-pointer"
-        >
+        <div className="flex flex-row items-center gap-2 cursor-pointer">
           {userAvatarBtn}
           <div className="text-sm">{user.username} </div>
         </div>
@@ -100,7 +78,9 @@ export function SidebarUser({ isCollapsed, user, onToggle }: SidebarUserProps) {
           onClick={onToggle}
           className="border-skin-base border-2 p-1 cursor-pointer"
         >
-          <FaChevronLeft className="text-sm border-skin-base text-skin-base hover:bg-skin-layer" />
+          <button aria-label="close sidebar button">
+            <FaChevronLeft className="text-sm border-skin-base text-skin-base hover:bg-skin-layer" />
+          </button>
         </div>
       </div>
     </div>

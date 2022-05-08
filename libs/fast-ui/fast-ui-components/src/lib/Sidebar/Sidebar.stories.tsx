@@ -1,4 +1,5 @@
-import { Story, Meta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
+import { screen, userEvent } from '@storybook/testing-library';
 import {
   FaAddressBook,
   FaApple,
@@ -22,7 +23,7 @@ export default {
       </div>
     ),
   ],
-} as Meta;
+} as ComponentMeta<typeof Sidebar>;
 
 const Template: Story<SidebarProps> = (args) => <Sidebar {...args} />;
 
@@ -30,33 +31,33 @@ const user: User = { username: 'John Doe', imgSrc: '' };
 const main: SidebarItem = {
   label: 'Select Apps',
   icon: FaHome,
-  path: '#',
+  pathname: '#',
 };
 const app: SidebarItem = {
   label: 'Hamann Erp System',
   icon: FiActivity,
-  path: '#',
+  pathname: '#',
   description: 'Workspace',
 };
 
 export const module_test_1: Module = {
   title: 'Fast UI Components',
   navigationItems: [
-    { icon: FaUser, label: 'User List', path: '#' },
+    { icon: FaUser, label: 'User List', pathname: '#' },
     {
       icon: FaHiking,
       label: 'Hiking',
-      path: '#',
+      pathname: '#',
     },
     {
       icon: FaAddressBook,
       label: 'Address Book',
-      path: '#',
+      pathname: '#',
     },
     {
       icon: FaApple,
       label: 'Apple',
-      path: '#',
+      pathname: '#',
     },
   ],
 };
@@ -66,16 +67,16 @@ const modules: Module[] = [
   {
     title: 'Settings',
     navigationItems: [
-      { icon: FaPuzzlePiece, label: 'Plugins', path: '#' },
+      { icon: FaPuzzlePiece, label: 'Plugins', pathname: '#' },
       {
         icon: FaShoppingCart,
         label: 'Marketplace',
-        path: '#',
+        pathname: '#',
       },
       {
         icon: FiSettings,
         label: 'Settings',
-        path: '#',
+        pathname: '#',
       },
     ],
   },
@@ -99,4 +100,41 @@ NotCollapsed.args = {
   main,
   modules,
   isCollapsed: false,
+};
+
+export const Play = Template.bind({});
+
+Play.args = {
+  user,
+  app,
+  main,
+  modules,
+  isCollapsed: true,
+};
+
+Play.play = async () => {
+  // const toggleBtn = await screen.findByRole('button', {
+  //   name: /open sidebar/i,
+  // });
+
+  setTimeout(() => {
+    const submitButton = screen.getByRole('button', {
+      name: /open sidebar button/i,
+    });
+    userEvent.click(submitButton);
+  }, 300);
+
+  setTimeout(() => {
+    const submitButton = screen.getByRole('button', {
+      name: /close sidebar button/i,
+    });
+    userEvent.click(submitButton);
+  }, 1200);
+
+  setTimeout(() => {
+    const submitButton = screen.getByRole('button', {
+      name: /user settings button/i,
+    });
+    userEvent.click(submitButton);
+  }, 1400);
 };

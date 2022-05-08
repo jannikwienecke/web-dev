@@ -15,7 +15,7 @@ export const parameters = {
     values: [
       {
         name: 'my-background',
-        value: '#F8F9FE',
+        value: 'hsl(260, 20%, 98%)',
       },
     ],
   },
