@@ -1,4 +1,4 @@
-echo "Adding storybook for $1 ..."
-source yarn nx generate @nrwl/react:component-story --componentPath=lib/$1/$1.tsx --project=$2
+echo "Adding new component: $1 ..."
 
+source yarn nx generate @nrwl/react:component $1 --project=$2 --style=none --pascalCaseDirectory --pascalCaseFiles --no-interactive
 
