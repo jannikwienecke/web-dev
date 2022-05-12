@@ -1,8 +1,14 @@
 import { ComponentMeta, Story } from '@storybook/react';
 import { screen, userEvent } from '@storybook/testing-library';
 import { FaAddressBook, FaApple, FaHiking, FaUser } from 'react-icons/fa';
-import { FiActivity } from 'react-icons/fi';
-import { HiOutlineBell, HiOutlineHome, HiStar } from 'react-icons/hi';
+import { FiActivity, FiSettings } from 'react-icons/fi';
+import {
+  HiOutlineBell,
+  HiOutlineCloud,
+  HiOutlineHome,
+  HiOutlineShoppingCart,
+  HiStar,
+} from 'react-icons/hi';
 import { Module, Sidebar, SidebarItem, SidebarProps, User } from './Sidebar';
 
 export default {
@@ -22,7 +28,7 @@ const Template: Story<SidebarProps> = (args) => <Sidebar {...args} />;
 
 const user: User = { username: 'John Doe', imgSrc: '' };
 
-const main: SidebarItem[] = [
+const sideControlItems: SidebarItem[] = [
   {
     label: 'Select Apps',
     icon: HiOutlineHome,
@@ -40,6 +46,20 @@ const main: SidebarItem[] = [
     icon: HiStar,
     pathname: '#',
     isActive: true,
+  },
+];
+
+const sidebarSecodaryItems: SidebarItem[] = [
+  { icon: HiOutlineCloud, label: 'Plugins', pathname: '#' },
+  {
+    icon: HiOutlineShoppingCart,
+    label: 'Marketplace',
+    pathname: '#',
+  },
+  {
+    icon: FiSettings,
+    label: 'Settings',
+    pathname: '#',
   },
 ];
 
@@ -72,32 +92,15 @@ export const module_test_1: Module = {
   ],
 };
 
-const modules: Module[] = [
-  module_test_1,
-  // {
-  //   title: 'Settings',
-  //   navigationItems: [
-  //     { icon: FaPuzzlePiece, label: 'Plugins', pathname: '#' },
-  //     {
-  //       icon: FaShoppingCart,
-  //       label: 'Marketplace',
-  //       pathname: '#',
-  //     },
-  //     {
-  //       icon: FiSettings,
-  //       label: 'Settings',
-  //       pathname: '#',
-  //     },
-  //   ],
-  // },
-];
+const modules: Module[] = [module_test_1];
 
 export const Collapsed = Template.bind({});
 
 Collapsed.args = {
   user,
   app,
-  sideControlItems: main,
+  sideControlItems,
+  sideControlSecondaryItems: sidebarSecodaryItems,
   modules,
   isCollapsed: true,
 };
@@ -107,9 +110,10 @@ export const NotCollapsed = Template.bind({});
 NotCollapsed.args = {
   user,
   app,
-  sideControlItems: main,
+  sideControlItems,
   modules,
   isCollapsed: false,
+  sideControlSecondaryItems: sidebarSecodaryItems,
 };
 
 export const Play = Template.bind({});
@@ -123,10 +127,6 @@ Play.args = {
 };
 
 Play.play = async () => {
-  // const toggleBtn = await screen.findByRole('button', {
-  //   name: /open sidebar/i,
-  // });
-
   setTimeout(() => {
     const submitButton = screen.getByRole('button', {
       name: /open sidebar button/i,

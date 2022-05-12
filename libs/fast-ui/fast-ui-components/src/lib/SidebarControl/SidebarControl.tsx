@@ -11,7 +11,7 @@ export function SidebarControl({
   isCollapsed,
   appdrawerItems,
 }: SidebarControlProps) {
-  if (!appdrawerItems) return null;
+  if (!appdrawerItems || appdrawerItems.length === 0) return null;
   return (
     <div
       className={`py-3 mb-0 ${
