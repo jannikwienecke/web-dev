@@ -15,7 +15,9 @@ import { Menu, Transition } from '@headlessui/react';
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
-export interface PageHeaderProps {}
+export interface PageHeaderProps {
+  test: 1;
+}
 
 export function PageHeader(props: PageHeaderProps) {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaChevronRight, FaUserCircle, FaChevronLeft } from 'react-icons/fa';
-import { apply, tw } from 'twind';
+import { FaChevronLeft, FaChevronRight, FaUserCircle } from 'react-icons/fa';
+import { tw } from 'twind';
 import { Popover } from '../Popover/Popover';
 import { popoverGroups } from '../Popover/Popover.stories';
 import { User } from '../Sidebar/Sidebar';

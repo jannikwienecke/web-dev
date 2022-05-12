@@ -21,7 +21,7 @@ export interface PopoverProps {
 
 export const Popover = ({ button, groups }: PopoverProps) => {
   const dropDownItem = `
-    relative text-skin-accent text-[13px]
+    relative text-skin-base-dark text-[13px]
     rounded-sm  pl-6 flex items-center
     select-none pr-1 focus:bg-skin-accent 
     focus:text-skin-base-inverted
@@ -37,13 +37,8 @@ export const Popover = ({ button, groups }: PopoverProps) => {
   `;
 
   const dropdownContent = `
-    p-[5px] rounded-md bg-skin-base-light
-    min-w-[220px]
-  `;
-
-  const boxShadowContent = css`
-    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-      0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+    p-[5px] rounded-md border-[1px] border-skin-base-light
+    min-w-[220px] bg-skin-base-light 
   `;
 
   const rightSlot = `
@@ -64,12 +59,12 @@ export const Popover = ({ button, groups }: PopoverProps) => {
         <DropdownMenuPrimitive.Content
           avoidCollisions={true}
           sideOffset={10}
-          className={tw`${boxShadowContent} ${dropdownContent}`}
+          className={`${dropdownContent}  shadow-xl shadow-shadow-base-dark`}
         >
           {groups.map((group, index) => {
             const isLastGroup = index === groups.length - 1;
             return (
-              <>
+              <div key={`${group.label}`}>
                 {group.items.map((item) => {
                   return (
                     <DropdownMenuPrimitive.Item
@@ -91,7 +86,7 @@ export const Popover = ({ button, groups }: PopoverProps) => {
                 <DropdownMenuPrimitive.Separator
                   className={`${seperator} ${isLastGroup && 'hidden'}`}
                 />
-              </>
+              </div>
             );
           })}
         </DropdownMenuPrimitive.Content>

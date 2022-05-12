@@ -17,7 +17,7 @@ export interface SidebarNavItemProps {
 
 export function SidebarNavItem({ navItem, isCollapsed }: SidebarNavItemProps) {
   const navItemIconContainer = apply`
-      text-skin-base-light 
+    text-skin-base-light
       ${iconWrapperSidebar}
       ${borderIcons}
       ${isCollapsed && 'm-0'}

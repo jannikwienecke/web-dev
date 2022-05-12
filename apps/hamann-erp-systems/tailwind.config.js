@@ -11,18 +11,13 @@ module.exports = {
     extend: {
       fontFamily: {},
 
+      colors: {
+        'shadow-base-light': 'var(--color-shadow-base-light)',
+        'shadow-base-dark': 'var(--color-shadow-base-dark)',
+      },
+
       textColor: {
         skin: {
-          // old
-          basic: 'var(--color-text-basic)', // black or white
-          'basic-inverted': 'var(--color-text-basic-inverted)', // black or white
-          base: 'var(--color-text-base)',
-
-          primary: 'var(--color-text-primary)',
-          'primary-intense': 'var(--color-text-primary-intense)',
-          standard: 'var(--color-text-standard)',
-
-          // new
           'base-dark': 'var(--color-text-base-dark)',
           'base-light': 'var(--color-text-base-light)',
           'base-inverted': 'var(--color-text-base-inverted)',

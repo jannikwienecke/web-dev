@@ -1,18 +1,9 @@
 import { ComponentMeta, Story } from '@storybook/react';
 import { screen, userEvent } from '@storybook/testing-library';
-import {
-  FaAddressBook,
-  FaApple,
-  FaHiking,
-  FaHome,
-  FaPuzzlePiece,
-  FaShoppingCart,
-  FaUser,
-} from 'react-icons/fa';
-import { FiActivity, FiSettings } from 'react-icons/fi';
+import { FaAddressBook, FaApple, FaHiking, FaUser } from 'react-icons/fa';
+import { FiActivity } from 'react-icons/fi';
+import { HiOutlineBell, HiOutlineHome, HiStar } from 'react-icons/hi';
 import { Module, Sidebar, SidebarItem, SidebarProps, User } from './Sidebar';
-
-import { HiOutlineHome, HiOutlineBell, HiStar } from 'react-icons/hi';
 
 export default {
   component: Sidebar,
