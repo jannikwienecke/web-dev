@@ -2,61 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --color-text-base: hsl(240, 14%, 61%);
-    --color-text-base-dark: hsl(240, 14%, 30%);
-    --color-text-base-light: hsl(240, 14%, 55%);
-    --color-text-disabled: hsl(240, 14%, 50%);
+/* @layer base { */
+:root {
+  /* theme-color */
+  --theme-color: hsl(241, 99%, 63%);
+  --theme-color-light: hsl(241, 90%, 80%);
+  /* TEST COLORS */
+  --color-text-base-dark: hsl(255, 100%, 0%);
+  --color-text-base-light: hsl(240, 14%, 61%);
+  --color-text-accent: var(--theme-color);
+  --color-text-base-inverted: hsl(0, 14%, 100%);
 
-    --color-text-primary: #4945fe;
-    --color-text-primary-intense: hsl(241, 100%, 43%);
-    --color-text-inverted: #000;
-    --color-text-standard: #fff;
-    --color-text-accent: #4945fe;
-    --color-background: #fff;
+  /* background colors */
+  --color-background-base-light: hsl(260, 20%, 100%);
+  --color-background-base-dark: hsl(260, 20%, 96%);
+  --color-background-accent: var(--theme-color);
+  --color-background-accent-light: var(--theme-color-light);
+  --color-background-base-inverted: hsl(0, 14%, 100%);
 
-    --color-border-base: #ccc;
-    --color-border-base-dark: #aaa;
-    --color-border-primary: #4945fe;
-
-    --color-background-base: hsl(260, 20%, 97%);
-    --color-background-base-intense: hsl(
-      260,
-      10%,
-      10%
-    ); /* lighter for light and darker for dark */
-    --color-background-layer: #ffffff;
-    --color-background-contrast: #36454f;
-    --color-background-primary: hsl(241, 99%, 63%);
-    --color-background-primary-light: hsl(241 84% 95%);
-
-    --color-border-base: #f0f1ff;
-  }
+  /* border colors */
+  --color-border-base-light: #ddd;
+  --color-border-base-dark: #aaa;
+  --color-border-accent: var(--theme-color);
 }
+/* } */
 .theme-dark {
+  /* TEST COLORS */
   --color-text-base: hsl(240, 14%, 85%);
   --color-text-base-dark: hsl(240, 14%, 100%);
   --color-text-base-light: hsl(240, 14%, 70%);
   --color-text-disabled: hsl(240, 14%, 60%);
 
+  /* background colors */
   --color-text-primary: #4945fe;
   --color-text-inverted: #000;
   --color-text-standard: #fff;
   --color-text-accent: hsl(240, 14%, 90%);
   --color-background: #36454f;
 
-  --color-background-base: hsl(237, 22%, 17%);
-  --color-background-base-intense: hsl(240, 22%, 25%);
-  --color-background-layer: #32324d;
-  --color-background-contrast: #36454f;
-  --color-background-primary: #4945fe;
-  --color-background-primary-light: hsl(240, 22%, 25%);
+  /* TEST COLORS */
+  --color-text-base-dark: hsl(0, 0%, 90%);
+  --color-text-base-dark: hsl(0, 0%, 80%);
+  --color-text-accent: var(--theme-color);
+  --color-text-base-inverted: hsl(0, 14%, 20%);
 
-  --color-border-base: #212234;
+  --color-background-base-light: hsl(240, 21%, 25%);
+  --color-background-base-dark: hsl(240, 21%, 15%);
+  --color-background-accent: var(--theme-color);
+  --color-background-accent-light: var(--theme-color-light);
+  --color-background-base-inverted: hsl(0, 14%, 100%);
+
+  /* border colors */
+  --color-border-base-light: #333;
+  --color-border-base-dark: #222;
+  --color-border-accent: var(--theme-color);
+
   font-size: 16px;
-}
-
-.ads {
-  color: hsl(260, 20%, 97%);
 }

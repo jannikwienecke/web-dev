@@ -12,6 +12,15 @@ import {
   FaShoppingCart,
   FaUser,
 } from 'react-icons/fa';
+
+import {
+  HiOutlineHome,
+  HiOutlineBell,
+  HiStar,
+  HiOutlineShoppingCart,
+  HiOutlineCloud,
+} from 'react-icons/hi';
+
 import { FiActivity, FiSettings } from 'react-icons/fi';
 
 export const appTestGroups: AppGroup[] = [
@@ -36,17 +45,29 @@ export const appTestGroups: AppGroup[] = [
 ];
 export function App() {
   return (
-    <div
-      style={{ backgroundColor: 'hsl(260, 20%, 98%)' }}
-      className="rounded-lg p-2 h-screen flex flex-row"
-    >
+    <div className="rounded-lg p-2 h-screen flex flex-row  bg-skin-base-dark">
       <Sidebar
         user={{ username: 'John Doe', imgSrc: '' }}
-        main={{
-          label: 'Select Apps',
-          icon: FaHome,
-          pathname: '#',
-        }}
+        sideControlItems={[
+          {
+            label: 'Select Apps',
+            icon: HiOutlineHome,
+            pathname: '#',
+          },
+
+          {
+            label: 'Notifications',
+            icon: HiOutlineBell,
+            pathname: '#',
+          },
+
+          {
+            label: 'Favorites',
+            icon: HiStar,
+            pathname: '#',
+            isActive: true,
+          },
+        ]}
         app={{
           label: 'Hamann Erp System',
           icon: FiActivity,
@@ -55,7 +76,7 @@ export function App() {
         }}
         modules={[
           {
-            title: 'Fast UI Components',
+            title: 'Apps',
             navigationItems: [
               { icon: FaUser, label: 'User List', pathname: '#' },
               {
@@ -75,31 +96,28 @@ export function App() {
               },
             ],
           },
+        ]}
+        sideControlSecondaryItems={[
+          { icon: HiOutlineCloud, label: 'Plugins', pathname: '#' },
           {
-            title: 'Settings',
-            navigationItems: [
-              { icon: FaPuzzlePiece, label: 'Plugins', pathname: '#' },
-              {
-                icon: FaShoppingCart,
-                label: 'Marketplace',
-                pathname: '#',
-              },
-              {
-                icon: FiSettings,
-                label: 'Settings',
-                pathname: '#',
-              },
-            ],
+            icon: HiOutlineShoppingCart,
+            label: 'Marketplace',
+            pathname: '#',
+          },
+          {
+            icon: FiSettings,
+            label: 'Settings',
+            pathname: '#',
           },
         ]}
       />
 
-      <AppSideMenu
+      {/* <AppSideMenu
         appGroups={appTestGroups}
         isOpen={true}
         appName="User Management"
         appDescription="CRUD Users"
-      />
+      /> */}
     </div>
   );
 }

@@ -23,20 +23,21 @@ export const Popover = ({ button, groups }: PopoverProps) => {
   const dropDownItem = `
     relative text-skin-accent text-[13px]
     rounded-sm  pl-6 flex items-center
-    select-none pr-1 focus:bg-skin-primary 
-    focus:text-skin-standard
-    disabled:text-skin-base
+    select-none pr-1 focus:bg-skin-accent 
+    focus:text-skin-base-inverted
+    disabled:text-skin-base-dark
     pb-1 last:pb-0
+    group
   `;
 
   const itemStylesDisabled = css`
     &[data-disabled] {
-      color: var(--color-text-disabled);
+      color: var(--color-text-base-light);
     }
   `;
 
   const dropdownContent = `
-    p-[5px] rounded-md bg-skin-layer
+    p-[5px] rounded-md bg-skin-base-light
     min-w-[220px]
   `;
 
@@ -46,10 +47,12 @@ export const Popover = ({ button, groups }: PopoverProps) => {
   `;
 
   const rightSlot = `
-    ml-auto pl-5 pr-2 text-skin-base
+    ml-auto pl-5 pr-2 text-skin-base-light hover:text-skin-base-inverted
+    group-focus:text-skin-base-inverted
+  
   `;
 
-  const seperator = `h-[.5px] bg-skin-primary opacity-40  m-1`;
+  const seperator = `h-[.5px] bg-skin-accent opacity-40  m-1`;
 
   return (
     <div>

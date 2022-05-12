@@ -1,13 +1,10 @@
 import { Story, Meta } from '@storybook/react';
 import { FaUser } from 'react-icons/fa';
 import { SidebarItem } from '../Sidebar/Sidebar';
-import {
-  SidebarAppDrawerItem,
-  SidebarAppDrawerItemProps,
-} from './SidebarAppDrawerItem';
+import { SidebarControl, SidebarControlProps } from './SidebarAppDrawerItem';
 
 export default {
-  component: SidebarAppDrawerItem,
+  component: SidebarControl,
   title: 'SidebarAppDrawerItem',
   decorators: [
     (Story) => (
@@ -18,8 +15,8 @@ export default {
   ],
 } as Meta;
 
-const Template: Story<SidebarAppDrawerItemProps> = (args) => (
-  <SidebarAppDrawerItem {...args} />
+const Template: Story<SidebarControlProps> = (args) => (
+  <SidebarControl {...args} />
 );
 
 const navItem: SidebarItem = {

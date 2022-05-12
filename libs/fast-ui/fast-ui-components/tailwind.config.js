@@ -13,31 +13,30 @@ module.exports = {
 
       textColor: {
         skin: {
-          base: 'var(--color-text-base)',
+          // new
           'base-dark': 'var(--color-text-base-dark)',
           'base-light': 'var(--color-text-base-light)',
-          primary: 'var(--color-text-primary)',
-          'primary-intense': 'var(--color-text-primary-intense)',
-          standard: 'var(--color-text-standard)',
+          'base-inverted': 'var(--color-text-base-inverted)',
           accent: 'var(--color-text-accent)',
-          disabled: 'var(--color-text-disabled)',
         },
       },
       backgroundColor: {
         skin: {
-          base: 'var(--color-background-base)',
-          layer: 'var(--color-background-layer)',
-          primary: 'var(--color-background-primary)',
-          'primary-light': 'var(--color-background-primary-light)',
-          contrast: 'var(--color-background-contrast)',
+          // new
+          'base-light': 'var(--color-background-base-light)',
+          'base-dark': 'var(--color-background-base-dark)',
+          'base-inverted': 'var(--color-background-base-inverted)',
+          accent: 'var(--color-background-accent)',
+          'accent-light': 'var(--color-background-accent-light)',
         },
       },
 
       borderColor: {
         skin: {
-          base: 'var(--color-border-base)',
+          // new
+          'base-light': 'var(--color-border-base-light)',
           'base-dark': 'var(--color-border-base-dark)',
-          primary: 'var(--color-border-primary)',
+          accent: 'var(--color-border-accent)',
         },
       },
     },
