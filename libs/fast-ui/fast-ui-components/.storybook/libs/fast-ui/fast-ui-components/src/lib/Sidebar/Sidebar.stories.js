@@ -6,12 +6,19 @@ import { FiActivity, FiSettings } from 'react-icons/fi';
 import { HiOutlineBell, HiOutlineCloud, HiOutlineHome, HiOutlineShoppingCart, HiStar, } from 'react-icons/hi';
 import { Sidebar } from './Sidebar';
 export default {
-    component: Sidebar,
-    title: 'Sidebar',
-    excludeStories: /.*module_test_1$/,
-    decorators: [
-        (Story) => (_jsx("div", Object.assign({ style: { height: '900px' } }, { children: _jsx(Story, {}) }))),
-    ],
+  component: Sidebar,
+  title: 'Sidebar',
+  excludeStories: /.*module_test_1$/,
+  decorators: [
+    (Story) =>
+      _jsx(
+        'div',
+        Object.assign(
+          { style: { height: '900px' } },
+          { children: _jsx(Story, {}) }
+        )
+      ),
+  ],
 };
 const Template = (args) => _jsx(Sidebar, Object.assign({}, args));
 const user = { username: 'John Doe', imgSrc: '' };
@@ -51,7 +58,9 @@ const app = {
     icon: FiActivity,
     pathname: '#',
     description: 'Workspace',
-};
+  },
+];
+
 export const module_test_1 = {
     title: 'Fast UI Components',
     navigationItems: [

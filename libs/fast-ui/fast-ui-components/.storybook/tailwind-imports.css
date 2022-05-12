@@ -30,6 +30,7 @@
   --color-shadow-base-light: hsl(260, 20%, 96%);
   --color-shadow-base-dark: hsl(260, 20%, 92%);
 }
+/* } */
 .theme-dark {
   /* TEXT COLORS */
   --color-text-base-dark: hsl(0, 0%, 90%);
