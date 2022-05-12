@@ -2,11 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base { */
-:root {
-  /* theme-color */
+.theme-red {
+  --theme-color: rgb(224, 67, 67);
+  --theme-color-light: hsl(0, 86%, 80%);
+}
+
+.theme-hamann {
   --theme-color: hsl(241, 99%, 63%);
   --theme-color-light: hsl(241, 90%, 80%);
+}
+
+.theme {
+  /* theme-color */
 
   /* TEXT COLORS */
   --color-text-base-dark: hsl(255, 100%, 0%);
@@ -30,6 +37,9 @@
   --color-shadow-base-light: hsl(260, 20%, 96%);
   --color-shadow-base-dark: hsl(260, 20%, 92%);
 }
+
+/* @layer base { */
+
 .theme-dark {
   /* TEXT COLORS */
   --color-text-base-dark: hsl(0, 0%, 90%);

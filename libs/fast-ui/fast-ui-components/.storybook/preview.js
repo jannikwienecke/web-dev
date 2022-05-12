@@ -1,12 +1,11 @@
 import './tailwind-imports.css';
-import { themes } from '@storybook/theming';
 
 export const parameters = {
   themes: {
-    default: 'twitter',
+    default: 'Red',
     list: [
-      { name: 'Dark Theme', class: 'theme-dark', color: '#00aced' },
-      { name: 'facebook', class: 'theme-fb', color: '#3b5998' },
+      { name: 'White Theme ⚪️', class: 'theme-light', color: '#fff' },
+      { name: 'Dark Theme 🖤', class: 'theme-dark', color: '#32324d' },
     ],
   },
 
