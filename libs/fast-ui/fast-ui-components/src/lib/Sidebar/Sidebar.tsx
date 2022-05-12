@@ -11,6 +11,7 @@ export interface SidebarItem {
   label: string;
   pathname: string;
   description?: string;
+  isActive?: boolean;
 }
 
 export interface Module {
@@ -29,8 +30,10 @@ export interface SidebarProps {
   modules: Module[];
 
   /** A app module which will be shown in a highlighted fashion  */
+  sideControlItems?: SidebarItem[];
 
-  main?: SidebarItem;
+  /** A app module which will be shown in a highlighted fashion  */
+  sideControlSecondaryItems?: SidebarItem[];
 
   /** information about the actual app */
   app: SidebarItem;
@@ -42,19 +45,20 @@ export interface SidebarProps {
   isCollapsed?: boolean;
 }
 
-export const navContainerBase = apply`
-  h-full border-skin-base border-2
+export const navContainerBase = `
+  h-full
   flex flex-col
   border-l-0
-  
   `;
+
 const navContainerCollapsed = apply`w-[64px]`;
 const navContainerNotCollapsed = apply`w-[256px]`;
 
 export function Sidebar({
   modules,
   app,
-  main,
+  sideControlItems,
+  sideControlSecondaryItems,
   user,
   isCollapsed: isCollapsedDefult,
 }: SidebarProps) {
@@ -75,22 +79,25 @@ export function Sidebar({
   return (
     <motion.div
       initial={{ scale: 0 }}
-      animate={{ width: isCollapsed ? '72px' : '256px', scale: 1 }}
+      animate={{ width: isCollapsed ? '64px' : '256px', scale: 1 }}
       transition={{
         type: 'spring',
         stiffness: 500,
         damping: 40,
       }}
-      className={tw`relative  ${navContainerBase} bg-skin-layer rounded-l-md ${
+      className={tw`relative  ${navContainerBase} border-skin-base-light border-[1px] bg-skin-base-light rounded-l-md ${
         isCollapsed ? navContainerCollapsed : navContainerNotCollapsed
-      }`}
+      } `}
     >
       <SidebarHeader app={app} isCollapsed={isCollapsed} />
 
-      <SidebarAppDrawerItem appdrawerItem={main} isCollapsed={isCollapsed} />
+      <SidebarAppDrawerItem
+        appdrawerItems={sideControlItems || []}
+        isCollapsed={isCollapsed}
+      />
 
       {/* Navigation modules with items */}
-      <div className="flex flex-col justify-between h-full">
+      <div className="flex flex-col justify-between h-full mt-3">
         <div className="grid grid-cols-1 cursor-pointer">
           {modules.map((module, index) => {
             return (
@@ -103,11 +110,18 @@ export function Sidebar({
           })}
         </div>
 
-        <SidebarUser
-          onToggle={handleToggle}
-          user={user}
-          isCollapsed={isCollapsed}
-        />
+        <div>
+          <SidebarAppDrawerItem
+            appdrawerItems={sideControlSecondaryItems || []}
+            isCollapsed={isCollapsed}
+          />
+
+          <SidebarUser
+            onToggle={handleToggle}
+            user={user}
+            isCollapsed={isCollapsed}
+          />
+        </div>
       </div>
     </motion.div>
   );

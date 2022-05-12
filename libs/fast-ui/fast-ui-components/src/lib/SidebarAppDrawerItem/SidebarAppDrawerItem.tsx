@@ -1,48 +1,90 @@
 import { apply, tw } from 'twind';
 import { SidebarItem } from '../Sidebar';
+import { navItemContainer, tooltipBase, tooltopActive } from '../styles';
 
-export interface SidebarAppDrawerItemProps {
+export interface SidebarControlProps {
   isCollapsed: boolean;
-  appdrawerItem?: SidebarItem;
+  appdrawerItems?: SidebarItem[];
 }
 
-export function SidebarAppDrawerItem({
+export function SidebarControl({
   isCollapsed,
-  appdrawerItem,
-}: SidebarAppDrawerItemProps) {
-  const mainLogoAndHome = apply`
-    grid place-items-center 
-    p-3 rounded-md 
-    group bg-skin-base relative
-    `;
-
-  const tooltip = `tooltiptext hidden absolute bg-skin-contrast p-1 px-3 text-skin-standard rounded-md top-3 left-16 text-white text-sm  group-hover:block whitespace-nowrap`;
-
-  if (!appdrawerItem) return null;
+  appdrawerItems,
+}: SidebarControlProps) {
+  if (!appdrawerItems) return null;
   return (
     <div
-      className={`px-3 py-3 mb-0 ${
-        isCollapsed && 'border-b-2 border-skin-base'
+      className={`py-3 mb-0 ${
+        isCollapsed && 'border-b-[1px] border-skin-base-light'
       }`}
     >
-      <div
-        className={`cursor-pointer bg-skin-base text-skin-accent font-bold rounded-md flex flex-row items-center justify-center ${
-          isCollapsed || 'px-3  justify-start'
-        } `}
-      >
-        <div
-          className={tw`${mainLogoAndHome}  ${isCollapsed || 'bg-transparent'}`}
-        >
-          <appdrawerItem.icon className="text-skin-accent roun opacity-100" />
-          <div className={`${tooltip} block`}>{'Home'}</div>
-        </div>
-
-        <div className={`${isCollapsed && 'hidden'}`}>
-          {appdrawerItem.label}
-        </div>
-      </div>
+      {appdrawerItems.map((appdrawerItem) => {
+        return (
+          <SideControlItem
+            sideControlItem={appdrawerItem}
+            isCollapsed={isCollapsed}
+          />
+        );
+      })}
     </div>
   );
 }
 
-export default SidebarAppDrawerItem;
+export default SidebarControl;
+
+export interface SideControlItemProps {
+  isCollapsed: boolean;
+  sideControlItem: SidebarItem;
+}
+
+export const SideControlItem: React.FC<SideControlItemProps> = ({
+  isCollapsed,
+  sideControlItem,
+}) => {
+  const mainLogoAndHome = apply`
+    grid place-items-center 
+    p-2 rounded-md 
+    group relative
+  `;
+
+  const item = 'text-xl';
+
+  const itemHover = 'hover:text-skin-accent';
+
+  const itemActive = 'bg-skin-accent text-skin-base-inverted ';
+
+  if (!sideControlItem) return null;
+
+  return (
+    <div
+      className={`text-skin-base-dark px-4 gap-3 ${navItemContainer} ${
+        isCollapsed ? 'justify-center' : 'justify-start'
+      }
+      ${sideControlItem.isActive || itemHover}
+      `}
+    >
+      <div
+        className={tw`${mainLogoAndHome}  ${
+          sideControlItem.isActive && itemActive
+        } `}
+      >
+        <sideControlItem.icon className={`${item} `} />
+
+        <div
+          style={{ visibility: isCollapsed ? 'visible' : 'hidden' }}
+          className={`${tooltipBase} ${tooltopActive}`}
+        >
+          {sideControlItem.label}
+        </div>
+      </div>
+
+      <div
+        className={`text-sm font-normal text-skin-base-light hover:text-skin-accent ${
+          isCollapsed && 'hidden'
+        }`}
+      >
+        {sideControlItem.label}
+      </div>
+    </div>
+  );
+};

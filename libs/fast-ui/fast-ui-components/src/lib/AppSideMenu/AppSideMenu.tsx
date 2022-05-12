@@ -59,9 +59,9 @@ export function AppSideMenu({
           return (
             <div key={appGroup.title}>
               {/* Sub header */}
-              <div className="text-skin-base text-sm uppercase font-bold p-4 flex flex-row justify-between">
+              <div className="text-skin-base-dark text-sm uppercase font-bold p-4 flex flex-row justify-between">
                 <div>{appGroup.title}</div>
-                <div className="bg-skin-layer text-sm p-0 px-[6px] py-[1px] rounded-sm ">
+                <div className="bg-skin-base-dark text-sm p-0 px-[6px] py-[1px] rounded-sm ">
                   {appGroup.appItems.length}
                 </div>
               </div>

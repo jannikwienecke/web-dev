@@ -14,25 +14,22 @@ export function SidebarGroupItem({
     <>
       {/* Module description for not collapsed screen */}
       <div
-        className={`mt-3 px-3 first:mt-0 ${
-          isCollapsed && 'border-b-2  mb-2 border-skin-base first:hidden'
+        className={`px-4 text-skin-base-light text-sm py-2 font-bold ${
+          isCollapsed && 'hidden'
         }`}
       >
-        <div
-          className={`px-4 text-skin-base text-sm py-2 font-bold ${
-            isCollapsed && 'hidden'
-          }`}
-        >
-          {module.title}
-        </div>
+        {module.title}
       </div>
-      {module.navigationItems.map((item, index) => (
-        <SidebarNavItem
-          key={item.label + '_' + index}
-          navItem={item}
-          isCollapsed={isCollapsed}
-        />
-      ))}
+
+      <div className="flex flex-col">
+        {module.navigationItems.map((item, index) => (
+          <SidebarNavItem
+            key={item.label + '_' + index}
+            navItem={item}
+            isCollapsed={isCollapsed}
+          />
+        ))}
+      </div>
     </>
   );
 }
