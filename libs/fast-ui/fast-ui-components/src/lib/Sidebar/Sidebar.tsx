@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import React, { HTMLAttributes } from 'react';
 import { apply, tw } from 'twind';
-import SidebarAppDrawerItem from '../SidebarAppDrawerItem/SidebarAppDrawerItem';
+import SidebarControl from '../SidebarControl/SidebarControl';
 import SidebarGroupItem from '../SidebarGroupItem/SidebarGroupItem';
 import SidebarHeader from '../SidebarHeader/SidebarHeader';
 import SidebarUser from '../SidebarUser/SidebarUser';
@@ -91,7 +91,7 @@ export function Sidebar({
     >
       <SidebarHeader app={app} isCollapsed={isCollapsed} />
 
-      <SidebarAppDrawerItem
+      <SidebarControl
         appdrawerItems={sideControlItems || []}
         isCollapsed={isCollapsed}
       />
@@ -110,8 +110,9 @@ export function Sidebar({
           })}
         </div>
 
+        {/* Secondary Control */}
         <div>
-          <SidebarAppDrawerItem
+          <SidebarControl
             appdrawerItems={sideControlSecondaryItems || []}
             isCollapsed={isCollapsed}
           />

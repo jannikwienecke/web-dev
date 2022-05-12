@@ -1,7 +1,7 @@
 import { Story, Meta } from '@storybook/react';
 import { FaUser } from 'react-icons/fa';
 import { SidebarItem } from '../Sidebar/Sidebar';
-import { SidebarControl, SidebarControlProps } from './SidebarAppDrawerItem';
+import { SidebarControl, SidebarControlProps } from './SidebarControl';
 
 export default {
   component: SidebarControl,
@@ -28,12 +28,12 @@ const navItem: SidebarItem = {
 export const Collapsed = Template.bind({});
 Collapsed.args = {
   isCollapsed: true,
-  appdrawerItem: navItem,
+  appdrawerItems: [navItem],
 };
 
 export const NotCollapsed = Template.bind({});
 
 NotCollapsed.args = {
   isCollapsed: false,
-  appdrawerItem: navItem,
+  appdrawerItems: [navItem],
 };
