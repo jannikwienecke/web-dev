@@ -85,7 +85,7 @@ export function Sidebar({
         stiffness: 500,
         damping: 40,
       }}
-      className={tw`relative  ${navContainerBase} border-skin-base-light border-[1px] bg-skin-base-light rounded-l-md ${
+      className={tw`relative  ${navContainerBase} border-skin-base-light border-[.5px] bg-skin-base-light rounded-l-md ${
         isCollapsed ? navContainerCollapsed : navContainerNotCollapsed
       } `}
     >

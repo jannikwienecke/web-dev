@@ -4,12 +4,12 @@
 
 .theme-red {
   --theme-color: rgb(224, 67, 67);
-  --theme-color-light: hsl(0, 86%, 80%);
+  --theme-color-light: hsl(0, 86%, 85%);
 }
 
 .theme-hamann {
   --theme-color: hsl(241, 99%, 63%);
-  --theme-color-light: hsl(241, 90%, 80%);
+  --theme-color-light: hsl(241, 90%, 85%);
 }
 
 .theme {
@@ -25,7 +25,7 @@
   --color-background-base-light: hsl(260, 20%, 100%);
   --color-background-base-dark: hsl(260, 20%, 96%);
   --color-background-accent: var(--theme-color);
-  --color-background-accent-light: var(--theme-color-light);
+  --color-background-accent-light: hsl(241, 90%, 92%);
   --color-background-base-inverted: hsl(0, 14%, 100%);
 
   /* border colors */
@@ -61,6 +61,12 @@
   /* shadow colors */
   --color-shadow-base-light: hsl(240, 21%, 15%);
   --color-shadow-base-dark: hsl(240, 21%, 10%);
+
+  /* outline */
+  --color-outline-accent: var(--theme-color);
+
+  /* focus */
+  --color-focus-accent: var(--theme-color);
 
   font-size: 16px;
 }

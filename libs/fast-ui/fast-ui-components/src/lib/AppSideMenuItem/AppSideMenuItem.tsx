@@ -8,18 +8,22 @@ export function AppSideMenuItem({
   isActive,
 }: AppSideMenuItemProps) {
   const itemHover = `
-  hover:w-[101%] hover:bg-skin-primary-light
+  hover:w-[101%] hover:bg-skin-base-dark
   hover:border-r-2 hover:border-skin-base-dark
 `;
 
   const itemActive = `
+  bg-skin-accent-light
+  text-skin-base-inverted
   border-r-2 w-[101%] border-skin-primary
-  text-skin-primary-intense  bg-skin-primary-light
+  bg-skin-primary-light
+  hover:bg-skin-accent-light
+
+  
 `;
 
   const itemBase = `
-  list-inside list-item list-disc
-  text-skin-base-light pl-8 p-1 cursor-pointer
+  text-skin-base-light pl-8 py-1 cursor-pointer text-sm
 `;
 
   return (
@@ -27,9 +31,18 @@ export function AppSideMenuItem({
       key={label}
       className={`${itemBase} ${itemHover} ${
         isActive && itemActive
-      } active:text-skin-base-dark`}
+      } active:text-skin-accent`}
     >
-      {label}
+      <div className="flex flex-row gap-2">
+        <div className="grid place-items-center">
+          <div
+            className={`rounded-full border-[1px] h-2 w-2 border-dotted border-skin-base-dark hover:border-skin-accent ${
+              isActive && 'bg-skin-accent border-0'
+            } `}
+          />
+        </div>
+        <div>{label}</div>
+      </div>
     </li>
   );
 }

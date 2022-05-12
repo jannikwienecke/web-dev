@@ -14,6 +14,7 @@ module.exports = {
       colors: {
         'shadow-base-light': 'var(--color-shadow-base-light)',
         'shadow-base-dark': 'var(--color-shadow-base-dark)',
+        accent: 'var(--theme-color)',
       },
 
       textColor: {

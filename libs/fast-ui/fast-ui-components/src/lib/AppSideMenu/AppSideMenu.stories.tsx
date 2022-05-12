@@ -1,5 +1,11 @@
 import { Story, Meta } from '@storybook/react';
-import { AppGroup, AppSideMenu, AppSideMenuProps } from './AppSideMenu';
+import {
+  AppSideMenu,
+  AppSideMenuGroupItemProps,
+  AppSideMenuProps,
+} from './AppSideMenu';
+
+import { screen, userEvent } from '@storybook/testing-library';
 
 export default {
   component: AppSideMenu,
@@ -16,7 +22,7 @@ export default {
 
 const Template: Story<AppSideMenuProps> = (args) => <AppSideMenu {...args} />;
 
-export const appTestGroups: AppGroup[] = [
+export const appTestGroups: AppSideMenuGroupItemProps[] = [
   {
     title: 'Employee Views',
     appItems: [
@@ -45,7 +51,27 @@ Opened.args = {
   appDescription: 'Create, update, and delete users',
 };
 
-export const Closed = Template.bind({});
-Closed.args = {
-  isOpen: false,
+export const OpenedFolder = Template.bind({});
+OpenedFolder.args = {
+  isOpen: true,
+  appGroups: appTestGroups,
+  appName: 'User Management',
+  appDescription: 'CRUD Methods',
+};
+
+OpenedFolder.play = async () => {
+  setTimeout(() => {
+    const submitButton = screen.getByRole('button', {
+      name: /folder toggle/i,
+    }).firstElementChild;
+
+    submitButton && userEvent.click(submitButton);
+  }, 300);
+
+  setTimeout(() => {
+    const submitButton = screen.getByRole('button', {
+      name: /search open/i,
+    });
+    userEvent.click(submitButton);
+  }, 600);
 };
