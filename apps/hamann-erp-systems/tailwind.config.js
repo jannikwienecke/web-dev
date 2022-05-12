@@ -26,25 +26,16 @@ module.exports = {
       },
       backgroundColor: {
         skin: {
-          // new
           'base-light': 'var(--color-background-base-light)',
           'base-dark': 'var(--color-background-base-dark)',
           'base-inverted': 'var(--color-background-base-inverted)',
           accent: 'var(--color-background-accent)',
           'accent-light': 'var(--color-background-accent-light)',
-
-          // old
-          base: 'var(--color-background-base)',
-          layer: 'var(--color-background-layer)',
-          primary: 'var(--color-background-primary)',
-          'primary-light': 'var(--color-background-primary-light)',
-          contrast: 'var(--color-background-contrast)',
         },
       },
 
       borderColor: {
         skin: {
-          // new
           'base-light': 'var(--color-border-base-light)',
           'base-dark': 'var(--color-border-base-dark)',
           accent: 'var(--color-border-accent)',

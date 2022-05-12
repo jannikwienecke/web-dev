@@ -11,9 +11,13 @@ module.exports = {
     extend: {
       fontFamily: {},
 
+      colors: {
+        'shadow-base-light': 'var(--color-shadow-base-light)',
+        'shadow-base-dark': 'var(--color-shadow-base-dark)',
+      },
+
       textColor: {
         skin: {
-          // new
           'base-dark': 'var(--color-text-base-dark)',
           'base-light': 'var(--color-text-base-light)',
           'base-inverted': 'var(--color-text-base-inverted)',
@@ -22,7 +26,6 @@ module.exports = {
       },
       backgroundColor: {
         skin: {
-          // new
           'base-light': 'var(--color-background-base-light)',
           'base-dark': 'var(--color-background-base-dark)',
           'base-inverted': 'var(--color-background-base-inverted)',
@@ -33,7 +36,6 @@ module.exports = {
 
       borderColor: {
         skin: {
-          // new
           'base-light': 'var(--color-border-base-light)',
           'base-dark': 'var(--color-border-base-dark)',
           accent: 'var(--color-border-accent)',
