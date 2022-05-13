@@ -54,7 +54,7 @@ export function AppSideMenuGroupItem(appGroup: AppSideMenuGroupItemProps) {
   return (
     <div className="pt-4" key={appGroup.title}>
       {/* Sub header */}
-      <div className={appGroupHeaderWrapper}>
+      <div className={`${appGroupHeaderWrapper} tracking-wide`}>
         <div className="flex flex-row items-center gap-3">
           <button onClick={toggleOpenGroup}>
             <FolderIcon aria-label="folder toggle" className={folderIcon} />
