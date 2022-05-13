@@ -1,4 +1,4 @@
-import { AppGroupItem } from '../AppSideMenu/AppSideMenu';
+import { AppGroupItem } from "../AppSideMenu/AppSideMenu";
 
 export type AppSideMenuItemProps = AppGroupItem;
 
@@ -36,8 +36,8 @@ export function AppSideMenuItem({
       <div className="flex flex-row gap-2">
         <div className="grid place-items-center">
           <div
-            className={`rounded-full border-[1px] h-2 w-2 border-dotted border-skin-base-dark hover:border-skin-accent ${
-              isActive && 'bg-skin-accent border-0'
+            className={`border-skin-base-dark hover:border-skin-accent h-2 w-2 rounded-full border-[1px] border-dotted ${
+              isActive && "bg-skin-accent border-0"
             } `}
           />
         </div>

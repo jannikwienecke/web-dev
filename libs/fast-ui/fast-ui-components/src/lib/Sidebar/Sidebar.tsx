@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion';
-import React, { HTMLAttributes } from 'react';
-import { apply, tw } from 'twind';
-import SidebarControl from '../SidebarControl/SidebarControl';
-import SidebarGroupItem from '../SidebarGroupItem/SidebarGroupItem';
-import SidebarHeader from '../SidebarHeader/SidebarHeader';
-import SidebarUser from '../SidebarUser/SidebarUser';
+import { motion } from "framer-motion";
+import React, { HTMLAttributes } from "react";
+import { apply, tw } from "twind";
+import SidebarControl from "../SidebarControl/SidebarControl";
+import SidebarGroupItem from "../SidebarGroupItem/SidebarGroupItem";
+import SidebarHeader from "../SidebarHeader/SidebarHeader";
+import SidebarUser from "../SidebarUser/SidebarUser";
 
 export interface SidebarItem {
   icon: (props: HTMLAttributes<unknown>) => JSX.Element;
@@ -79,13 +79,13 @@ export function Sidebar({
   return (
     <motion.div
       initial={{ scale: 0 }}
-      animate={{ width: isCollapsed ? '64px' : '256px', scale: 1 }}
+      animate={{ minWidth: isCollapsed ? "64px" : "256px", scale: 1 }}
       transition={{
-        type: 'spring',
+        type: "spring",
         stiffness: 500,
         damping: 40,
       }}
-      className={tw`relative  ${navContainerBase} border-skin-base-light border-[.5px] bg-skin-base-light rounded-l-md ${
+      className={tw`relative  ${navContainerBase} border-skin-base-light bg-skin-base-light rounded-l-md border-[.5px] ${
         isCollapsed ? navContainerCollapsed : navContainerNotCollapsed
       } `}
     >
@@ -97,12 +97,12 @@ export function Sidebar({
       />
 
       {/* Navigation modules with items */}
-      <div className="flex flex-col justify-between h-full mt-3">
-        <div className="grid grid-cols-1 cursor-pointer">
+      <div className="mt-3 flex h-full flex-col justify-between">
+        <div className="grid cursor-pointer grid-cols-1">
           {modules.map((module, index) => {
             return (
               <SidebarGroupItem
-                key={module.title + '_' + index}
+                key={module.title + "_" + index}
                 module={module}
                 isCollapsed={isCollapsed}
               />

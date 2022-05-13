@@ -26,8 +26,8 @@ export const Popover = ({ button, groups }: PopoverProps) => {
     select-none pr-1 focus:bg-skin-accent 
     focus:text-skin-base-inverted
     disabled:text-skin-base-dark
-    pb-1 last:pb-0
-    group
+    py-1 last:pb-0
+    group 
   `;
 
   const itemStylesDisabled = css`
@@ -58,7 +58,7 @@ export const Popover = ({ button, groups }: PopoverProps) => {
 
         <DropdownMenuPrimitive.Content
           avoidCollisions={true}
-          sideOffset={10}
+          sideOffset={20}
           className={`${dropdownContent}  shadow-xl shadow-shadow-base-dark`}
         >
           {groups.map((group, index) => {

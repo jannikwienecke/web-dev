@@ -44,19 +44,18 @@ export function AppSideMenuHeader({
       </AnimatePresence>
 
       <div className="flex flex-row">
-        <div className="flex-grow text-xl font-bold text-skin-base-dark ">
+        <div className="flex-grow text-md font-bold text-skin-base-dark ">
           {appName}
         </div>
 
-        <motion.div
+        <motion.button
+          onClick={() => setIsOpen((prev) => !prev)}
           variants={variants}
           animate={isOpen ? 'closed' : 'open'}
           className="cursor-pointer bg-skin-base-light text-skin-base h-7 w-7 grid place-content-center border-skin-base-light border-[1px]"
         >
-          <button onClick={() => setIsOpen((prev) => !prev)}>
-            <FaSearch aria-label="search open" className=" text-sm" />
-          </button>
-        </motion.div>
+          <FaSearch aria-label="search open" className=" text-sm" />
+        </motion.button>
       </div>
 
       <AnimatePresence>
