@@ -37,7 +37,7 @@ export function AppViewHeader(props: AppViewHeaderProps) {
           <div>
             <FaFolderOpen className="text-skin-base-light" />
           </div>
-          <div className="">Employee Views</div>
+          <div className="text-skin-base-dark">Employee Views</div>
         </div>
 
         {/* VIEW TYPE LIST */}

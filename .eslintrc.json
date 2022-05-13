@@ -9,7 +9,7 @@
       {
         "whitelist": [
           "text-(skin|background|border)-(accent|base)",
-          "text-(skin|background|border)-base-(dark|light)"
+          "text-(skin|background|border)-base-(dark|light|inverted)"
         ]
       }
     ]
