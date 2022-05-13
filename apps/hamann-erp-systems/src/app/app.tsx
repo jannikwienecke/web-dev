@@ -1,5 +1,4 @@
 import {
-  AppSideMenu,
   AppSideMenuGroupItemProps,
   Sidebar,
 } from '@web-dev/fast-ui/fast-ui-components';
@@ -103,12 +102,12 @@ export function App() {
         ]}
       />
 
-      <AppSideMenu
+      {/* <AppSideMenu
         appGroups={appTestGroups}
         isOpen={true}
         appName="User Management"
         appDescription="CRUD Users"
-      />
+      /> */}
     </div>
   );
 }
