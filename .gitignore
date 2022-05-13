@@ -38,4 +38,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-
+# compiled storybook files
+libs/fast-ui/fast-ui-components/.storybook/libs/**

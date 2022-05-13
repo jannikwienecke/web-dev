@@ -1,27 +1,18 @@
 import { tw } from 'twind';
+import AppSideMenuGroupItem, {
+  AppSideMenuGroupItemProps,
+} from '../AppSideMenuGroupItem/AppSideMenuGroupItem';
 import AppSideMenuHeader from '../AppSideMenuHeader/AppSideMenuHeader';
-import AppSideMenuItem from '../AppSideMenuItem/AppSideMenuItem';
-import { navContainerBase, SidebarItem } from '../Sidebar';
+import { navContainerBase } from '../Sidebar';
 
-export type AppGroupItem = Pick<
-  SidebarItem,
-  'label' | 'pathname' | 'description'
-> & {
-  /** If this app group item is currently showing on the screen */
-  isActive?: boolean;
-};
-
-export interface AppGroup {
-  title: string;
-  appItems: AppGroupItem[];
-}
+export * from '../AppSideMenuGroupItem/AppSideMenuGroupItem';
 
 export interface AppSideMenuProps {
   // Boolean if this is showing
   isOpen: boolean;
 
   /** The app items to show - grouped by app  */
-  appGroups: AppGroup[];
+  appGroups: AppSideMenuGroupItemProps[];
 
   /** The display name of the current app */
   appName: string;
@@ -37,46 +28,28 @@ export function AppSideMenu({
   appDescription,
 }: AppSideMenuProps) {
   const appSideMenuContainer = `
-    bg-skin-base border-skin-base relative border-l-0
+    bg-skin-base-light border-skin-base-light
+    relative border-l-0 
   `;
 
   if (!isOpen) return null;
 
   return (
     <div
-      style={{
-        boxShadow:
-          '0px 10px 18px -10px rgba(22, 23, 24, 0.1),0px 10px 10px -20px rgba(22, 23, 24, 0.6)',
-      }}
       className={`${tw(
         navContainerBase
       )}${appSideMenuContainer} w-72 rounded-l-0 `}
     >
       <div className="flex flex-col ">
         <AppSideMenuHeader appName={appName} appDescription={appDescription} />
-
-        {appGroups.map((appGroup) => {
-          return (
-            <div key={appGroup.title}>
-              {/* Sub header */}
-              <div className="text-skin-base-dark text-sm uppercase font-bold p-4 flex flex-row justify-between">
-                <div>{appGroup.title}</div>
-                <div className="bg-skin-base-dark text-sm p-0 px-[6px] py-[1px] rounded-sm ">
-                  {appGroup.appItems.length}
-                </div>
-              </div>
-
-              {/* App items */}
-              <div>
-                <ul>
-                  {appGroup.appItems.map((appItem, index) => (
-                    <AppSideMenuItem key={appItem.label + index} {...appItem} />
-                  ))}
-                </ul>
-              </div>
-            </div>
-          );
-        })}
+        <div className="pt-3">
+          {appGroups.map((appGroup) => (
+            <AppSideMenuGroupItem
+              key={`app_side_menu_item_${appGroup.title}`}
+              {...appGroup}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

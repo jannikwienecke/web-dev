@@ -1,31 +1,21 @@
 import {
-  AppGroup,
-  AppSideMenu,
+  AppSideMenuGroupItemProps,
   Sidebar,
 } from '@web-dev/fast-ui/fast-ui-components';
+import { FaAddressBook, FaApple, FaHiking, FaUser } from 'react-icons/fa';
+import { FiActivity, FiSettings } from 'react-icons/fi';
 import {
-  FaAddressBook,
-  FaApple,
-  FaHiking,
-  FaHome,
-  FaPuzzlePiece,
-  FaShoppingCart,
-  FaUser,
-} from 'react-icons/fa';
-
-import {
-  HiOutlineHome,
   HiOutlineBell,
-  HiStar,
-  HiOutlineShoppingCart,
   HiOutlineCloud,
+  HiOutlineHome,
+  HiOutlineShoppingCart,
+  HiStar,
 } from 'react-icons/hi';
 
-import { FiActivity, FiSettings } from 'react-icons/fi';
-
-export const appTestGroups: AppGroup[] = [
+export const appTestGroups: AppSideMenuGroupItemProps[] = [
   {
     title: 'Employee Views',
+    isActive: true,
     appItems: [
       { label: 'All Employee', pathname: '#' },
       { label: 'Active Employee', pathname: '#' },

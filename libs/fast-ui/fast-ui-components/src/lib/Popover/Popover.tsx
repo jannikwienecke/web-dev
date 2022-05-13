@@ -64,10 +64,11 @@ export const Popover = ({ button, groups }: PopoverProps) => {
           {groups.map((group, index) => {
             const isLastGroup = index === groups.length - 1;
             return (
-              <div key={`${group.label}`}>
+              <div key={`${group.label}_group_label`}>
                 {group.items.map((item) => {
                   return (
                     <DropdownMenuPrimitive.Item
+                      key={item.label + '_item'}
                       disabled={item.disabled}
                       className={`${dropDownItem} ${tw(itemStylesDisabled)}`}
                     >

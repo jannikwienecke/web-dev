@@ -6,7 +6,7 @@
 :root {
   /* theme-color */
   --theme-color: hsl(241, 99%, 63%);
-  --theme-color-light: hsl(241, 90%, 80%);
+  --theme-color-light: hsl(241, 90%, 85%);
 
   /* TEXT COLORS */
   --color-text-base-dark: hsl(255, 100%, 0%);

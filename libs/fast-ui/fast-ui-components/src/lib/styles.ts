@@ -14,7 +14,7 @@ tooltiptext hidden absolute
 p-1 px-3 rounded-md top-1
 left-16  text-sm 
 whitespace-nowrap 
-text-white bg-skin-accent-light
+text-skin-base-dark bg-skin-accent-light
 `;
 
 export const tooltopActive = tw`group-hover:(block)`;
