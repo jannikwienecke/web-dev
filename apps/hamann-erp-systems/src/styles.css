@@ -3,16 +3,27 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
+
 .theme-red {
   --theme-color: rgb(224, 67, 67);
-  --theme-color-light: hsl(0, 86%, 85%);
+  --theme-color-light: hsl(0, 86%, 90%);
+}
+
+.theme-dark.theme-red {
+  --theme-color: rgb(224, 67, 67);
+  --theme-color-light: hsl(0, 86%, 65%);
+}
+
+.theme-dark.theme-hamann {
+  /* --theme-color: hsl(241, 99%, 63%);
+  --theme-color-light: hsl(241, 90%, 65%); */
 }
 
 .theme-hamann {
-  --theme-color: hsl(241, 99%, 63%);
-  --theme-color-light: hsl(241, 90%, 85%);
+  /* --theme-color: hsl(241, 99%, 63%);
+  --theme-color-light: hsl(241, 90%, 85%); */
 }
 
 .theme {
@@ -28,7 +39,7 @@
   --color-background-base-light: hsl(260, 20%, 100%);
   --color-background-base-dark: hsl(260, 20%, 96%);
   --color-background-accent: var(--theme-color);
-  --color-background-accent-light: hsl(241, 90%, 92%);
+  --color-background-accent-light: var(--theme-color-light);
   --color-background-base-inverted: hsl(0, 14%, 100%);
 
   /* border colors */
@@ -41,12 +52,11 @@
   --color-shadow-base-dark: hsl(260, 20%, 92%);
 }
 
-/* @layer base { */
-
 .theme-dark {
   /* TEXT COLORS */
-  --color-text-base-dark: hsl(0, 0%, 90%);
-  --color-text-base-dark: hsl(0, 0%, 80%);
+
+  --color-text-base-dark: hsl(0, 0%, 100%);
+  --color-text-base-light: hsl(0, 0%, 80%);
   --color-text-accent: var(--theme-color);
   --color-text-base-inverted: hsl(0, 14%, 100%);
 
