@@ -1,7 +1,20 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
+  "plugins": ["@nrwl/nx", "tailwindcss"],
+
+  "rules": {
+    "tailwindcss/no-custom-classname": [
+      1,
+      {
+        "whitelist": [
+          "text-(skin|background|border)-(accent|base)",
+          "text-(skin|background|border)-base-(dark|light)"
+        ]
+      }
+    ]
+  },
+
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -21,6 +34,7 @@
         ]
       }
     },
+
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],

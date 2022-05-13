@@ -44,7 +44,7 @@ export function AppSideMenuHeader({
       </AnimatePresence>
 
       <div className="flex flex-row">
-        <div className="flex-grow text-xl font-bold text-skin-base-dark ">
+        <div className="flex-grow text-md font-bold text-skin-base-dark ">
           {appName}
         </div>
 

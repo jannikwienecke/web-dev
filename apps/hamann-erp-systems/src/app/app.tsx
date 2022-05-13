@@ -1,6 +1,7 @@
 import {
   AppSideMenu,
   AppSideMenuGroupItemProps,
+  AppViewHeader,
   Sidebar,
 } from '@web-dev/fast-ui/fast-ui-components';
 import { FaAddressBook, FaApple, FaHiking, FaUser } from 'react-icons/fa';
@@ -109,6 +110,8 @@ export function App() {
         appName="User Management"
         appDescription="CRUD Users"
       />
+
+      <AppViewHeader />
     </div>
   );
 }

@@ -29,7 +29,7 @@ export function AppSideMenu({
 }: AppSideMenuProps) {
   const appSideMenuContainer = `
     bg-skin-base-light border-skin-base-light
-    relative border-l-0 
+    relative border-l-0
   `;
 
   if (!isOpen) return null;
@@ -38,7 +38,7 @@ export function AppSideMenu({
     <div
       className={`${tw(
         navContainerBase
-      )}${appSideMenuContainer} w-72 rounded-l-0 `}
+      )}${appSideMenuContainer} w-72 rounded-l-0 shrink-0 `}
     >
       <div className="flex flex-col ">
         <AppSideMenuHeader appName={appName} appDescription={appDescription} />
