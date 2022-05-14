@@ -1,5 +1,5 @@
 .app-view-header-container {
-  @apply bg-skin-base-light border-skin-base-light flex max-h-12 w-full flex-row justify-between gap-4 border-b-[.5px] pt-1 pl-4;
+  @apply bg-skin-base-light border-skin-base-light flex h-full max-h-12 w-full flex-row justify-between gap-4 border-b-[.5px] pt-1 pl-4;
 }
 
 .app-view-header-views-container {

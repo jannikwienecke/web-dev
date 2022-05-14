@@ -8,8 +8,14 @@
       1,
       {
         "whitelist": [
-          "text-(skin|background|border)-(accent|base)",
-          "text-(skin|background|border)-base-(dark|light|inverted)"
+          "(text|bg|border)-(skin)-(accent|base)",
+          "text-(skin|background|border)-base-(dark|light|inverted)",
+          "(border|text|bg)-skin-base-(dark|light|inverted)",
+          "line-clamp-2",
+          "text-md",
+          "outline-accent",
+          "focus:ring-accent",
+          "focus:border-accent"
         ]
       }
     ]
