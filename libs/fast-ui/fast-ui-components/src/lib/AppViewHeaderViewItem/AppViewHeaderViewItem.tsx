@@ -26,11 +26,6 @@ export function AppViewHeaderViewItem({
     hoverInactive: { color: "var(--color-text-accent)" },
   };
 
-  const [s, ss] = React.useState();
-  React.useEffect(() => {
-    console.log(s);
-  }, []);
-
   return (
     <motion.div
       whileHover={isActive ? "hover" : "hoverInactive"}

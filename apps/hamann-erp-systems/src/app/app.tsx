@@ -1,105 +1,106 @@
 import {
   AppSideMenu,
   AppSideMenuGroupItemProps,
+  AppViewControlPanel,
   AppViewHeader,
   Sidebar,
-} from '@web-dev/fast-ui/fast-ui-components';
-import { FaAddressBook, FaApple, FaHiking, FaUser } from 'react-icons/fa';
-import { FiActivity, FiSettings } from 'react-icons/fi';
+} from "@web-dev/fast-ui/fast-ui-components";
+import { FaAddressBook, FaApple, FaHiking, FaUser } from "react-icons/fa";
+import { FiActivity, FiSettings } from "react-icons/fi";
 import {
   HiOutlineBell,
   HiOutlineCloud,
   HiOutlineHome,
   HiOutlineShoppingCart,
   HiStar,
-} from 'react-icons/hi';
+} from "react-icons/hi";
 
 export const appTestGroups: AppSideMenuGroupItemProps[] = [
   {
-    title: 'Employee Views',
+    title: "Employee Views",
     isActive: true,
     appItems: [
-      { label: 'All Employee', pathname: '#' },
-      { label: 'Active Employee', pathname: '#' },
-      { label: 'Left Employee', pathname: '#' },
+      { label: "All Employee", pathname: "#" },
+      { label: "Active Employee", pathname: "#" },
+      { label: "Left Employee", pathname: "#" },
     ],
   },
 
   {
-    title: 'Employee Settings',
+    title: "Employee Settings",
     appItems: [
-      { label: 'Settings', pathname: '#' },
-      { label: 'Views', pathname: '#' },
-      { label: 'Drivers', pathname: '#', isActive: true },
-      { label: 'TImes', pathname: '#' },
+      { label: "Settings", pathname: "#" },
+      { label: "Views", pathname: "#" },
+      { label: "Drivers", pathname: "#", isActive: true },
+      { label: "TImes", pathname: "#" },
     ],
   },
 ];
 export function App() {
   return (
-    <div className="rounded-lg p-2 h-screen flex flex-row  bg-skin-base-dark">
+    <div className="bg-skin-base-dark flex h-screen flex-row rounded-lg  p-2">
       <Sidebar
-        user={{ username: 'John Doe', imgSrc: '' }}
+        user={{ username: "John Doe", imgSrc: "" }}
         sideControlItems={[
           {
-            label: 'Select Apps',
+            label: "Select Apps",
             icon: HiOutlineHome,
-            pathname: '#',
+            pathname: "#",
           },
 
           {
-            label: 'Notifications',
+            label: "Notifications",
             icon: HiOutlineBell,
-            pathname: '#',
+            pathname: "#",
           },
 
           {
-            label: 'Favorites',
+            label: "Favorites",
             icon: HiStar,
-            pathname: '#',
+            pathname: "#",
             isActive: true,
           },
         ]}
         app={{
-          label: 'Hamann Erp System',
+          label: "Hamann Erp System",
           icon: FiActivity,
-          pathname: '#',
-          description: 'Workspace',
+          pathname: "#",
+          description: "Workspace",
         }}
         modules={[
           {
-            title: 'Apps',
+            title: "Apps",
             navigationItems: [
-              { icon: FaUser, label: 'User List', pathname: '#' },
+              { icon: FaUser, label: "User List", pathname: "#" },
               {
                 icon: FaHiking,
-                label: 'Hiking',
-                pathname: '#',
+                label: "Hiking",
+                pathname: "#",
               },
               {
                 icon: FaAddressBook,
-                label: 'Address Book',
-                pathname: '#',
+                label: "Address Book",
+                pathname: "#",
               },
               {
                 icon: FaApple,
-                label: 'Apple',
-                pathname: '#',
+                label: "Apple",
+                pathname: "#",
               },
             ],
           },
         ]}
         sideControlSecondaryItems={[
-          { icon: HiOutlineCloud, label: 'Plugins', pathname: '#' },
+          { icon: HiOutlineCloud, label: "Plugins", pathname: "#" },
           {
             icon: HiOutlineShoppingCart,
-            label: 'Marketplace',
-            pathname: '#',
+            label: "Marketplace",
+            pathname: "#",
           },
           {
             icon: FiSettings,
-            label: 'Settings',
-            pathname: '#',
+            label: "Settings",
+            pathname: "#",
           },
         ]}
       />
@@ -111,7 +112,11 @@ export function App() {
         appDescription="CRUD Users"
       />
 
-      <AppViewHeader />
+      <div className="flex w-full flex-col">
+        <AppViewHeader />
+
+        <AppViewControlPanel />
+      </div>
     </div>
   );
 }

@@ -76,7 +76,7 @@ export const Listbox: React.FC<ListboxProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <ListBoxHeadlessUi.Options className="bg-skin-base-dark absolute mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <ListBoxHeadlessUi.Options className="bg-skin-base-light absolute mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               <div className="text-skin-base-dark p-2 pb-4  pl-10 text-xs uppercase">
                 {label}
               </div>

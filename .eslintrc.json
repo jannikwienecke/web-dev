@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["**/*"],
+  "ignorePatterns": ["**/*", "*.typegen.ts"],
   "plugins": ["@nrwl/nx", "tailwindcss"],
 
   "rules": {
@@ -8,20 +8,27 @@
       1,
       {
         "whitelist": [
-          "(text|bg|border)-(skin)-(accent|base)",
+          "(text|bg|border)-(skin)-(accent|base|layer)",
           "text-(skin|background|border)-base-(dark|light|inverted)",
           "(border|text|bg)-skin-base-(dark|light|inverted)",
           "line-clamp-2",
           "text-md",
           "outline-accent",
           "focus:ring-accent",
-          "focus:border-accent"
+          "focus:border-accent",
+          "(ring|border)-accent"
         ]
       }
     ]
   },
 
   "overrides": [
+    {
+      "files": ["*.typegen.ts"],
+      "rules": {
+        "@typescript-eslint/ban-types": "off"
+      }
+    },
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
@@ -44,7 +51,8 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {}
+      "rules": {},
+      "excludedFiles": ["**/*.typegen.ts"]
     },
     {
       "files": ["*.js", "*.jsx"],

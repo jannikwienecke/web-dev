@@ -1,0 +1,7 @@
+.and-or-toggle-container {
+  @apply text-skin-base-light border-skin-base-light relative flex w-12 cursor-pointer flex-row justify-start overflow-hidden rounded-md border-[1px] p-1 py-2 text-xs font-bold uppercase;
+}
+
+.and-or-toggle-container-disabled {
+  @apply bg-skin-base-dark  border-0;
+}

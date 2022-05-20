@@ -14,6 +14,7 @@
   },
   "files": [],
   "include": [],
+  "exclude": ["*.typegen.ts"],
   "references": [
     {
       "path": "./tsconfig.lib.json"
