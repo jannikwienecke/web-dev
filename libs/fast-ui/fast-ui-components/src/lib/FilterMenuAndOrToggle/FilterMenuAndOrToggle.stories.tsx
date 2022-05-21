@@ -1,6 +1,8 @@
 import { Meta, Story } from "@storybook/react";
+import React from "react";
 import { filterMenuProps } from "../FilterMenu/FilterMenu.stories";
 import { FilterMenuProvider } from "../FilterMenu/state";
+import { FilterMenuStorybookComponent } from "../helper/components";
 import {
   FilterAndOrToggleProps,
   FilterMenuAndOrToggle,
@@ -12,18 +14,15 @@ export default {
   decorators: [
     (story) => (
       <FilterMenuProvider {...filterMenuProps}>
-        {({ send }) => {
-          send("OPEN");
-          return story();
-        }}
+        <FilterMenuStorybookComponent {...filterMenuProps} story={story} />
       </FilterMenuProvider>
     ),
   ],
 } as Meta;
 
-const Template: Story<FilterAndOrToggleProps> = (args) => (
-  <FilterMenuAndOrToggle {...args} />
-);
+const Template: Story<FilterAndOrToggleProps> = (args) => {
+  return <FilterMenuAndOrToggle {...args} />;
+};
 
 export const Enabled = Template.bind({});
 Enabled.args = {};

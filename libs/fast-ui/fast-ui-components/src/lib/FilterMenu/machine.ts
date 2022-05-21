@@ -10,13 +10,13 @@ export type FilterMenuMachineContext = Pick<
   | "andOrFiltering"
   | "filterComparatorOptions"
   | "filterDateOptions"
->;
+> & { hasError?: boolean; isSaved?: boolean };
 
 export type Events =
   | { type: "OPEN"; data?: { context: FilterMenuMachineContext } }
   | { type: "CLOSE" }
   | { type: "ADD_FILTER" }
-  | { type: "REMOVE_FILTER"; data: { index: number } }
+  | { type: "REMOVE_FILTER"; data: { filterItem: FilterItem } }
   | {
       type: "UPDATE_VALUE_FILTER";
       data: {
@@ -37,48 +37,87 @@ export type Events =
     }
   | {
       type: "TOGGLE_AND_OR";
+    }
+  | {
+      type: "EVALUATE_FILTER";
+    }
+  | {
+      type: "EDIT_FILTER";
     };
 
 export const filterMenuMachine =
-  /** @xstate-layout N4IgpgJg5mDOIC5QBcD2UoBswDoDGmqskAxAPIAKAogHKKgAORAlss6gHb0gAeiAtAEYATAE4cANmEAGaYNHCA7AFZlcwRIA0IAJ4CR0nAA5VAFgNKjR0QGZRAX3va0GbDlQMwHEgGEAMmQAylTcTLCs7FxIvPo2Njg2chKmEtJGpsJ2olq6+oo4gibCwiJq0oqiotISjs7oWLgeXiQASlQAsmQAalQA+gBiAJJ+ACpULaEsbJzcfAiCysLGJXYSKjbKgubaegj8Mso4lRkVVSnVyqa1IC4N7p7eAIIAIs8Dw2MT0WERM9Fz8WkNgkyjicTSphsijWOwEByOohOlWk5xBV2uHFQEDg3FubgIREgk3C0yioDm-Bs6QS1TERlSiOUiNheykNMUGw5dlMRhsgkU1zxjQexN+ZJi82EEhwi2UinKW2UEipwhZ-FMpkkwllQPlohUoJqThu9WwotJswEpjSNKkonp0kZzNye0sRxMGkKijETJs6McQA */
+  /** @xstate-layout N4IgpgJg5mDOIC5QBcD2UoBswDoDGmqskAxAPIAKAogHKKgAORAlss6gHb0gAeiAtABYAbAFYcATgAMwwYIBMARikAOQQHZFggDQgAngMXr5OFaIDMZwVq3zRU9QF9HutBmw5UDMBxyRWzBxQ-AC2qBBgJABKVACyZABqVAD6AGIAkgAyACpUUdxMsAGc3HwI-JZSODJiEvIa8lLmiiq6BggaKpKiKlI20irySs6u6Fi4Xj5+EAFBoeGRAIIAIstpWbn5SCCFxVzbZRWy1dYtFsIq6vaKbYjmEoqS0qISaleqourmIyBu457eXz+NhzMIREgAVQoy0WuWSCUWmQhKQyOTyBRYbBKBwEgikJmE+PuhIs5ikD1uCDJ4iJihailEokJSmEPz+HkmQJmIOCYMiUJhcMo2XSZBo6zRW0YmPY+1Ahzx6hwoi09jVghULXUwkpSi6UkZwnM6hU5mEdKsbLGHMB01mvIWkOhsJSAGEyLEKIsorCyFEJZsMUUsXLeLiyZIZHIlKoNFpKYpmtUVJqVK8zh8re4JrbgYEHeDsmQAOLFzIpRY0NZ+oN7UoCSyCHDyFMvKR4+TmQR1SlyHCKRrqay9VSvDWsly-a05qZ50GOqgIpEugPo7a7EP18oMpuNGQSdR1Yx9bW9pMSFXKTumz5MrP-Tk4ABuAENMABXF-IMDzcFUZbpNkq5SjsMrYvKiD2DgXzkhI5rmsYogspSRrmDgwgmj0jImnS7b3jaPgkK6mRkAAylQtabjiVIYTgChNBYlwSPcQyUs0TZ4gozQtGahLfD8HALPA2zsrgBBEJAlGyluXYSCch6WCahLCBh6iUvwWhyaSVxMuOcgGvhM5cvav5gFJ4FhuUlhyX0LQSBeGGdualIWI8EjWPu8h1AolyGQCUyvh+X4-ny5mhmUdjoReuHCHYB72bIvYtOhO6KLFTRkvcgh+ZyYVbkIohNtIsgKMobzxvoAgtqY6h9BYjSMcIEiGXl1FCGmkYlTG5U6JV5T1OIagaHIpIMpozjOEAA */
   createMachine(
     {
       tsTypes: {} as import("./machine.typegen").Typegen0,
-      schema: {
-        context: {} as FilterMenuMachineContext,
-        events: {} as Events,
-      },
+      schema: { context: {} as FilterMenuMachineContext, events: {} as Events },
       id: "toggle",
       initial: "closed",
       states: {
         closed: {
           on: {
             OPEN: {
-              actions: ["setInitContext"],
+              actions: "setInitContext",
               target: "open",
             },
           },
         },
         open: {
+          initial: "editing-mode",
+          states: {
+            "save-mode": {},
+
+            "editing-mode": {
+              entry: ["resetError", "resetSave"],
+              on: {
+                EVALUATE_FILTER: [
+                  {
+                    target: "#toggle.open.valuate-mode",
+                    cond: "filterListHasError",
+                    actions: ["setError"],
+                  },
+                  {
+                    target: "#toggle.open.save-mode",
+                    actions: ["saveFilterData", "resetError"],
+                  },
+                ],
+              },
+            },
+            "valuate-mode": {
+              on: {
+                EDIT_FILTER: {
+                  target: "editing-mode",
+                },
+              },
+            },
+          },
           on: {
             CLOSE: {
               target: "closed",
             },
-            REMOVE_FILTER: {},
+            REMOVE_FILTER: {
+              actions: "removeFilter",
+              target: "open.editing-mode",
+            },
             ADD_FILTER: {
               actions: ["addFilter"],
+              target: "open.editing-mode",
             },
             UPDATE_VALUE_FILTER: {
-              actions: ["updateValueFilter"],
+              actions: "updateValueFilter",
+              target: "open.editing-mode",
             },
             UPDATE_OPTION_FILTER: {
-              actions: ["updateOptionFilter"],
+              actions: "updateOptionFilter",
+              target: "open.editing-mode",
             },
             UPDATE_COMPARATOR_FILTER: {
-              actions: ["updateComparatorFilter"],
+              actions: "updateComparatorFilter",
+              target: "open.editing-mode",
             },
             TOGGLE_AND_OR: {
-              actions: ["toggleAndOr"],
+              actions: "toggleAndOr",
+              target: "open.editing-mode",
             },
           },
         },
@@ -143,6 +182,16 @@ export const filterMenuMachine =
           };
         }),
 
+        removeFilter: assign((context, event) => {
+          const filterItem = event.data.filterItem;
+          return {
+            ...context,
+            filterList: context.filterList.filter(
+              (item) => item.index !== filterItem.index
+            ),
+          };
+        }),
+
         toggleAndOr: assign((context) => {
           const andOrFiltering: "AND" | "OR" =
             context.andOrFiltering === "AND" ? "OR" : "AND";
@@ -152,6 +201,38 @@ export const filterMenuMachine =
             andOrFiltering,
           };
         }),
+
+        setError: assign((context) => {
+          return {
+            ...context,
+            hasError: true,
+          };
+        }),
+
+        resetError: assign((context) => {
+          return {
+            ...context,
+            hasError: false,
+          };
+        }),
+
+        resetSave: assign((context) => {
+          return {
+            ...context,
+          };
+        }),
+      },
+
+      guards: {
+        filterListHasError: (context) => {
+          const hasError = filterListHasError({
+            filterList: context.filterList,
+          });
+
+          console.log("hasError: ", hasError);
+
+          return hasError;
+        },
       },
     }
   );
@@ -174,7 +255,6 @@ export const getUpdatedFilterList = (
   return filterList;
 };
 
-// js docs
 /**
  * Function that get the correct comparator for when the filter option changes
  * if the old comparator is valid for the new filter option -> return the same
@@ -189,11 +269,13 @@ export const getComparator = ({
   valueType: FilterValueType | undefined;
   context: FilterMenuMachineContext;
 }) => {
-  let newValidateKey: ValidateBy | undefined = undefined;
+  if (!valueType || isRelationalType(valueType)) return validateKey;
 
-  if (valueType && validateKey && !isRelationalType(valueType)) {
+  let newValidateKey: ValidateBy | undefined = undefined;
+  const comparatorList = context.filterComparatorOptions[valueType];
+
+  if (validateKey) {
     // comparatorlist => is a list with all comparators for a cetain valueType ['contains', ....]
-    const comparatorList = context.filterComparatorOptions[valueType];
 
     const isValidComparator = comparatorList.includes(validateKey.label);
 
@@ -202,7 +284,31 @@ export const getComparator = ({
         label: comparatorList[0],
       };
     }
+  } else {
+    const comparatorList = context.filterComparatorOptions[valueType];
+
+    newValidateKey = {
+      label: comparatorList[0],
+    };
+
+    console.log("newValidateKey: ", newValidateKey);
   }
 
   return newValidateKey || validateKey;
+};
+
+const filterListHasError = ({
+  filterList,
+}: {
+  filterList: FilterItem[] | undefined;
+}) => {
+  if (!filterList) return false;
+
+  return Boolean(
+    filterList.find((f) => {
+      const hasError = !f.filterValue || !f.validateKey;
+      hasError && console.log(f);
+      return hasError;
+    })
+  );
 };

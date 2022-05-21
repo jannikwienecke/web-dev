@@ -1,0 +1,7 @@
+.select-input-field {
+  @apply w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-0 focus:outline-none focus:ring-1 sm:text-sm;
+}
+
+.select-input-field-error {
+  @apply border-2 border-red-600;
+}

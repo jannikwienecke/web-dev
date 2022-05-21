@@ -1,7 +1,7 @@
 import { useInterpret } from "@xstate/react";
 import React from "react";
 import { InterpreterFrom } from "xstate";
-import { filterMenuMachine } from "./machine";
+import { filterMenuMachine, FilterMenuMachineContext } from "./machine";
 
 type Context = InterpreterFrom<typeof filterMenuMachine>;
 
@@ -10,15 +10,20 @@ export const GlobalStateContext = React.createContext<Context>(
 );
 
 type Props = {
-  children: (x: Context) => React.ReactNode;
+  children: React.ReactNode;
+  onSave?: (filterContext: FilterMenuMachineContext) => void;
 };
 
-export const FilterMenuProvider: React.FC<Props> = ({ children }) => {
-  const machine = useInterpret(filterMenuMachine);
+export const FilterMenuProvider: React.FC<Props> = ({ children, onSave }) => {
+  const machine = useInterpret(filterMenuMachine, {
+    actions: {
+      saveFilterData: (context) => onSave?.(context),
+    },
+  });
 
   return (
     <GlobalStateContext.Provider value={machine}>
-      {children(machine)}
+      {children}
     </GlobalStateContext.Provider>
   );
 };

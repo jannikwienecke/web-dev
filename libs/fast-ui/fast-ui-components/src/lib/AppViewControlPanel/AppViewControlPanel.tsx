@@ -1,7 +1,9 @@
+import React from "react";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { FaFilter } from "react-icons/fa";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { FilterMenu } from "../FilterMenu/FilterMenu";
+import { FilterMenuMachineContext } from "../FilterMenu/machine";
 import {
   FilterComparatorOptions,
   FilterItem,
@@ -96,6 +98,21 @@ export const filterDateOptions: SelectItem[] = [
 export interface AppViewControlPanelProps {}
 
 export function AppViewControlPanel(props: AppViewControlPanelProps) {
+  const [filterContext, setFilterContext] =
+    React.useState<FilterMenuMachineContext>({
+      andOrFiltering: "AND",
+      filterOptions: filterByKeys,
+      filterList,
+      filterComparatorOptions,
+      hasError: false,
+      filterDateOptions,
+    });
+
+  const handleSave = (filterMenuContext: FilterMenuMachineContext) => {
+    console.log("save");
+    setFilterContext(filterMenuContext);
+  };
+
   return (
     <div className="text-skin-base-light my-4 mx-2 flex flex-row justify-between bg-red-50 p-4 text-sm">
       {/* left side */}
@@ -103,13 +120,7 @@ export function AppViewControlPanel(props: AppViewControlPanelProps) {
         <div className=" relative flex cursor-pointer flex-row place-items-center gap-[1px]">
           <FaFilter />
           <div className="relative top-1">
-            <FilterMenu
-              andOrFiltering="AND"
-              filterOptions={filterByKeys}
-              filterComparatorOptions={filterComparatorOptions}
-              filterList={filterList}
-              filterDateOptions={filterDateOptions}
-            >
+            <FilterMenu {...filterContext} onSave={handleSave}>
               <AiOutlineCaretDown className="text-xs" />
             </FilterMenu>
           </div>

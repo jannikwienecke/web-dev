@@ -1,6 +1,7 @@
 import { Combobox } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 import React from "react";
+import "./Select.css";
 
 export interface SelectItem {
   id: string | number;
@@ -11,12 +12,14 @@ export interface SelectProps<T extends SelectItem> {
   options: T[];
   value?: T | undefined;
   onChange?: (value: T) => void;
+  hasError?: boolean;
 }
 
 export function Select<T extends SelectItem>({
   options,
   value,
   onChange,
+  hasError,
 }: SelectProps<T>) {
   const [query, setQuery] = React.useState("");
   const [selected, setSelected] = React.useState<T | undefined>();
@@ -43,7 +46,9 @@ export function Select<T extends SelectItem>({
     <Combobox as="div" value={_value} onChange={handleValueChange}>
       <div className="relative mt-1">
         <Combobox.Input
-          className="focus:border-skin-accent focus:ring-accent w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10   shadow-sm focus:outline-none focus:ring-1 sm:text-sm"
+          className={`${
+            hasError && "select-input-field-error"
+          } select-input-field focus:ring-accent  `}
           onChange={(event) => setQuery(event.target.value)}
           displayValue={(option: any) => option?.label}
         />
@@ -65,11 +70,12 @@ export function Select<T extends SelectItem>({
                 value={option}
                 className={({ active }) =>
                   `relative max-w-[18rem] cursor-default select-none text-ellipsis py-2  pl-3 pr-9
-                    ${
-                      active
-                        ? "bg-skin-accent text-skin-base-inverted"
-                        : "text-skin-base-light"
-                    }`
+                 
+                  ${
+                    active
+                      ? "bg-skin-accent text-skin-base-inverted"
+                      : "text-skin-base-light"
+                  }`
                 }
               >
                 {({ active }) => {
