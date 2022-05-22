@@ -2,18 +2,28 @@ import { useActor } from "@xstate/react";
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useFilterMenuState } from "../FilterMenu/state";
-import { FilterItem, FilterOption, FilterValue } from "../FilterMenu/types";
+import {
+  FilterItemBaseType,
+  FilterItemRelationalType,
+  FilterListOption,
+  FilterValue,
+} from "../FilterMenu/types";
 import { FilterMenuAndOrToggle } from "../FilterMenuAndOrToggle/FilterMenuAndOrToggle";
 import { FilterMenuInput } from "../FilterMenuInput/FilterMenuInput";
-import { isRelationalType } from "../helper/guards";
-import { Select } from "../Select/Select";
+import { Select, SelectItem } from "../Select/Select";
 
-export interface FilterRowProps extends FilterItem {
+export type FilterRowProps = (FilterItemBaseType | FilterItemRelationalType) & {
   index: number;
-}
+};
 
 export const FilterRow: React.FC<FilterRowProps> = (filter) => {
-  const { filterOption, validateKey, filterValue, index } = filter;
+  const {
+    filterOption,
+    validateKey,
+    filterValue,
+    index,
+    filterRelationalValue,
+  } = filter;
 
   const machine = useFilterMenuState();
   const [state, send] = useActor(machine);
@@ -21,11 +31,15 @@ export const FilterRow: React.FC<FilterRowProps> = (filter) => {
   const { filterOptions, filterComparatorOptions, filterDateOptions } =
     state.context;
 
-  const handleChangeFilterOption = (filterOption: FilterOption) => {
+  const [relationalOptions, setRelationalOptions] = React.useState<
+    SelectItem[]
+  >([]);
+
+  const handleChangeFilterOption = (filterOption: FilterListOption) => {
     send({
       type: "UPDATE_OPTION_FILTER",
       data: {
-        filterItem: { ...filter, filterOption },
+        filterItem: { ...filter, filterOption: filterOption },
       },
     });
   };
@@ -46,7 +60,8 @@ export const FilterRow: React.FC<FilterRowProps> = (filter) => {
     send({
       type: "UPDATE_VALUE_FILTER",
       data: {
-        filterItem: { ...filter, filterValue },
+        filterValue,
+        index,
       },
     });
   };
@@ -55,18 +70,42 @@ export const FilterRow: React.FC<FilterRowProps> = (filter) => {
     send({
       type: "UPDATE_VALUE_FILTER",
       data: {
-        filterItem: { ...filter, filterValue },
+        filterValue,
+        index,
       },
     });
+  };
+
+  const handleChangeRelationalValue = (filterValue: SelectItem) => {
+    send({
+      type: "UPDATE_VALUE_FILTER",
+      data: {
+        filterValue,
+        index,
+      },
+    });
+  };
+
+  const filterOptionConfig = filterOptions.find(
+    (option) => option.id === filterOption?.id
+  );
+
+  const handleQueryChangeRelationalValue = async (filterValue: string) => {
+    if (!filterValue) {
+      setRelationalOptions([]);
+      return;
+    }
+
+    const relationalOptions = await filterOptionConfig?.getOptions?.(
+      filterValue
+    );
+
+    setRelationalOptions(relationalOptions || []);
   };
 
   const handleClickRemoveFilter = () => {
     send({ type: "REMOVE_FILTER", data: { filterItem: filter } });
   };
-
-  if (isRelationalType(filterOption?.valueType)) {
-    return null;
-  }
 
   const filterByOptions = filterOption?.valueType
     ? filterComparatorOptions[filterOption.valueType]
@@ -150,6 +189,8 @@ export const FilterRow: React.FC<FilterRowProps> = (filter) => {
         !isStringOrNumberFilterOption ? (
           <div className=" w-80">
             <Select
+              onChange={(value) => handleChangeFilterValue(value.label)}
+              hasError={isInEvaluatingMode && !filterValue}
               value={
                 filterValue &&
                 selectedDateOption &&
@@ -169,6 +210,7 @@ export const FilterRow: React.FC<FilterRowProps> = (filter) => {
         (typeof filterValue === "boolean" || filterValue === undefined) ? (
           <div className=" w-80">
             <Select
+              hasError={isInEvaluatingMode && !filterValue}
               onChange={(value) =>
                 handleChangeFilterValue(value.label === "true" ? true : false)
               }
@@ -181,6 +223,29 @@ export const FilterRow: React.FC<FilterRowProps> = (filter) => {
                 { id: "true", label: "true" },
                 { id: "false", label: "false" },
               ]}
+            />
+          </div>
+        ) : null}
+
+        {/* VALUE COMBOBOX FOR relational value types  */}
+        {(filterOption && filterOption.valueType === "relational") ||
+        (filterRelationalValue === undefined &&
+          filterOption?.valueType === "relational") ? (
+          <div className=" w-80">
+            <Select
+              hasError={isInEvaluatingMode && !filterRelationalValue}
+              onChange={handleChangeRelationalValue}
+              onQueryChange={(value) => handleQueryChangeRelationalValue(value)}
+              value={
+                filterRelationalValue !== undefined
+                  ? filterRelationalValue
+                  : undefined
+              }
+              options={
+                relationalOptions.length === 0
+                  ? filterOptionConfig?.defaultOptions || []
+                  : relationalOptions
+              }
             />
           </div>
         ) : null}

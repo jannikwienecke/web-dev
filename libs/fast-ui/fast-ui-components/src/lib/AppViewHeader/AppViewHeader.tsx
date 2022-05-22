@@ -44,7 +44,13 @@ export function AppViewHeader(props: AppViewHeaderProps) {
         <div className=" app-view-header-views-container relative">
           {VIEW_TYPE_LIST.map((view, index) => {
             const isActive = index === 1;
-            return <AppViewHeaderViewItem isActive={isActive} {...view} />;
+            return (
+              <AppViewHeaderViewItem
+                key={view.label + "_view_header"}
+                isActive={isActive}
+                {...view}
+              />
+            );
           })}
         </div>
       </div>

@@ -12,6 +12,7 @@ export interface SelectProps<T extends SelectItem> {
   options: T[];
   value?: T | undefined;
   onChange?: (value: T) => void;
+  onQueryChange?: (query: string) => void;
   hasError?: boolean;
 }
 
@@ -20,16 +21,19 @@ export function Select<T extends SelectItem>({
   value,
   onChange,
   hasError,
+  onQueryChange,
 }: SelectProps<T>) {
   const [query, setQuery] = React.useState("");
   const [selected, setSelected] = React.useState<T | undefined>();
 
-  const filteredOptions =
-    query === ""
-      ? options
-      : options.filter((option) => {
-          return option.label.toLowerCase().includes(query.toLowerCase());
-        });
+  // if onQueryChange is passed -> is controlled and the options are filtered from parent
+  const filteredOptions = onQueryChange
+    ? options
+    : query === ""
+    ? options
+    : options.filter((option) => {
+        return option.label.toLowerCase().includes(query.toLowerCase());
+      });
 
   const _value = value || selected;
 
@@ -42,6 +46,15 @@ export function Select<T extends SelectItem>({
     }
   };
 
+  const handleQueryChange = (query: string) => {
+    // make controlled as soon has onQueryChange function passed
+    if (onQueryChange) {
+      onQueryChange(query);
+    } else {
+      setQuery(query);
+    }
+  };
+
   return (
     <Combobox as="div" value={_value} onChange={handleValueChange}>
       <div className="relative mt-1">
@@ -49,7 +62,7 @@ export function Select<T extends SelectItem>({
           className={`${
             hasError && "select-input-field-error"
           } select-input-field focus:ring-accent  `}
-          onChange={(event) => setQuery(event.target.value)}
+          onChange={(e) => handleQueryChange(e.target.value)}
           displayValue={(option: any) => option?.label}
         />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">

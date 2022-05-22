@@ -7,6 +7,9 @@ import { FilterMenuMachineContext } from "../FilterMenu/machine";
 import {
   FilterComparatorOptions,
   FilterItem,
+  FilterItemDone,
+  FilterItemReady,
+  FilterListOption,
   FilterOption,
 } from "../FilterMenu/types";
 import { Listbox } from "../Listbox/Listbox";
@@ -29,7 +32,7 @@ const listboxItemsSearchBy = [
   { id: "4", label: "Department", value: true },
 ];
 
-const filterList: FilterItem[] = [
+const filterList: FilterItemDone[] = [
   {
     id: "1",
     filterOption: { id: "1", label: "Name", valueType: "string" },
@@ -52,6 +55,17 @@ const filterList: FilterItem[] = [
     validateKey: { label: "equal" },
     filterValue: true,
     index: 2,
+  },
+  {
+    id: "4",
+    filterOption: {
+      id: "5",
+      label: "Department",
+      valueType: "relational",
+    },
+    filterRelationalValue: { label: "Sales", id: "sales" },
+    validateKey: { label: "equal" },
+    index: 3,
   },
 ];
 
@@ -78,13 +92,24 @@ export const filterByKeys: FilterOption[] = [
     label: "When was it created? A very long name",
     valueType: "date",
   },
+
+  {
+    id: "5",
+    label: "Deparment",
+    valueType: "relational",
+    getOptions: () =>
+      Promise.resolve<FilterListOption[]>([
+        { label: "Office", id: "2", valueType: "relational" },
+      ]),
+    defaultOptions: [{ label: "German Driver", id: 1 }],
+  },
 ];
 
 export const filterComparatorOptions: FilterComparatorOptions = {
-  string: ["contains"],
+  string: ["contains", "starts with"],
   number: ["equal", "not equal"],
   boolean: ["equal", "not equal"],
-  relational: ["equal"],
+  relational: ["equal", "not equal"],
   date: ["equal"],
 };
 
@@ -108,9 +133,14 @@ export function AppViewControlPanel(props: AppViewControlPanelProps) {
       filterDateOptions,
     });
 
-  const handleSave = (filterMenuContext: FilterMenuMachineContext) => {
-    console.log("save");
-    setFilterContext(filterMenuContext);
+  const handleSave = (
+    filterMenuContext: FilterMenuMachineContext,
+    filterList: FilterItemReady[]
+  ) => {
+    setFilterContext({
+      ...filterMenuContext,
+      filterList,
+    });
   };
 
   return (

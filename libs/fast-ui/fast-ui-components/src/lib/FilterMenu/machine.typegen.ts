@@ -11,6 +11,7 @@ export interface Typegen0 {
     updateComparatorFilter: "UPDATE_COMPARATOR_FILTER";
     toggleAndOr: "TOGGLE_AND_OR";
     setError: "EVALUATE_FILTER";
+    setReadyFilterList: "EVALUATE_FILTER";
     saveFilterData: "EVALUATE_FILTER";
     resetError:
       | "EVALUATE_FILTER"

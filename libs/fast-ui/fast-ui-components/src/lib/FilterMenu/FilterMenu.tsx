@@ -5,11 +5,15 @@ import React, { Fragment } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { FilterMenuAlert } from "../FilterMenuErrorAlert/FilterMenuAlert";
 import { FilterRow } from "../FilterRow/FilterRow";
-import { useClickOutside } from "../helper/hooks";
 import { SelectItem } from "../Select/Select";
 import { FilterMenuMachineContext } from "./machine";
 import { FilterMenuProvider, useFilterMenuState } from "./state";
-import { FilterComparatorOptions, FilterItem, FilterOption } from "./types";
+import {
+  FilterComparatorOptions,
+  FilterItem,
+  FilterItemReady,
+  FilterOption,
+} from "./types";
 
 export interface FilterMenuProps {
   children: React.ReactNode;
@@ -19,11 +23,28 @@ export interface FilterMenuProps {
   filterDateOptions: SelectItem[];
   andOrFiltering: "AND" | "OR";
   invalidFiterMessage?: string;
-  onSave?: (filterMenuContext: FilterMenuMachineContext) => void;
+  onSave?: (
+    filterMenuContext: FilterMenuMachineContext,
+    filterList: FilterItemReady[]
+  ) => void;
 }
 
 const filterListHasChanges = (old: FilterItem[], new_: FilterItem[]) => {
   return JSON.stringify(old) !== JSON.stringify(new_);
+};
+
+export const filterMenuHasChanges = (
+  old: FilterMenuProps,
+  new_: FilterMenuMachineContext
+): boolean => {
+  const filterListChanged = filterListHasChanges(
+    old.filterList,
+    new_.filterList
+  );
+
+  const andOrChnaged = old.andOrFiltering !== new_.andOrFiltering;
+
+  return filterListChanged || andOrChnaged;
 };
 
 export function FilterMenu(props: FilterMenuProps) {
@@ -73,7 +94,7 @@ const FilterMenuButton: React.FC<FilterMenuButtonProps> = ({
 
 const FilterMenuContainer: React.FC<FilterMenuProps> = ({
   invalidFiterMessage,
-  filterList: initFilterList,
+  ...initContext
 }) => {
   const machine = useFilterMenuState();
 
@@ -113,7 +134,7 @@ const FilterMenuContainer: React.FC<FilterMenuProps> = ({
 
               {filterList?.map((item, index) => {
                 return (
-                  <AnimatePresence>
+                  <AnimatePresence key={`${item.id}_${item.index}`}>
                     <motion.div
                       initial={{ opacity: 0, y: "-10px" }}
                       animate={{ opacity: 1, y: 0 }}
@@ -141,7 +162,7 @@ const FilterMenuContainer: React.FC<FilterMenuProps> = ({
                 </div>
 
                 {/* Save Button */}
-                {filterListHasChanges(initFilterList, filterList) ? (
+                {filterMenuHasChanges(initContext, state.context) ? (
                   <div className="flex place-items-center">
                     <button
                       onClick={() => send({ type: "EVALUATE_FILTER" })}

@@ -1,7 +1,15 @@
+import { AssertionError } from "assert";
 import { assign, createMachine } from "xstate";
-import { isRelationalType } from "../helper/guards";
+import { isRelationalType, isRelationalValue } from "../helper/guards";
+import { SelectItem } from "../Select/Select";
 import { FilterMenuProps } from "./FilterMenu";
-import { FilterItem, FilterValueType, ValidateBy } from "./types";
+import {
+  FilterItem,
+  FilterItemReady,
+  FilterValue,
+  FilterValueType,
+  ValidateBy,
+} from "./types";
 
 export type FilterMenuMachineContext = Pick<
   FilterMenuProps,
@@ -10,7 +18,11 @@ export type FilterMenuMachineContext = Pick<
   | "andOrFiltering"
   | "filterComparatorOptions"
   | "filterDateOptions"
-> & { hasError?: boolean; isSaved?: boolean };
+> & {
+  hasError?: boolean;
+  isSaved?: boolean;
+  filterListReady?: FilterItemReady[];
+};
 
 export type Events =
   | { type: "OPEN"; data?: { context: FilterMenuMachineContext } }
@@ -20,7 +32,8 @@ export type Events =
   | {
       type: "UPDATE_VALUE_FILTER";
       data: {
-        filterItem: FilterItem;
+        filterValue: FilterValue | SelectItem;
+        index: number;
       };
     }
   | {
@@ -78,7 +91,11 @@ export const filterMenuMachine =
                   },
                   {
                     target: "#toggle.open.save-mode",
-                    actions: ["saveFilterData", "resetError"],
+                    actions: [
+                      "setReadyFilterList",
+                      "saveFilterData",
+                      "resetError",
+                    ],
                   },
                 ],
               },
@@ -149,18 +166,38 @@ export const filterMenuMachine =
         updateComparatorFilter: assign((context, event) => {
           return {
             ...context,
-            filterList: getUpdatedFilterList(context, {
-              ...event.data.filterItem,
-              filterValue: undefined,
-            }),
+            filterList: getUpdatedFilterList(
+              context.filterList,
+              event.data.filterItem
+            ),
           };
         }),
 
         updateValueFilter: assign((context, event) => {
-          return {
-            ...context,
-            filterList: getUpdatedFilterList(context, event.data.filterItem),
-          };
+          const filterValue: FilterValue | SelectItem = event.data.filterValue;
+          const index = event.data.index;
+
+          const filterItem = context.filterList[index];
+
+          if (isRelationalValue(filterValue)) {
+            return {
+              ...context,
+              filterList: getUpdatedFilterList(context.filterList, {
+                ...filterItem,
+                filterRelationalValue: filterValue,
+                filterValue: undefined,
+              }),
+            };
+          } else {
+            return {
+              ...context,
+              filterList: getUpdatedFilterList(context.filterList, {
+                ...filterItem,
+                filterRelationalValue: undefined,
+                filterValue,
+              }),
+            };
+          }
         }),
 
         updateOptionFilter: assign((context, event) => {
@@ -175,7 +212,7 @@ export const filterMenuMachine =
 
           return {
             ...context,
-            filterList: getUpdatedFilterList(context, {
+            filterList: getUpdatedFilterList(context.filterList, {
               ...event.data.filterItem,
               validateKey: newValidateKey,
             }),
@@ -184,11 +221,15 @@ export const filterMenuMachine =
 
         removeFilter: assign((context, event) => {
           const filterItem = event.data.filterItem;
+
+          const newFilterList = removeFilterAndUpdateIndex(
+            context.filterList,
+            filterItem.index
+          );
+
           return {
             ...context,
-            filterList: context.filterList.filter(
-              (item) => item.index !== filterItem.index
-            ),
+            filterList: newFilterList,
           };
         }),
 
@@ -221,6 +262,13 @@ export const filterMenuMachine =
             ...context,
           };
         }),
+
+        setReadyFilterList: assign((context) => {
+          return {
+            ...context,
+            filterListReady: getReayFilterList(context),
+          };
+        }),
       },
 
       guards: {
@@ -229,19 +277,17 @@ export const filterMenuMachine =
             filterList: context.filterList,
           });
 
-          console.log("hasError: ", hasError);
-
           return hasError;
         },
       },
     }
   );
 
-export const getUpdatedFilterList = (
-  context: FilterMenuMachineContext,
-  newFilterItem: FilterItem
-) => {
-  const filterList = context.filterList.map((filterItem) => {
+export const getUpdatedFilterList = <T extends FilterItem>(
+  filterList: T[],
+  newFilterItem: T
+): T[] => {
+  return filterList.map((filterItem) => {
     if (filterItem.index === newFilterItem.index) {
       return {
         ...filterItem,
@@ -251,8 +297,6 @@ export const getUpdatedFilterList = (
       return filterItem;
     }
   });
-
-  return filterList;
 };
 
 /**
@@ -306,9 +350,67 @@ const filterListHasError = ({
 
   return Boolean(
     filterList.find((f) => {
-      const hasError = !f.filterValue || !f.validateKey;
+      const hasError =
+        (!f.filterValue && !f.filterRelationalValue) || !f.validateKey;
       hasError && console.log(f);
       return hasError;
     })
   );
+};
+
+export const getReayFilterList = (
+  context: FilterMenuMachineContext
+): FilterItemReady[] => {
+  return context.filterList.map((filterItem) => {
+    // we know they are all set due to the guard
+    // but we make sure that all values are set before
+    // letting the user save the filter
+    //
+
+    if (!filterItem.filterOption && !filterItem.filterRelationalValue) {
+      throw new AssertionError({
+        message: "filterOption and filterRelationalValue are undefined",
+      });
+    }
+
+    if (!filterItem.validateKey) {
+      throw new AssertionError({ message: "validateKey is undefined" });
+    }
+
+    if (!filterItem.filterOption) {
+      throw new AssertionError({ message: "filterOption is undefined" });
+    }
+
+    const { filterOption, validateKey, filterValue, filterRelationalValue } =
+      filterItem;
+
+    const filter = {
+      ...filterItem,
+      filterOption,
+      validateKey,
+      filterValue,
+      filterRelationalValue,
+    };
+
+    return filter as FilterItemReady;
+  });
+};
+
+const removeFilterAndUpdateIndex = (
+  filterList: FilterItem[],
+  indexToRemove: number
+) => {
+  const newFilterList: FilterItem[] = [];
+
+  filterList.forEach((filterItem, index) => {
+    if (index !== indexToRemove) {
+      if (filterItem.index > indexToRemove) {
+        filterItem.index = filterItem.index - 1;
+      }
+
+      newFilterList.push(filterItem);
+    }
+  });
+
+  return newFilterList;
 };
