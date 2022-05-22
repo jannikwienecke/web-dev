@@ -125,3 +125,11 @@ export type FilterComparatorKeys =
   | "date"
   | "boolean"
   | "relational";
+
+export type FilterMenuItemType =
+  | "select-validate-key"
+  | "select-value-date"
+  | "select-value-boolean"
+  | "select-value-relation"
+  | "input-value"
+  | "select-option";

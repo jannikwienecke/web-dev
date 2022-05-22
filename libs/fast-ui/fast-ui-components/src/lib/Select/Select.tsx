@@ -14,6 +14,7 @@ export interface SelectProps<T extends SelectItem> {
   onChange?: (value: T) => void;
   onQueryChange?: (query: string) => void;
   hasError?: boolean;
+  show?: boolean;
 }
 
 export function Select<T extends SelectItem>({
@@ -22,6 +23,7 @@ export function Select<T extends SelectItem>({
   onChange,
   hasError,
   onQueryChange,
+  show,
 }: SelectProps<T>) {
   const [query, setQuery] = React.useState("");
   const [selected, setSelected] = React.useState<T | undefined>();
@@ -55,6 +57,7 @@ export function Select<T extends SelectItem>({
     }
   };
 
+  if (show === false) return null;
   return (
     <Combobox as="div" value={_value} onChange={handleValueChange}>
       <div className="relative mt-1">
