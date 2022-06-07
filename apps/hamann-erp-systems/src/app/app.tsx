@@ -19,7 +19,7 @@ export const appTestGroups: AppSideMenuGroupItemProps[] = [
     title: 'Employee Views',
     isActive: true,
     appItems: [
-      { label: 'All Employee', pathname: '#' },
+      { label: 'All Employees', pathname: '#' },
       { label: 'Active Employee', pathname: '#' },
       { label: 'Left Employee', pathname: '#' },
     ],
@@ -42,7 +42,7 @@ export function App() {
         user={{ username: 'John Doe', imgSrc: '' }}
         sideControlItems={[
           {
-            label: 'Select Apps',
+            label: 'Select apps',
             icon: HiOutlineHome,
             pathname: '#',
           },
@@ -54,6 +54,7 @@ export function App() {
           },
 
           {
+
             label: 'Favorites',
             icon: HiStar,
             pathname: '#',
