@@ -2,35 +2,6 @@
 
 export interface Typegen0 {
   "@@xstate/typegen": true;
-  eventsCausingActions: {
-    setInitContext: "OPEN";
-    removeFilter: "REMOVE_FILTER";
-    addFilter: "ADD_FILTER";
-    updateValueFilter: "UPDATE_VALUE_FILTER";
-    updateOptionFilter: "UPDATE_OPTION_FILTER";
-    updateComparatorFilter: "UPDATE_COMPARATOR_FILTER";
-    toggleAndOr: "TOGGLE_AND_OR";
-    setError: "EVALUATE_FILTER";
-    setReadyFilterList: "EVALUATE_FILTER";
-    saveFilterData: "EVALUATE_FILTER";
-    resetError:
-      | "EVALUATE_FILTER"
-      | "REMOVE_FILTER"
-      | "ADD_FILTER"
-      | "UPDATE_VALUE_FILTER"
-      | "UPDATE_OPTION_FILTER"
-      | "UPDATE_COMPARATOR_FILTER"
-      | "TOGGLE_AND_OR"
-      | "EDIT_FILTER";
-    resetSave:
-      | "REMOVE_FILTER"
-      | "ADD_FILTER"
-      | "UPDATE_VALUE_FILTER"
-      | "UPDATE_OPTION_FILTER"
-      | "UPDATE_COMPARATOR_FILTER"
-      | "TOGGLE_AND_OR"
-      | "EDIT_FILTER";
-  };
   internalEvents: {
     "xstate.init": { type: "xstate.init" };
   };
@@ -41,6 +12,37 @@ export interface Typegen0 {
     guards: never;
     delays: never;
   };
+  eventsCausingActions: {
+    addFilter: "ADD_FILTER";
+    removeFilter: "REMOVE_FILTER";
+    resetError:
+      | "ADD_FILTER"
+      | "EDIT_FILTER"
+      | "EVALUATE_FILTER"
+      | "OPEN"
+      | "REMOVE_FILTER"
+      | "TOGGLE_AND_OR"
+      | "UPDATE_COMPARATOR_FILTER"
+      | "UPDATE_OPTION_FILTER"
+      | "UPDATE_VALUE_FILTER";
+    resetSave:
+      | "ADD_FILTER"
+      | "EDIT_FILTER"
+      | "OPEN"
+      | "REMOVE_FILTER"
+      | "TOGGLE_AND_OR"
+      | "UPDATE_COMPARATOR_FILTER"
+      | "UPDATE_OPTION_FILTER"
+      | "UPDATE_VALUE_FILTER";
+    saveFilterData: "EVALUATE_FILTER";
+    setError: "EVALUATE_FILTER";
+    setInitContext: "OPEN";
+    setReadyFilterList: "EVALUATE_FILTER";
+    toggleAndOr: "TOGGLE_AND_OR";
+    updateComparatorFilter: "UPDATE_COMPARATOR_FILTER";
+    updateOptionFilter: "UPDATE_OPTION_FILTER";
+    updateValueFilter: "UPDATE_VALUE_FILTER";
+  };
   eventsCausingServices: {};
   eventsCausingGuards: {
     filterListHasError: "EVALUATE_FILTER";
@@ -49,9 +51,9 @@ export interface Typegen0 {
   matchesStates:
     | "closed"
     | "open"
-    | "open.save-mode"
     | "open.editing-mode"
+    | "open.save-mode"
     | "open.valuate-mode"
-    | { open?: "save-mode" | "editing-mode" | "valuate-mode" };
+    | { open?: "editing-mode" | "save-mode" | "valuate-mode" };
   tags: never;
 }

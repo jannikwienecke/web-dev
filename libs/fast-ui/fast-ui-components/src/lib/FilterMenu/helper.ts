@@ -1,20 +1,18 @@
-import { FilterItem, FilterMenuItemType, FilterMenuMachineType } from "./types";
+import { FilterMenuContext } from "./state";
+import { FilterItem, FilterMenuItemType } from "./types";
 
 export const getFilterMeta = (
   filter: FilterItem,
-  machine: FilterMenuMachineType
+  context: FilterMenuContext["state"]["context"],
+  isInEvaluatingMode: boolean
 ) => {
   const filterByOptions = filter.filterOption?.valueType
-    ? machine.state.context.filterComparatorOptions[
-        filter.filterOption.valueType
-      ]
+    ? context.filterComparatorOptions[filter.filterOption.valueType]
     : null;
 
   const isStringOrNumberFilterOption =
     filter.filterOption &&
     ["string", "number"].includes(filter.filterOption.valueType);
-
-  const isInEvaluatingMode = machine.state.matches("open.valuate-mode");
 
   return {
     filterByOptions,
@@ -26,11 +24,12 @@ export const getFilterMeta = (
 export const validateIfShow = (
   filter: FilterItem,
   type: FilterMenuItemType,
-  machine: FilterMenuMachineType
+  context: FilterMenuContext["state"]["context"]
 ): boolean => {
   const { filterByOptions, isStringOrNumberFilterOption } = getFilterMeta(
     filter,
-    machine
+    context,
+    false
   );
 
   const { filterOption } = filter;

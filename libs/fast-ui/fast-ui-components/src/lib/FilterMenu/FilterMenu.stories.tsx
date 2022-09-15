@@ -12,7 +12,10 @@ export default {
 
 const Template: Story<FilterMenuProps> = (args) => (
   <FilterMenu {...args}>
-    <AiOutlineCaretDown className="text-xs" />
+    <button className="bg-skin-base-light flex grid place-items-center rounded border-2 p-2">
+      Filter
+      <AiOutlineCaretDown className="text-xs" />
+    </button>
   </FilterMenu>
 );
 
@@ -26,7 +29,7 @@ const filterList: FilterItem[] = [
   },
 ];
 
-export const filterByKeys: FilterOption[] = [
+const filterByKeys: FilterOption[] = [
   {
     id: "1",
     label: "Name",
@@ -40,7 +43,7 @@ export const filterByKeys: FilterOption[] = [
   },
 ];
 
-export const filterComparatorOptions: FilterComparatorOptions = {
+const filterComparatorOptions: FilterComparatorOptions = {
   string: ["contains"],
   number: ["equal", "not equal"],
   boolean: ["equal", "not equal"],
@@ -48,7 +51,7 @@ export const filterComparatorOptions: FilterComparatorOptions = {
   date: ["equal"],
 };
 
-export const filterDateOptions: SelectItem[] = [
+const filterDateOptions: SelectItem[] = [
   { id: "1", label: "Today" },
   { id: "2", label: "Yesterday" },
   { id: "3", label: "Last 7 days" },
@@ -64,8 +67,4 @@ export const filterMenuProps: FilterMenuProps = {
 };
 
 export const Primary = Template.bind({});
-Primary.args = {
-  andOrFiltering: "AND",
-  filterList: filterList,
-  filterOptions: filterByKeys,
-};
+Primary.args = filterMenuProps;

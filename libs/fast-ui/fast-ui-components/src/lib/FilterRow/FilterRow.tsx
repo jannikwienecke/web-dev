@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useFilterMenuItem } from "../FilterMenu/hooks";
-import { useFilterMenuState } from "../FilterMenu/state";
+import { useFilterMenuService } from "../FilterMenu/state";
 import {
   FilterItemBaseType,
   FilterItemRelationalType,
@@ -17,10 +17,11 @@ export type FilterRowProps = (FilterItemBaseType | FilterItemRelationalType) & {
 export const FilterRow: React.FC<FilterRowProps> = (filter) => {
   const { index } = filter;
 
-  const machine = useFilterMenuState();
+  const { service } = useFilterMenuService();
+  const { send } = service;
 
   const handleClickRemoveFilter = () => {
-    machine.send({ type: "REMOVE_FILTER", data: { filterItem: filter } });
+    send({ type: "REMOVE_FILTER", data: { filterItem: filter } });
   };
 
   return (

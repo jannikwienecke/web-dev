@@ -1,20 +1,18 @@
-import { useActor } from "@xstate/react";
 import React from "react";
 import { FilterRowProps } from "../FilterRow/FilterRow";
 import { SelectItem } from "../Select/Select";
 import { getFilterMeta, validateIfShow } from "./helper";
-import { useFilterMenuState } from "./state";
-import { FilterMenuItemType, FilterListOption, FilterValue } from "./types";
+import { useFilterMenuService } from "./state";
+import { FilterListOption, FilterMenuItemType, FilterValue } from "./types";
 
 export const useFilterMenuItemRelational = (filter: FilterRowProps) => {
   const [relationalOptions, setRelationalOptions] = React.useState<
     SelectItem[]
   >([]);
 
-  const machine = useFilterMenuState();
-  const [state] = useActor(machine);
+  const { context } = useFilterMenuService();
 
-  const filterOptionConfig = state.context.filterOptions.find(
+  const filterOptionConfig = context.filterOptions.find(
     (option) => option.id === filter.filterOption?.id
   );
 
@@ -38,8 +36,8 @@ export const useFilterMenuItem = (
   filter: FilterRowProps,
   type: FilterMenuItemType
 ) => {
-  const machine = useFilterMenuState();
-  const [state, send] = useActor(machine);
+  const { service, context, isInEvaluatingMode } = useFilterMenuService();
+  const send = service.send;
 
   const relationalProps = useFilterMenuItemRelational(filter);
 
@@ -74,15 +72,16 @@ export const useFilterMenuItem = (
     });
   };
 
-  const { filterByOptions, isInEvaluatingMode } = getFilterMeta(
+  const { filterByOptions } = getFilterMeta(
     filter,
-    machine
+    context,
+    isInEvaluatingMode
   );
 
   const getElementProps = <T>({ value }: { value: T }) => {
     return {
       hasError: isInEvaluatingMode && value === undefined,
-      show: validateIfShow(filter, type, machine),
+      show: validateIfShow(filter, type, context),
       value,
     };
   };
@@ -96,7 +95,7 @@ export const useFilterMenuItem = (
   };
 
   const getShowSelect = () => {
-    const show = validateIfShow(filter, type, machine);
+    const show = validateIfShow(filter, type, context);
     return show;
   };
 
@@ -111,7 +110,7 @@ export const useFilterMenuItem = (
     handleChangeFilterOption,
     handleChangeFilterBy,
     handleChangeFilterValue,
-    context: state.context,
+    context,
     getElementProps,
     filterByOptions,
     getStylesWrapperFilterItem,

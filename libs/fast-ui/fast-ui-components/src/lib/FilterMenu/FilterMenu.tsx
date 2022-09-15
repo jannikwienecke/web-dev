@@ -1,5 +1,4 @@
 import { Popover, Transition } from "@headlessui/react";
-import { useActor } from "@xstate/react";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { Fragment } from "react";
 import { IoMdAdd } from "react-icons/io";
@@ -7,7 +6,7 @@ import { FilterMenuAlert } from "../FilterMenuErrorAlert/FilterMenuAlert";
 import { FilterRow } from "../FilterRow/FilterRow";
 import { SelectItem } from "../Select/Select";
 import { FilterMenuMachineContext } from "./machine";
-import { FilterMenuProvider, useFilterMenuState } from "./state";
+import { FilterMenuProvider, useFilterMenuService } from "./state";
 import {
   FilterComparatorOptions,
   FilterItem,
@@ -77,8 +76,8 @@ const FilterMenuButton: React.FC<FilterMenuButtonProps> = ({
   open,
   ...props
 }) => {
-  const machine = useFilterMenuState();
-  const { send } = machine;
+  const { service } = useFilterMenuService();
+  const { send } = service;
 
   React.useEffect(() => {
     send({
@@ -96,11 +95,10 @@ const FilterMenuContainer: React.FC<FilterMenuProps> = ({
   invalidFiterMessage,
   ...initContext
 }) => {
-  const machine = useFilterMenuState();
+  const { service, context, isInSaveMode } = useFilterMenuService();
+  const { send } = service;
 
-  const [state, send] = useActor(machine);
-
-  const filterList = state.context.filterList;
+  const filterList = context.filterList;
 
   const handleClickAddNewFilter = () => {
     send({
@@ -123,9 +121,9 @@ const FilterMenuContainer: React.FC<FilterMenuProps> = ({
           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="bg-skin-base-light relative relative flex flex-col gap-1 p-7 px-8 lg:grid-cols-2">
               <FilterMenuAlert
-                hasError={state.context.hasError}
+                hasError={context.hasError}
                 invalidFiterMessage={invalidFiterMessage}
-                isSaved={state.matches("open.save-mode")}
+                isSaved={isInSaveMode}
               />
 
               <div className="text-skin-base-dark text-xl font-semibold">
@@ -162,7 +160,7 @@ const FilterMenuContainer: React.FC<FilterMenuProps> = ({
                 </div>
 
                 {/* Save Button */}
-                {filterMenuHasChanges(initContext, state.context) ? (
+                {filterMenuHasChanges(initContext, context) ? (
                   <div className="flex place-items-center">
                     <button
                       onClick={() => send({ type: "EVALUATE_FILTER" })}

@@ -1,7 +1,7 @@
 import { useActor } from "@xstate/react";
 import { Variants, motion } from "framer-motion";
 import { HiSwitchVertical } from "react-icons/hi";
-import { useFilterMenuState } from "../FilterMenu/state";
+import { useFilterMenuService } from "../FilterMenu/state";
 
 import "./FilterMenuAndOrToggle.css";
 
@@ -12,10 +12,10 @@ export interface FilterAndOrToggleProps {
 export const FilterMenuAndOrToggle: React.FC<FilterAndOrToggleProps> = ({
   disabled,
 }) => {
-  const machine = useFilterMenuState();
-  const [state, send] = useActor(machine);
+  const { service, context } = useFilterMenuService();
+  const { send } = service;
 
-  const { andOrFiltering } = state.context;
+  const { andOrFiltering } = context;
 
   const handleToggleAndOr = () => {
     if (disabled) return;

@@ -1,14 +1,14 @@
-import { useInterpret } from "@xstate/react";
+import { useInterpret, useSelector } from "@xstate/react";
 import { AssertionError } from "assert";
 import React from "react";
 import { InterpreterFrom } from "xstate";
 import { filterMenuMachine, FilterMenuMachineContext } from "./machine";
 import { FilterItemReady } from "./types";
 
-type Context = InterpreterFrom<typeof filterMenuMachine>;
+export type FilterMenuContext = InterpreterFrom<typeof filterMenuMachine>;
 
-export const GlobalStateContext = React.createContext<Context>(
-  undefined as unknown as Context
+export const GlobalStateContext = React.createContext<FilterMenuContext>(
+  undefined as unknown as FilterMenuContext
 );
 
 type Props = {
@@ -45,14 +45,22 @@ export const FilterMenuProvider: React.FC<Props> = ({ children, onSave }) => {
   );
 };
 
-export const useFilterMenuState = () => {
+export const useFilterMenuService = () => {
   const state = React.useContext(GlobalStateContext);
+  const context = useSelector(state, (state) => state.context);
+
+  const isInSaveMode = useSelector(state, (state) =>
+    state.matches("open.save-mode")
+  );
+  const isInEvaluatingMode = useSelector(state, (state) =>
+    state.matches("open.valuate-mode")
+  );
 
   if (!state) {
     throw new Error(
-      "useFilterMenuState must be used within a FilterMenuProvider"
+      "useFilterMenuService must be used within a FilterMenuProvider"
     );
   }
 
-  return state;
+  return { service: state, context, isInEvaluatingMode, isInSaveMode };
 };
