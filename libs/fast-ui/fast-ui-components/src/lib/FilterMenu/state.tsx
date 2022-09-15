@@ -47,6 +47,13 @@ export const FilterMenuProvider: React.FC<Props> = ({ children, onSave }) => {
 
 export const useFilterMenuService = () => {
   const state = React.useContext(GlobalStateContext);
+
+  if (!state) {
+    throw new Error(
+      "useFilterMenuService must be used within a FilterMenuProvider"
+    );
+  }
+
   const context = useSelector(state, (state) => state.context);
 
   const isInSaveMode = useSelector(state, (state) =>
@@ -55,12 +62,6 @@ export const useFilterMenuService = () => {
   const isInEvaluatingMode = useSelector(state, (state) =>
     state.matches("open.valuate-mode")
   );
-
-  if (!state) {
-    throw new Error(
-      "useFilterMenuService must be used within a FilterMenuProvider"
-    );
-  }
 
   return { service: state, context, isInEvaluatingMode, isInSaveMode };
 };

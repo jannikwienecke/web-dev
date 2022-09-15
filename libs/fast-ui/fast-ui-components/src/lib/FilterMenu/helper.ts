@@ -29,7 +29,7 @@ export const validateIfShow = (
   const { filterByOptions, isStringOrNumberFilterOption } = getFilterMeta(
     filter,
     context,
-    false
+    true
   );
 
   const { filterOption } = filter;

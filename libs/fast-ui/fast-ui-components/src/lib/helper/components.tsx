@@ -10,7 +10,8 @@ export const FilterMenuStorybookComponent = ({
 }: {
   story: PartialStoryFn<ReactFramework, Args>;
 } & FilterMenuMachineContext) => {
-  const { send } = useFilterMenuService();
+  const { service } = useFilterMenuService();
+  const { send } = service;
 
   React.useEffect(() => {
     send({ type: "OPEN", data: { context: props } });
