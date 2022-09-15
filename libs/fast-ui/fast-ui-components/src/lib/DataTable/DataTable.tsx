@@ -142,18 +142,18 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
                 />
 
                 {table.getRowModel().rows.map((row) => {
-                  const styles = (row.original as any)?.styles || {};
+                  const isChecked = selectedRows.includes(row.original);
                   return (
                     <tr
-                      // data-cy={TestingIds.DataTableRow}
                       id={`table-row-${(row.original as any)?.id}`}
+                      className={`${
+                        isChecked
+                          ? "bg-skin-accent-light"
+                          : "hover:bg-skin-base-dark "
+                      } cursor-pointer`}
                       onClick={
                         onRowClick ? () => onRowClick(row.original) : undefined
                       }
-                      style={{
-                        ...styles,
-                        borderStyle: "solid",
-                      }}
                       key={row.id}
                     >
                       <td className="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -164,7 +164,7 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
                           type="checkbox"
                           className="text-skin-accent focus:ring-accent absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 sm:left-6"
                           value={row.id}
-                          checked={selectedRows.includes(row.original)}
+                          checked={isChecked}
                           onChange={(e) =>
                             setSelectedRows(
                               e.target.checked
