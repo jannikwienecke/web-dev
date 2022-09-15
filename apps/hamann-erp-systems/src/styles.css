@@ -3,27 +3,31 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Poppins", sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .theme-red {
   --theme-color: rgb(224, 67, 67);
   --theme-color-light: hsl(0, 86%, 90%);
+  --theme-success: hsl(142, 77%, 73%);
 }
 
 .theme-dark.theme-red {
   --theme-color: rgb(224, 67, 67);
   --theme-color-light: hsl(0, 86%, 65%);
+  --theme-success: hsl(142, 77%, 73%);
 }
 
 .theme-dark.theme-hamann {
   /* --theme-color: hsl(241, 99%, 63%);
   --theme-color-light: hsl(241, 90%, 65%); */
+  --theme-success: hsl(142, 77%, 73%);
 }
 
 .theme-hamann {
   /* --theme-color: hsl(241, 99%, 63%);
   --theme-color-light: hsl(241, 90%, 85%); */
+  --theme-success: hsl(142, 77%, 73%);
 }
 
 .theme {
@@ -50,6 +54,12 @@
   /* shadow colors */
   --color-shadow-base-light: hsl(260, 20%, 96%);
   --color-shadow-base-dark: hsl(260, 20%, 92%);
+
+  /* general */
+
+  --color-success: var(--theme-success);
+  --color-error: var(--theme-color-light);
+  --accent: var(--theme-color);
 }
 
 .theme-dark {
@@ -80,6 +90,10 @@
 
   /* focus */
   --color-focus-accent: var(--theme-color);
+
+  --color-success: var(--theme-success);
+  --color-error: var(--theme-color-light);
+  --accent: var(--theme-color);
 
   font-size: 16px;
 }

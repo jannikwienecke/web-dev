@@ -11,7 +11,8 @@
     "postinstall": "husky install",
     "prepare": "husky install",
     "typecheck": "tsc -b ./apps/hamann-erp-systems",
-    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint ."
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+    "typegen-xstate": "xstate typegen 'src/**/*.ts?(x)'"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +25,7 @@
     "@stitches/react": "^1.2.8",
     "@tailwindcss/forms": "^0.5.1",
     "@tailwindcss/line-clamp": "^0.4.0",
+    "@xstate/react": "^3.0.0",
     "autoprefixer": "^10.4.7",
     "core-js": "^3.6.5",
     "eslint-plugin-tailwindcss": "^3.5.0",
@@ -36,7 +38,8 @@
     "regenerator-runtime": "0.13.7",
     "tailwindcss": "^3.0.24",
     "tslib": "^2.3.0",
-    "twind": "^0.16.17"
+    "twind": "^0.16.17",
+    "xstate": "^4.32.1"
   },
   "devDependencies": {
     "@babel/core": "7.12.13",
@@ -69,6 +72,7 @@
     "@types/react-router-dom": "5.3.3",
     "@typescript-eslint/eslint-plugin": "~5.18.0",
     "@typescript-eslint/parser": "~5.18.0",
+    "@xstate/cli": "^0.1.7",
     "babel-jest": "27.5.1",
     "babel-loader": "8.1.0",
     "chromatic": "^6.5.4",

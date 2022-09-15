@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface IUseClickOuseSide {
   callbackClickOutside: (clickedElementId: string | undefined) => void;
@@ -7,7 +7,7 @@ interface IUseClickOuseSide {
 export const useClickOutside = ({
   callbackClickOutside,
 }: IUseClickOuseSide) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  let containerRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -24,9 +24,13 @@ export const useClickOutside = ({
         callbackClickOutside(clickedElementId);
       }
     };
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
+    document.addEventListener("click", handleClick);
+    return () => document.removeEventListener("click", handleClick);
   }, [callbackClickOutside]);
 
-  return { containerRef };
+  const setRef = (ref: React.RefObject<HTMLElement>) => {
+    containerRef = ref;
+  };
+
+  return { containerRef, setRef };
 };

@@ -1,11 +1,11 @@
-import { AnimatePresence, motion, Variants } from 'framer-motion';
-import React from 'react';
-import { FaSearch } from 'react-icons/fa';
-import { AppSideMenuProps } from '../AppSideMenu/AppSideMenu';
+import { AnimatePresence, motion, Variants } from "framer-motion";
+import React from "react";
+import { FaSearch } from "react-icons/fa";
+import { AppSideMenuProps } from "../AppSideMenu/AppSideMenu";
 
 export type AppSideMenuHeaderProps = Pick<
   AppSideMenuProps,
-  'appDescription' | 'appName'
+  "appDescription" | "appName"
 >;
 
 export function AppSideMenuHeader({
@@ -16,7 +16,7 @@ export function AppSideMenuHeader({
     open: { opacity: 1 },
     closed: {
       opacity: 0.7,
-      color: 'var(--base-skin-accent)',
+      color: "var(--base-skin-accent)",
     },
   };
 
@@ -28,12 +28,12 @@ export function AppSideMenuHeader({
   }, [isOpen]);
 
   return (
-    <div className="h-20 flex flex-col p-4 relative pb-0 ">
+    <div className="relative flex h-20 flex-col p-4 pb-0 ">
       <AnimatePresence>
         {!isOpen && (
-          <div className="line-clamp-2 text-sm w-4/5 text-skin-base-light">
+          <div className="line-clamp-2 text-skin-base-light w-4/5 text-sm">
             <motion.div
-              initial={{ opacity: 0, y: '-30px' }}
+              initial={{ opacity: 0, y: "-30px" }}
               animate={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
               exit={{ opacity: 0 }}
             >
@@ -44,15 +44,15 @@ export function AppSideMenuHeader({
       </AnimatePresence>
 
       <div className="flex flex-row">
-        <div className="flex-grow text-md font-bold text-skin-base-dark ">
+        <div className="text-md text-skin-base-dark flex-grow font-bold ">
           {appName}
         </div>
 
         <motion.button
           onClick={() => setIsOpen((prev) => !prev)}
           variants={variants}
-          animate={isOpen ? 'closed' : 'open'}
-          className="cursor-pointer bg-skin-base-light text-skin-base h-7 w-7 grid place-content-center border-skin-base-light border-[1px]"
+          animate={isOpen ? "closed" : "open"}
+          className="bg-skin-base-light text-skin-base border-skin-base-light grid h-7 w-7 cursor-pointer place-content-center border-[1px]"
         >
           <FaSearch aria-label="search open" className=" text-sm" />
         </motion.button>
@@ -61,17 +61,17 @@ export function AppSideMenuHeader({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: '-30px' }}
+            initial={{ opacity: 0, y: "-30px" }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="m-1 -left-1 relative"
+            className="relative -left-1 m-1"
           >
             <label htmlFor="search" className="sr-only" />
             <div className="mt-1 flex rounded-md shadow-sm">
-              <div className="relative flex items-stretch flex-grow focus-within:z-10">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <div className="relative flex flex-grow items-stretch focus-within:z-10">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                   <FaSearch
-                    className="h-3 w-3 text-skin-accent"
+                    className="text-skin-accent h-3 w-3"
                     aria-hidden="true"
                     aria-label="search"
                   />
@@ -81,7 +81,7 @@ export function AppSideMenuHeader({
                   type="search"
                   name="search"
                   id="search"
-                  className="focus:ring-accent focus:border-accent outline-accent p-1 block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-skin-base-light"
+                  className="focus:ring-accent focus:border-accent outline-accent border-skin-base-light block w-full rounded-none rounded-l-md p-1 pl-10 sm:text-sm"
                   placeholder="Search"
                 />
               </div>
@@ -94,8 +94,8 @@ export function AppSideMenuHeader({
 
       {/* Divider */}
       <div
-        className={`border-b-2 w-14 ml-4 absolute bottom-0 ${
-          isOpen && 'hidden'
+        className={`absolute bottom-0 ml-4 w-14 border-b-2 ${
+          isOpen && "hidden"
         }`}
       />
     </div>
