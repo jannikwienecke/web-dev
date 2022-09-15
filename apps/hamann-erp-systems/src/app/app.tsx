@@ -56,6 +56,7 @@ export function App() {
 
           {
             label: "Favorites",
+            label: 'Favorites',
             icon: HiStar,
             pathname: "#",
             isActive: true,
