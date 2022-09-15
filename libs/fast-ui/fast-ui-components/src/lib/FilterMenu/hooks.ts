@@ -87,16 +87,24 @@ export const useFilterMenuItem = (
     };
   };
 
-  const getElementWrapperClasses = () => {
+  const getSelectWidth = () => {
+    if (type === "select-option") return "10rem";
+
+    if (type === "select-validate-key") return "10rem";
+
+    return "20rem";
+  };
+
+  const getShowSelect = () => {
     const show = validateIfShow(filter, type, machine);
+    return show;
+  };
 
-    if (type === "select-option") return "w-48";
-
-    if (show && type === "select-validate-key") return "w-48";
-
-    if (!show) return "hidden";
-
-    return "w-80";
+  const getStylesWrapperFilterItem = (): React.CSSProperties => {
+    return {
+      minWidth: getSelectWidth(),
+      display: getShowSelect() ? "block" : "none",
+    };
   };
 
   return {
@@ -106,7 +114,7 @@ export const useFilterMenuItem = (
     context: state.context,
     getElementProps,
     filterByOptions,
-    getElementWrapperClasses,
+    getStylesWrapperFilterItem,
     ...filter,
     ...relationalProps,
   };

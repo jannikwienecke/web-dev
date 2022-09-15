@@ -65,7 +65,7 @@ export const Listbox: React.FC<ListboxProps> = ({
   };
 
   return (
-    <div className="w-64">
+    <div>
       <ListBoxHeadlessUi value={selected?.id} onChange={handleSelect}>
         <div className="relative mt-1">
           <ListBoxHeadlessUi.Button>{children}</ListBoxHeadlessUi.Button>
@@ -76,7 +76,7 @@ export const Listbox: React.FC<ListboxProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <ListBoxHeadlessUi.Options className="bg-skin-base-light absolute mt-1 max-h-60 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <ListBoxHeadlessUi.Options className="bg-skin-base-light absolute -left-32 mt-1 max-h-60 w-56 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               <div className="text-skin-base-dark p-2 pb-4  pl-10 text-xs uppercase">
                 {label}
               </div>

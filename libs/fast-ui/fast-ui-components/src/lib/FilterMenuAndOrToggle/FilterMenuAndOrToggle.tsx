@@ -59,13 +59,12 @@ export const FilterMenuAndOrToggle: React.FC<FilterAndOrToggleProps> = ({
       } and-or-toggle-container`}
       onClick={handleToggleAndOr}
     >
-      <div className=" flex place-items-center  p-1">
+      <div className=" flex w-full place-items-center  p-1">
         <motion.div
           initial={{ y: isAndFilter ? "0" : "-20px" }}
           animate={isAndFilter ? "show" : "hide"}
           variants={andVariants}
-          // className="absolute left-1"
-          className={`${disabled && "left-[12px]"}  absolute left-1`}
+          className={`${disabled && "left-[6px]"}  absolute left-1`}
         >
           {"AND"}
         </motion.div>
@@ -74,13 +73,13 @@ export const FilterMenuAndOrToggle: React.FC<FilterAndOrToggleProps> = ({
           initial={{ y: !isAndFilter ? "0" : "+20px" }}
           animate={!isAndFilter ? "show" : "hide"}
           variants={orVariants}
-          className={`${disabled && "left-[12px]"}  absolute left-1`}
+          className={`${disabled && "left-[6px]"}  absolute left-1`}
         >
           {"OR"}
         </motion.div>
 
         <div
-          className={`text-skin-base-dark absolute right-[2px] ${
+          className={`text-skin-base-dark absolute right-[4px] ${
             disabled && "hidden"
           }`}
         >

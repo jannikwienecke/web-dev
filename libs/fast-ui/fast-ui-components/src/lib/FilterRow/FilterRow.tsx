@@ -28,11 +28,13 @@ export const FilterRow: React.FC<FilterRowProps> = (filter) => {
       {/* left side */}
       <div className="flex flex-row place-items-center gap-4">
         {/* filter name */}
-        {index === 0 ? (
-          <div className="text-skin-base-light w-12">{"Where"}</div>
-        ) : (
-          <FilterMenuAndOrToggle disabled={index !== 1} />
-        )}
+        <div className="min-w-[3.5rem]">
+          {index === 0 ? (
+            <div className="text-skin-base-light">{"Where"}</div>
+          ) : (
+            <FilterMenuAndOrToggle disabled={index !== 1} />
+          )}
+        </div>
 
         {/* WILL ALWAYS BE RENDERED */}
         <FilterMenuOptionSelect {...filter} />
@@ -63,13 +65,13 @@ export const FilterMenuOptionSelect: React.FC<FilterRowProps> = (props) => {
     context,
     filterOption,
     getElementProps,
-    getElementWrapperClasses,
+    getStylesWrapperFilterItem,
   } = useFilterMenuItem(props, "select-option");
 
   const { filterOptions } = context;
 
   return (
-    <div className={getElementWrapperClasses()}>
+    <div style={getStylesWrapperFilterItem()}>
       <Select
         onChange={handleChangeFilterOption}
         options={filterOptions}
@@ -87,7 +89,7 @@ export const FilterMenuFilterBySelect: React.FC<FilterRowProps> = ({
     getElementProps,
     validateKey,
     filterByOptions,
-    getElementWrapperClasses,
+    getStylesWrapperFilterItem,
   } = useFilterMenuItem(props, "select-validate-key");
 
   if (!filterByOptions) return null;
@@ -101,7 +103,7 @@ export const FilterMenuFilterBySelect: React.FC<FilterRowProps> = ({
 
   const elementProps = getElementProps({ value });
   return (
-    <div className={getElementWrapperClasses()}>
+    <div style={getStylesWrapperFilterItem()}>
       <Select
         onChange={handleChangeFilterBy}
         options={filterByOptions.map((option) => {
@@ -122,7 +124,7 @@ export const FilterMenuDateValueSelect: React.FC<FilterRowProps> = (props) => {
     handleChangeFilterValue,
     context,
     filterValue,
-    getElementWrapperClasses,
+    getStylesWrapperFilterItem,
   } = useFilterMenuItem(props, "select-value-date");
 
   const selectedDateOption = context.filterDateOptions.find(
@@ -136,7 +138,7 @@ export const FilterMenuDateValueSelect: React.FC<FilterRowProps> = (props) => {
 
   const elementProps = getElementProps({ value });
   return (
-    <div className={getElementWrapperClasses()}>
+    <div style={getStylesWrapperFilterItem()}>
       <Select
         onChange={(value) => handleChangeFilterValue(value.label)}
         options={context.filterDateOptions}
@@ -153,7 +155,7 @@ export const FilterMenuBooleanValueSelect: React.FC<FilterRowProps> = (
     getElementProps,
     handleChangeFilterValue,
     filterValue,
-    getElementWrapperClasses,
+    getStylesWrapperFilterItem,
   } = useFilterMenuItem(props, "select-value-boolean");
 
   const value =
@@ -163,7 +165,7 @@ export const FilterMenuBooleanValueSelect: React.FC<FilterRowProps> = (
 
   const elementProps = getElementProps({ value });
   return (
-    <div className={getElementWrapperClasses()}>
+    <div style={getStylesWrapperFilterItem()}>
       <Select
         onChange={(value) =>
           handleChangeFilterValue(value.label === "true" ? true : false)
@@ -188,7 +190,7 @@ export const FilterMenuRelationValueSelect: React.FC<FilterRowProps> = (
     handleQueryChange,
     relationalOptions,
     filterOptionConfig,
-    getElementWrapperClasses,
+    getStylesWrapperFilterItem,
   } = useFilterMenuItem(props, "select-value-relation");
 
   const value =
@@ -196,7 +198,7 @@ export const FilterMenuRelationValueSelect: React.FC<FilterRowProps> = (
 
   const elementProps = getElementProps({ value });
   return (
-    <div className={getElementWrapperClasses()}>
+    <div style={getStylesWrapperFilterItem()}>
       <Select
         onChange={handleChangeFilterValue}
         onQueryChange={handleQueryChange}
@@ -217,7 +219,7 @@ export const FilterMenuValueInput: React.FC<FilterRowProps> = (props) => {
     handleChangeFilterValue,
     filterOption,
     filterValue,
-    getElementWrapperClasses,
+    getStylesWrapperFilterItem,
   } = useFilterMenuItem(props, "input-value");
 
   const value =
@@ -228,7 +230,7 @@ export const FilterMenuValueInput: React.FC<FilterRowProps> = (props) => {
   const elementProps = getElementProps({ value });
 
   return (
-    <div className={getElementWrapperClasses()}>
+    <div style={getStylesWrapperFilterItem()}>
       <FilterMenuInput
         onChange={handleChangeFilterValue}
         type={
