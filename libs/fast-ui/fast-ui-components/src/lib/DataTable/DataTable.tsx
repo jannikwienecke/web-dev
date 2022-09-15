@@ -135,12 +135,6 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
               </thead>
 
               <tbody className="divide-light-shade bg-skin-base-light relative divide-y">
-                <div
-                  className={`${
-                    isLoading || "hidden"
-                  } bg-medium-default absolute top-0 left-0 h-full w-full opacity-20 `}
-                />
-
                 {table.getRowModel().rows.map((row) => {
                   const isChecked = selectedRows.includes(row.original);
                   return (
@@ -158,7 +152,7 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
                     >
                       <td className="relative w-12 px-6 sm:w-16 sm:px-8">
                         {selectedRows.includes(row.original) && (
-                          <div className="bg-skin-accent absolute inset-y-0 left-0 w-0.5" />
+                          <span className="bg-skin-accent absolute inset-y-0 left-0 w-0.5" />
                         )}
                         <input
                           type="checkbox"
@@ -191,6 +185,12 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
                     </tr>
                   );
                 })}
+
+                <tr
+                  className={`${
+                    isLoading || "hidden"
+                  } bg-medium-default absolute top-0 left-0 h-full w-full opacity-20 `}
+                />
               </tbody>
             </table>
 
