@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 interface UseScroll {
-  pageSize: number
-  pageIndex: number
-  gotoPage: (page: number) => void
-  autoScrolling: boolean
-  goToIndex?: number
+  pageSize: number;
+  pageIndex: number;
+  gotoPage: (page: number) => void;
+  autoScrolling: boolean;
+  goToIndex?: number;
 }
 
 export const useTableScroll = ({
@@ -15,118 +15,120 @@ export const useTableScroll = ({
   autoScrolling,
   goToIndex,
 }: UseScroll) => {
-  const pageRef = React.useRef<number>()
-  const goToIndexRef = React.useRef<number | undefined>(undefined)
-  const isScrollingRef = React.useRef(false)
+  const pageRef = React.useRef<number>();
+  const goToIndexRef = React.useRef<number | undefined>(undefined);
+  const isScrollingRef = React.useRef(false);
 
-  const isVisibleRef = React.useRef(false)
-  const observerRef = React.useRef<IntersectionObserver | undefined>(undefined)
+  const isVisibleRef = React.useRef(false);
+  const observerRef = React.useRef<IntersectionObserver | undefined>(undefined);
 
   React.useEffect(() => {
+    if (!window.IntersectionObserver) return;
+
     observerRef.current = new window.IntersectionObserver(
-      ([row]) => {
+      ([row]: IntersectionObserverEntry[]) => {
         if (row.isIntersecting) {
-          isVisibleRef.current = true
-          return
+          isVisibleRef.current = true;
+          return;
         }
-        isVisibleRef.current = false
+        isVisibleRef.current = false;
       },
       {
         root: null,
         threshold: 0.1, // set offset 0.1 means trigger if atleast 10% of element in viewport
       }
-    )
+    );
 
     return () => {
-      observerRef.current?.disconnect()
-    }
-  }, [])
+      observerRef.current?.disconnect();
+    };
+  }, []);
 
   const scroll = React.useCallback(
     (rowId: number | string) => {
-      if (isScrollingRef.current) return
+      if (isScrollingRef.current) return;
 
-      observerRef.current?.disconnect()
+      observerRef.current?.disconnect();
 
-      const row = document.getElementsByClassName(`table-row-${rowId}`)[0]
+      const row = document.getElementsByClassName(`table-row-${rowId}`)[0];
 
-      if (!row) return
+      if (!row) return;
 
       try {
-        observerRef.current?.observe(row)
+        observerRef.current?.observe(row);
       } catch (error) {
-        console.error('[useTableScroll]: Error')
-        console.error(error)
-        return
+        console.error("[useTableScroll]: Error");
+        console.error(error);
+        return;
       }
 
-      isScrollingRef.current = true
+      isScrollingRef.current = true;
 
       setTimeout(() => {
-        isScrollingRef.current = false
-      }, 300)
+        isScrollingRef.current = false;
+      }, 300);
 
       setTimeout(() => {
         if (autoScrolling) {
-          if (!row) return
-          if (isVisibleRef.current) return
+          if (!row) return;
+          if (isVisibleRef.current) return;
 
-          row.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          row.scrollIntoView({ behavior: "smooth", block: "center" });
         }
-      }, 300)
+      }, 300);
     },
     [autoScrolling]
-  )
+  );
 
   const getPageIndex = React.useCallback(
     (goToIndex: number) => {
       if (goToIndex < pageSize) {
-        return 0
+        return 0;
       } else {
-        return Math.floor(goToIndex / pageSize)
+        return Math.floor(goToIndex / pageSize);
       }
     },
     [pageSize]
-  )
+  );
 
   const initiateScroll = React.useCallback(
     (goToRowIndex: number) => {
-      if (goToIndexRef.current !== undefined) return
+      if (goToIndexRef.current !== undefined) return;
 
-      goToIndexRef.current = goToRowIndex
+      goToIndexRef.current = goToRowIndex;
 
       setTimeout(() => {
-        goToIndexRef.current = undefined
-      }, 1000)
+        goToIndexRef.current = undefined;
+      }, 1000);
 
-      const gotoPageValue = getPageIndex(goToRowIndex)
+      const gotoPageValue = getPageIndex(goToRowIndex);
 
       if (gotoPageValue === pageIndex) {
-        scroll(goToRowIndex)
+        scroll(goToRowIndex);
       } else {
-        gotoPage(gotoPageValue)
-        pageRef.current = gotoPageValue
+        gotoPage(gotoPageValue);
+        pageRef.current = gotoPageValue;
       }
     },
     [getPageIndex, gotoPage, pageIndex, scroll]
-  )
+  );
 
   // After changing the page -> this runs and scrolls to the correct position
   React.useEffect(() => {
-    if (!goToIndexRef.current) return
-    if (!autoScrolling) return
+    if (!goToIndexRef.current) return;
+    if (!autoScrolling) return;
 
-    const gotoPageValue = getPageIndex(goToIndexRef.current)
+    const gotoPageValue = getPageIndex(goToIndexRef.current);
 
     if (pageIndex === gotoPageValue) {
-      scroll(goToIndexRef.current)
+      scroll(goToIndexRef.current);
     }
-  }, [autoScrolling, getPageIndex, pageIndex, scroll])
+  }, [autoScrolling, getPageIndex, pageIndex, scroll]);
 
   React.useEffect(() => {
-    if (goToIndex === undefined) return
+    if (goToIndex === undefined) return;
 
-    initiateScroll(goToIndex)
+    initiateScroll(goToIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [goToIndex])
-}
+  }, [goToIndex]);
+};

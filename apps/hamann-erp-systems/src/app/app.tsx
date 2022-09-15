@@ -29,7 +29,7 @@ export const appTestGroups: AppSideMenuGroupItemProps[] = [
   },
 
   {
-    title: "Employee Settings",
+    title: "Employee Setting",
     appItems: [
       { label: "Settings", pathname: "#" },
       { label: "Views", pathname: "#" },

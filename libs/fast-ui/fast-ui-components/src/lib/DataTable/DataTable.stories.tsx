@@ -7,6 +7,7 @@ export default {
   title: "DataTable",
 } as Meta;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Template: Story<DataTableProps<unknown, any[]>> = (args) => (
   <DataTable {...args} />
 );
