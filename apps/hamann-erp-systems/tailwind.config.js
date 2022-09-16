@@ -34,6 +34,7 @@ module.exports = {
           "base-inverted": "var(--color-background-base-inverted)",
           accent: "var(--color-background-accent)",
           "accent-light": "var(--color-background-accent-light)",
+          "accent-dark": "var(--color-background-accent-dark)",
         },
       },
 

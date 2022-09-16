@@ -7,14 +7,16 @@
 }
 
 .theme-red {
-  --theme-color: rgb(224, 67, 67);
+  --theme-color: hsl(0, 72%, 57%);
   --theme-color-light: hsl(0, 86%, 90%);
+  --theme-color-dark: hsl(0, 72%, 50%);
   --theme-success: hsl(142, 77%, 73%);
 }
 
 .theme-dark.theme-red {
   --theme-color: rgb(224, 67, 67);
   --theme-color-light: hsl(0, 86%, 65%);
+  --theme-color-dark: hsl(0, 72%, 50%);
   --theme-success: hsl(142, 77%, 73%);
 }
 
@@ -44,6 +46,7 @@
   --color-background-base-dark: hsl(260, 20%, 96%);
   --color-background-accent: var(--theme-color);
   --color-background-accent-light: var(--theme-color-light);
+  --color-background-accent-dark: var(--theme-color-dark);
 
   --color-background-base-inverted: hsl(222, 11%, 22%);
 
@@ -75,6 +78,7 @@
   --color-background-base-dark: hsl(240, 21%, 15%);
   --color-background-accent: var(--theme-color);
   --color-background-accent-light: var(--theme-color-light);
+  --color-background-accent-dark: var(--theme-color-dark);
   --color-background-base-inverted: hsl(0, 100%, 100%);
 
   /* border colors */

@@ -5,3 +5,5 @@ export * from "./lib/AppViewHeader/AppViewHeader";
 export * from "./lib/AppViewControlPanel/AppViewControlPanel";
 export * from "./lib/DataTable/DataTable";
 export * from "./lib/ActionMenu/ActionMenu";
+export * from "./lib/SlideOver/SlideOver";
+export * from "./lib/DetailView/DetailView";

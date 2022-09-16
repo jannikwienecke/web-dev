@@ -9,7 +9,7 @@
       {
         "whitelist": [
           "(text|bg|border)-(skin)-(accent|base|layer)",
-          "(text|bg|border)-(skin)-(accent|base|layer)-light",
+          "(text|bg|border)-(skin)-(accent|base|layer)-(light|dark)",
           "text-(skin|background|border)-base-(dark|light|inverted)",
           "(border|text|bg)-skin-base-(dark|light|inverted)",
           "line-clamp-2",

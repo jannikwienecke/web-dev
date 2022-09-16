@@ -1,9 +1,9 @@
-import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-import { css, tw } from 'twind/css';
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import { css, tw } from "twind/css";
 
 export interface PopoverItem {
   label: string;
-  type?: 'checkbox' | 'radio' | 'trigger';
+  type?: "checkbox" | "radio" | "trigger";
   items?: PopoverItem[];
   shortCut?: string;
   disabled?: boolean;
@@ -23,7 +23,7 @@ export const Popover = ({ button, groups }: PopoverProps) => {
   const dropDownItem = `
     relative text-skin-base-dark text-[13px]
     rounded-sm  pl-6 flex items-center
-    select-none pr-1 focus:bg-skin-accent 
+    select-none pr-1 focus:bg-skin-accent focus:outline-accent
     focus:text-skin-base-inverted
     disabled:text-skin-base-dark
     py-1 last:pb-0
@@ -59,7 +59,7 @@ export const Popover = ({ button, groups }: PopoverProps) => {
         <DropdownMenuPrimitive.Content
           avoidCollisions={true}
           sideOffset={20}
-          className={`${dropdownContent}  shadow-xl shadow-shadow-base-dark`}
+          className={`${dropdownContent}  shadow-shadow-base-dark shadow-xl`}
         >
           {groups.map((group, index) => {
             const isLastGroup = index === groups.length - 1;
@@ -68,15 +68,15 @@ export const Popover = ({ button, groups }: PopoverProps) => {
                 {group.items.map((item) => {
                   return (
                     <DropdownMenuPrimitive.Item
-                      key={item.label + '_item'}
+                      key={item.label + "_item"}
                       disabled={item.disabled}
                       className={`${dropDownItem} ${tw(itemStylesDisabled)}`}
                     >
-                      {item.label}{' '}
+                      {item.label}{" "}
                       <div
                         className={`
                       
-                          ${rightSlot} ${!item.shortCut && 'hidden'}`}
+                          ${rightSlot} ${!item.shortCut && "hidden"}`}
                       >
                         {item.shortCut}
                       </div>
@@ -85,7 +85,7 @@ export const Popover = ({ button, groups }: PopoverProps) => {
                 })}
 
                 <DropdownMenuPrimitive.Separator
-                  className={`${seperator} ${isLastGroup && 'hidden'}`}
+                  className={`${seperator} ${isLastGroup && "hidden"}`}
                 />
               </div>
             );

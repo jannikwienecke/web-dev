@@ -7,6 +7,7 @@
   /* theme-color */
   --theme-color: hsl(241, 99%, 63%);
   --theme-color-light: hsl(241, 90%, 85%);
+  --theme-color-dark: hsl(241, 90%, 61%);
   --theme-success: hsl(142, 77%, 73%);
   --theme-error: var(--theme-color-light);
 
@@ -21,6 +22,7 @@
   --color-background-base-dark: hsl(260, 20%, 96%);
   --color-background-accent: var(--theme-color);
   --color-background-accent-light: var(--theme-color-light);
+  --color-background-accent-dark: var(--theme-color-dark);
   /* --color-background-base-inverted: hsl(0, 14%, 5%); */
   --color-background-base-inverted: hsl(222, 11%, 22%);
 

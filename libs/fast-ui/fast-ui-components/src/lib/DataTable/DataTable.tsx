@@ -97,6 +97,9 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
                         className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"
                         ref={checkbox}
                         checked={checked}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                         onChange={toggleAll}
                       />
                     </th>
@@ -161,13 +164,14 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
                           className="text-skin-accent focus:ring-accent absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 sm:left-6"
                           value={row.id}
                           checked={isChecked}
-                          onChange={(e) =>
+                          onClick={(e) => e.stopPropagation()}
+                          onChange={(e) => {
                             setSelectedRows(
                               e.target.checked
                                 ? [...selectedRows, row.original]
                                 : selectedRows.filter((p) => p !== row.original)
-                            )
-                          }
+                            );
+                          }}
                         />
                       </td>
 

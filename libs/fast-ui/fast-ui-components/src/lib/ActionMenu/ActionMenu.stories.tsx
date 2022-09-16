@@ -5,11 +5,12 @@ import { ActionItemType, ActionMenu, ActionMenuProps } from "./ActionMenu";
 export default {
   component: ActionMenu,
   title: "ActionMenu",
+  excludeStories: /.*actions$/,
 } as Meta;
 
 const Template: Story<ActionMenuProps> = (args) => <ActionMenu {...args} />;
 
-const actions: ActionItemType[] = [
+export const actions: ActionItemType[] = [
   {
     label: "Edit",
     Icon: FaEdit,

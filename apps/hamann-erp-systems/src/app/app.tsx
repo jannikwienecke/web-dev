@@ -7,7 +7,11 @@ import {
   AppViewControlPanel,
   AppViewHeader,
   DataTable,
+  DetailView,
+  Model,
+  ModelType,
   Sidebar,
+  SlideOver,
 } from "@web-dev/fast-ui/fast-ui-components";
 import { motion } from "framer-motion";
 import React from "react";
@@ -18,9 +22,6 @@ import {
   FaHiking,
   FaUser,
   FaCommentDots,
-  FaCopy,
-  FaRegWindowClose,
-  FaSave,
   FaTrash,
 } from "react-icons/fa";
 
@@ -438,6 +439,20 @@ const actions: ActionItemType[] = [
 
 export function App() {
   const [selected, setSelected] = React.useState<Person[]>([]);
+  const [clickedRow, _setClickedRow] = React.useState<ModelType>();
+
+  const setClickedRow = (row?: Person) => {
+    if (!row) _setClickedRow(undefined);
+    else {
+      const model = new Model({
+        model: "Person",
+        rawData: {
+          ...row,
+        },
+      });
+      _setClickedRow(model);
+    }
+  };
 
   return (
     <>
@@ -526,6 +541,7 @@ export function App() {
 
           <div className="h-full overflow-scroll p-4">
             <DataTable
+              onRowClick={(row) => setClickedRow(row)}
               onSelectChange={(z) => setSelected(z)}
               initialPageSize={48}
               data={persons}
@@ -551,6 +567,16 @@ export function App() {
           actions={actions}
         />
       </motion.div>
+
+      <SlideOver onClose={() => setClickedRow(undefined)} model={clickedRow}>
+        {(model) => (
+          <DetailView
+            actions={actions}
+            mainAction={actions.find((x) => x.label === "Edit") || actions[0]}
+            model={model}
+          />
+        )}
+      </SlideOver>
     </>
   );
 }
