@@ -540,6 +540,7 @@ export function App() {
         initial={{ y: -100 }}
         variants={{
           open: { y: 0, transition: { duration: 0.3, ease: "easeInOut" } },
+          closed: { y: -100, transition: { duration: 0.3, ease: "easeInOut" } },
         }}
         animate={selected?.length ? "open" : "closed"}
         className="fixed top-0 left-0 z-30 w-full p-2 "

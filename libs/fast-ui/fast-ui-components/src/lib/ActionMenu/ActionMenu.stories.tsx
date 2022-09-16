@@ -1,5 +1,6 @@
 import { Story, Meta } from "@storybook/react";
-import { ActionMenu, ActionMenuProps } from "./ActionMenu";
+import { FaEdit, FaTrash, FaCommentDots } from "react-icons/fa";
+import { ActionItemType, ActionMenu, ActionMenuProps } from "./ActionMenu";
 
 export default {
   component: ActionMenu,
@@ -8,5 +9,23 @@ export default {
 
 const Template: Story<ActionMenuProps> = (args) => <ActionMenu {...args} />;
 
+const actions: ActionItemType[] = [
+  {
+    label: "Edit",
+    Icon: FaEdit,
+  },
+  {
+    label: "Delete",
+    Icon: FaTrash,
+  },
+  {
+    label: "Comment",
+    Icon: FaCommentDots,
+  },
+];
+
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  actions: actions,
+  numberSelectedItems: 1,
+};

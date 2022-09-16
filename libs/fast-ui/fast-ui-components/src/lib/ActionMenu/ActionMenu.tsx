@@ -20,7 +20,7 @@ export function ActionMenu(props: ActionMenuProps) {
       : `${props.numberSelectedItems} task selected`;
 
   return (
-    <div className="bg-skin-base-inverted text-skin-base-inverted  flex justify-between rounded-t-md p-4">
+    <div className="bg-skin-base-inverted text-skin-base-inverted  flex justify-between rounded-t-md py-4 px-8 ">
       <div className="flex items-center justify-center gap-3 pl-4">
         <div className="bg-skin-accent h-2 w-2 rounded-full outline outline-2 outline-offset-1 outline-gray-400"></div>
         <div className="text-skin-base-inverted text-sm">
