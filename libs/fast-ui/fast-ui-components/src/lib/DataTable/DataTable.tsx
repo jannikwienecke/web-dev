@@ -58,8 +58,8 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
 
     initialState: {
       pagination: {
-        pageIndex: initialIndex ?? 0,
         pageSize: initialPageSize || 10,
+        pageIndex: initialIndex ?? 0,
       },
     },
   });
