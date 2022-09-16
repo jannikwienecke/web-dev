@@ -4,3 +4,4 @@ export * from "./lib/PageHeader/PageHeader";
 export * from "./lib/AppViewHeader/AppViewHeader";
 export * from "./lib/AppViewControlPanel/AppViewControlPanel";
 export * from "./lib/DataTable/DataTable";
+export * from "./lib/ActionMenu/ActionMenu";
