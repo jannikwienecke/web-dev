@@ -3,16 +3,22 @@ import React from "react";
 interface UseTableToggleProps<T> {
   dataList: T[];
   onChange?: (dataList: T[]) => void;
+  selected?: T[];
 }
 
 export const useTableToggle = <T>({
   dataList,
   onChange,
+  selected,
 }: UseTableToggleProps<T>) => {
   const checkbox = React.useRef<HTMLInputElement>(null);
   const [checked, setChecked] = React.useState(false);
   const [indeterminate, setIndeterminate] = React.useState(false);
-  const [selectedRows, setSelectedRows] = React.useState<T[]>([]);
+  const [selectedRows, _setSelectedRows] = React.useState<T[]>([]);
+
+  React.useEffect(() => {
+    _setSelectedRows(selected || []);
+  }, [selected]);
 
   React.useLayoutEffect(() => {
     if (!checkbox.current) return;
@@ -30,9 +36,10 @@ export const useTableToggle = <T>({
     setIndeterminate(false);
   }
 
-  React.useEffect(() => {
+  const setSelectedRows = (selectedRows: T[]) => {
     onChange?.(selectedRows);
-  }, [onChange, selectedRows]);
+    _setSelectedRows(selectedRows);
+  };
 
   return {
     checkbox,

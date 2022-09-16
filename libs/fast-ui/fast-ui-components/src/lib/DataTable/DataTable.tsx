@@ -23,6 +23,7 @@ export interface DataTableProps<D, C extends ColumnDef<D, unknown>[]> {
   goToIndex?: number;
   onRowClick?: (row: D) => void;
   onSelectChange?: (selected: D[]) => void;
+  selected?: D[];
 
   initialPageSize?: number;
   initialIndex?: number;
@@ -37,6 +38,7 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
   onSelectChange,
   initialIndex,
   initialPageSize,
+  selected,
 }: DataTableProps<D, C>) => {
   const [autoScrolling, setAutoScrolling] = React.useState(true);
 
@@ -75,7 +77,7 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
   });
 
   const { checkbox, checked, toggleAll, setSelectedRows, selectedRows } =
-    useTableToggle({ dataList: data, onChange: onSelectChange });
+    useTableToggle({ dataList: data, onChange: onSelectChange, selected });
 
   return (
     <div className="relative flex flex-col">

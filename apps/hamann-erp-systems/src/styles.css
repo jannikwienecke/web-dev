@@ -44,7 +44,8 @@
   --color-background-base-dark: hsl(260, 20%, 96%);
   --color-background-accent: var(--theme-color);
   --color-background-accent-light: var(--theme-color-light);
-  --color-background-base-inverted: hsl(0, 14%, 100%);
+
+  --color-background-base-inverted: hsl(222, 11%, 22%);
 
   /* border colors */
   --color-border-base-light: #ddd;

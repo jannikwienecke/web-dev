@@ -81,11 +81,7 @@ export const filterMenuMachine =
       schema: { context: {} as FilterMenuMachineContext, events: {} as Events },
       id: "toggle",
       initial: "closed",
-      on: {
-        EVALUATE_FILTER: {
-          actions: () => console.log("EVALUATE_FILTER"),
-        },
-      },
+
       states: {
         closed: {
           on: {
