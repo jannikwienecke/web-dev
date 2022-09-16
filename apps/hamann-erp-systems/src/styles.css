@@ -95,5 +95,7 @@
   --color-error: var(--theme-color-light);
   --accent: var(--theme-color);
 
+  --color-ring-accent: var(--theme-color);
+
   font-size: 16px;
 }

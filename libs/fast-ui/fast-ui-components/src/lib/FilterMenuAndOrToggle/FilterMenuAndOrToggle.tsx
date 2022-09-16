@@ -1,5 +1,4 @@
-import { useActor } from "@xstate/react";
-import { Variants, motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { HiSwitchVertical } from "react-icons/hi";
 import { useFilterMenuService } from "../FilterMenu/state";
 

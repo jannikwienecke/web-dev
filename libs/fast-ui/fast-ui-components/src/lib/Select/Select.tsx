@@ -66,7 +66,8 @@ export function Select<T extends SelectItem>({
             hasError && "select-input-field-error"
           } select-input-field focus:ring-accent  `}
           onChange={(e) => handleQueryChange(e.target.value)}
-          displayValue={(option: any) => option?.label}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          displayValue={(option) => (option as T)?.label || ""}
         />
         <Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
           <SelectorIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />

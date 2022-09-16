@@ -6,7 +6,6 @@ import { FilterMenu } from "../FilterMenu/FilterMenu";
 import { FilterMenuMachineContext } from "../FilterMenu/machine";
 import {
   FilterComparatorOptions,
-  FilterItem,
   FilterItemDone,
   FilterItemReady,
   FilterListOption,
