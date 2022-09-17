@@ -2,6 +2,26 @@ import { HiDotsVertical } from "react-icons/hi";
 import { ActionItemType } from "../ActionMenu/ActionMenu";
 import { Popover } from "../Popover/Popover";
 
+export type DataType = "string" | "number" | "boolean" | "date" | "relational";
+
+export interface DataItemType {
+  name: string;
+  value: unknown;
+  type: DataType;
+}
+
+export class DataItem implements DataItemType {
+  name: string;
+  value: unknown;
+  type: DataType;
+
+  constructor(props: { name: string; value: unknown; type: DataType }) {
+    this.name = props.name;
+    this.value = props.value;
+    this.type = props.type;
+  }
+}
+
 export type ModelTypeData = Record<string | number, unknown> & {
   id: string | number;
 };
@@ -9,26 +29,28 @@ export type ModelTypeData = Record<string | number, unknown> & {
 export type ModelType = {
   model: string;
   description: string;
-  data: ModelTypeData;
+  items: DataItemType[];
 };
 
 export class Model implements ModelType {
   id: string | number;
   model: string;
   description: string;
-  data: ModelTypeData;
+  items: DataItemType[];
 
   constructor({
     model,
-    rawData,
+    items,
     description,
+    id,
   }: {
+    id: string | number;
     model: string;
-    rawData: ModelTypeData;
+    items: DataItemType[];
     description?: string;
   }) {
-    this.id = rawData.id;
-    this.data = rawData;
+    this.id = id;
+    this.items = items;
     this.model = model;
     this.description = description || "No description";
   }
@@ -71,10 +93,10 @@ export function DetailView({ model, actions, mainAction }: DetailViewProps) {
       <div className="pt-8">
         <h3 className="font-medium text-gray-900">Information</h3>
         <dl className="mt-2 divide-y divide-gray-200 border-t border-b border-gray-200">
-          {Object.entries(model.data).map(([key, value]) => (
+          {model.items.map((item) => (
             <div className="flex justify-between py-3 text-sm font-medium">
-              <dt className="text-gray-500">{key.toUpperCase()}</dt>
-              <dd className="text-gray-900">{String(value)}</dd>
+              <dt className="text-gray-500">{item.name.toUpperCase()}</dt>
+              <dd className="text-gray-900">{String(item.value)}</dd>
             </div>
           ))}
         </dl>

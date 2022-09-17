@@ -7,3 +7,4 @@ export * from "./lib/DataTable/DataTable";
 export * from "./lib/ActionMenu/ActionMenu";
 export * from "./lib/SlideOver/SlideOver";
 export * from "./lib/DetailView/DetailView";
+export * from "./lib/EditView/EditView";

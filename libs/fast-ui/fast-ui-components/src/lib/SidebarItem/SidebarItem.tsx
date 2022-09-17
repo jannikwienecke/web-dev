@@ -38,8 +38,8 @@ export function SidebarNavItem({ navItem, isCollapsed }: SidebarNavItemProps) {
           <navItem.icon className={`${navItemIcon} `} />
         </div>
         <div
-          style={{ visibility: isCollapsed ? "visible" : "hidden" }}
-          className={`${tooltipBase} ${tooltopActive}`}
+          style={{ visibility: isCollapsed ? "visible" : "visible" }}
+          className={`left-16 ${tooltipBase} ${tooltopActive}`}
         >
           {navItem.label}
         </div>

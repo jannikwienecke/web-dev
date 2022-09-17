@@ -37,7 +37,7 @@
 
   /* TEXT COLORS */
   --color-text-base-dark: hsl(255, 100%, 0%);
-  --color-text-base-light: hsl(240, 14%, 61%);
+  --color-text-base-light: hsl(240, 14%, 41%);
   --color-text-accent: var(--theme-color);
   --color-text-base-inverted: hsl(0, 14%, 100%);
 

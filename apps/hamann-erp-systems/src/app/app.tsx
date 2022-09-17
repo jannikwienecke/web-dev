@@ -6,8 +6,10 @@ import {
   AppSideMenuGroupItemProps,
   AppViewControlPanel,
   AppViewHeader,
+  DataItem,
   DataTable,
   DetailView,
+  EditView,
   Model,
   ModelType,
   Sidebar,
@@ -444,11 +446,25 @@ export function App() {
   const setClickedRow = (row?: Person) => {
     if (!row) _setClickedRow(undefined);
     else {
+      const items = Object.entries(row).map(([key, value]) => {
+        if (key === "role") {
+          return new DataItem({ name: key, value: value, type: "relational" });
+        }
+        if (key === "age") {
+          return new DataItem({ name: key, value: value, type: "number" });
+        }
+
+        if (key === "address") {
+          return new DataItem({ name: key, value: value, type: "boolean" });
+        }
+
+        return new DataItem({ name: key, value: value, type: "string" });
+      });
+
       const model = new Model({
         model: "Person",
-        rawData: {
-          ...row,
-        },
+        id: row.id,
+        items: items,
       });
       _setClickedRow(model);
     }
@@ -570,11 +586,12 @@ export function App() {
 
       <SlideOver onClose={() => setClickedRow(undefined)} model={clickedRow}>
         {(model) => (
-          <DetailView
-            actions={actions}
-            mainAction={actions.find((x) => x.label === "Edit") || actions[0]}
-            model={model}
-          />
+          // <DetailView
+          //   actions={actions}
+          //   mainAction={actions.find((x) => x.label === "Edit") || actions[0]}
+          //   model={model}
+          // />
+          <EditView model={model} />
         )}
       </SlideOver>
     </>

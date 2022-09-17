@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 import { actions } from "../ActionMenu/ActionMenu.stories";
-import DetailView from "../DetailView/DetailView";
+import DetailView, { ModelType } from "../DetailView/DetailView";
 import { SlideOver, SlideOverProps } from "./SlideOver";
 
 export default {
@@ -11,12 +11,19 @@ export default {
 
 const Template: Story<SlideOverProps> = (args) => <SlideOver {...args} />;
 
-export const TestModel = {
-  data: {
-    id: 1,
-    name: "Test",
-    description: "Test description",
-  },
+export const TestModel: ModelType = {
+  items: [
+    {
+      name: "id",
+      type: "string",
+      value: "1",
+    },
+    {
+      name: "name",
+      type: "string",
+      value: "Test",
+    },
+  ],
   description: "Model description",
   model: "Model name",
 };

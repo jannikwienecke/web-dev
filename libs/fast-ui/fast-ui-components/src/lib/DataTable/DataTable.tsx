@@ -178,7 +178,7 @@ export const DataTable = <D, C extends ColumnDef<D, unknown>[]>({
                       {row.getVisibleCells().map((cell) => {
                         return (
                           <td
-                            className="text-skin-base-dark whitespace-nowrap py-2 pl-4 pr-3 text-sm sm:pl-6"
+                            className="text-skin-base-light whitespace-nowrap py-2 pl-4 pr-3 text-sm sm:pl-6"
                             key={cell.id}
                           >
                             {flexRender(

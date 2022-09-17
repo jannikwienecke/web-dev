@@ -73,21 +73,25 @@ export function SlideOver({ children, onClose, model }: SlideOverProps) {
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="bg-skin-base-light flex h-full flex-col overflow-y-scroll  shadow-xl">
-                    <div className="bg-skin-accent py-6">
-                      <div className="text-skin-base-inverted px-4 sm:px-6">
-                        <Dialog.Title className="text-lg font-medium font-extrabold ">
-                          Model: {model?.model}
+                  <div className="bg-skin-base-light flex h-full flex-col overflow-y-scroll shadow-xl">
+                    <div className="border-skin-base-light border-b-[1px] py-3">
+                      <div className="px-4 sm:px-6">
+                        <Dialog.Title className="text-lg font-medium ">
+                          DataModel:{" "}
+                          <span className="bg-skin-base-dark text-skin-base-dark border-skin-base-light ml-2 border py-1 px-3">
+                            <code>{model?.model}</code>
+                          </span>
                         </Dialog.Title>
 
                         <div className="mt-1">
-                          <p className="text-skin-base-inverted text-sm">
-                            {model?.description}
+                          <p className="text-sm">
+                            {model?.description || "No description"}
                           </p>
                         </div>
                       </div>
                     </div>
-                    {model && children(model)}
+
+                    <div className="flex-grow">{model && children(model)}</div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
