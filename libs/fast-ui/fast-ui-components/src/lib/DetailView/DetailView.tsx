@@ -1,5 +1,6 @@
 import { HiDotsVertical } from "react-icons/hi";
 import { ActionItemType } from "../ActionMenu/ActionMenu";
+import Button from "../Button/Button";
 import { Popover } from "../Popover/Popover";
 
 export type DataType = "string" | "number" | "boolean" | "date" | "relational";
@@ -66,14 +67,13 @@ export function DetailView({ model, actions, mainAction }: DetailViewProps) {
   return (
     <div className="mt-4 px-8">
       <div className="mt-5 flex flex-wrap space-y-3 sm:space-y-0 sm:space-x-3">
-        <button
+        <Button
           onClick={mainAction.onClick}
-          type="button"
           className="bg-skin-accent hover:bg-skin-accent-dark focus:ring-accent inline-flex w-full flex-shrink-0 items-center justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white bg-blend-darken shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:flex-1"
         >
           <mainAction.Icon className="mr-2 h-5 w-5" />
           {mainAction.label}
-        </button>
+        </Button>
 
         <Popover
           groups={[
@@ -83,9 +83,9 @@ export function DetailView({ model, actions, mainAction }: DetailViewProps) {
             },
           ]}
           button={
-            <button className="focus:ring-accent inline-flex w-full flex-1 items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2">
+            <Button variant="base">
               <HiDotsVertical className=" cursor-pointer text-xl" />
-            </button>
+            </Button>
           }
         ></Popover>
       </div>

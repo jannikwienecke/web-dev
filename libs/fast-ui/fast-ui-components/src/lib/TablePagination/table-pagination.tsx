@@ -27,7 +27,7 @@ export const TablePagination = ({
         </p>
       </div>
 
-      <div className="flex flex-1 justify-between sm:justify-end">
+      <div className="flex flex-1 justify-between gap-2 sm:justify-end">
         {buttons.map((button, index) => {
           return <div key={index}>{button}</div>;
         })}

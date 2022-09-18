@@ -17,7 +17,8 @@
     "paths": {
       "@web-dev/fast-ui/fast-ui-components": [
         "libs/fast-ui/fast-ui-components/src/index.ts"
-      ]
+      ],
+      "@web-dev/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

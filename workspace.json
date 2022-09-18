@@ -4,6 +4,7 @@
     "fast-ui-fast-ui-components": "libs/fast-ui/fast-ui-components",
     "fast-ui-fast-ui-components-e2e": "apps/fast-ui-fast-ui-components-e2e",
     "hamann-erp-systems": "apps/hamann-erp-systems",
-    "hamann-erp-systems-e2e": "apps/hamann-erp-systems-e2e"
+    "hamann-erp-systems-e2e": "apps/hamann-erp-systems-e2e",
+    "types": "libs/types"
   }
 }

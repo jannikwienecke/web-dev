@@ -62,7 +62,7 @@ export function SlideOver({ children, onClose, model }: SlideOverProps) {
                     <div className="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 sm:-ml-10 sm:pr-4">
                       <button
                         type="button"
-                        className="text-skin-base-inverted hover:text-skin-base-dark rounded-md focus:outline-none focus:ring-2 focus:ring-white"
+                        className="text-skin-base-inverted hover:text-skin-base-dark focus:ring-accent rounded-md ring-offset-2 focus:outline-none focus:ring-2"
                         onClick={() => setOpen(false)}
                       >
                         <span className="sr-only">Close panel</span>

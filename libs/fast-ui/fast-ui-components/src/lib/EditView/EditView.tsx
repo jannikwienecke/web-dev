@@ -1,4 +1,5 @@
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
+import Button from "../Button/Button";
 import { DataItemType, DataType, ModelType } from "../DetailView/DetailView";
 import { Select } from "../Select/Select";
 
@@ -37,19 +38,11 @@ export function EditView({ model }: EditViewProps) {
         })}
       </div>
 
-      <div className="flex justify-end p-4">
-        <button
-          type="button"
-          className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        >
+      <div className="flex justify-end gap-2 p-4">
+        <Button size="fit" type="button" variant="base">
           Cancel
-        </button>
-        <button
-          type="submit"
-          className="bg-skin-accent hover:bg-skin-accent-dark focus:ring-accent ml-3 inline-flex justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
-        >
-          Save
-        </button>
+        </Button>
+        <Button size="fit">Save</Button>
       </div>
     </form>
   );

@@ -50,7 +50,7 @@ export function ActionMenu(props: ActionMenuProps) {
 const ActionItem = ({ action }: { action: ActionItemType }) => {
   const tooltipBase = `
   bg-skin-base-inverted text-skin-base-inverted
-  absolute top-10 -left-4 left-0 hidden 
+  absolute top-10 -left-6 left-0 hidden 
   whitespace-nowrap rounded-md p-1 px-3 text-sm
 `;
 

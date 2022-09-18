@@ -2,6 +2,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { Fragment } from "react";
 import { IoMdAdd } from "react-icons/io";
+import Button from "../Button/Button";
 import { FilterMenuAlert } from "../FilterMenuErrorAlert/FilterMenuAlert";
 import { FilterRow } from "../FilterRow/FilterRow";
 import { SelectItem } from "../Select/Select";
@@ -162,13 +163,12 @@ const FilterMenuContainer: React.FC<FilterMenuProps> = ({
                 {/* Save Button */}
                 {filterMenuHasChanges(initContext, context) ? (
                   <div className="flex place-items-center">
-                    <button
+                    <Button
+                      variant="primary-inverted"
                       onClick={() => send({ type: "EVALUATE_FILTER" })}
-                      type="button"
-                      className="text-skin-accent bg-skin-accent-light hover:text-skin-base-inverted hover:bg-skin-accent focus:ring-accent inline-flex items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2"
                     >
                       Save Filter
-                    </button>
+                    </Button>
                   </div>
                 ) : null}
               </div>
